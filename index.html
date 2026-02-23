@@ -30,10 +30,12 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     nav h1 {
       font-size: 1.5rem;
       font-weight: 700;
+      letter-spacing: 1px;
     }
     nav ul {
       display: flex;
@@ -44,13 +46,13 @@
       color: white;
       text-decoration: none;
       font-weight: 500;
-      transition: 0.3s;
+      transition: color 0.3s;
     }
     nav a:hover {
       color: #ffd700;
     }
 
-    /* Hero Section - Updated */
+    /* Hero Section */
     .hero {
       display: flex;
       flex-wrap: wrap;
@@ -59,26 +61,11 @@
       padding: 80px 50px;
       min-height: 90vh;
       background: 
-        linear-gradient(135deg, rgba(12, 139, 141, 0.8) 0%, rgba(0, 0, 0, 0.7) 100%),
+        linear-gradient(135deg, rgba(12, 139, 141, 0.85) 0%, rgba(0, 0, 0, 0.8) 100%),
         url('https://github.com/SAIDUZZAMAN-sojib/SAIDUZZAMAN/blob/main/IMG_3120.jpg?raw=true') center/cover no-repeat fixed;
       color: white;
       position: relative;
-      overflow: hidden;
     }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(0, 255, 204, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.2) 0%, transparent 50%);
-      z-index: 0;
-    }
-
     .hero-text {
       flex: 1;
       min-width: 300px;
@@ -87,16 +74,16 @@
       z-index: 1;
     }
     .hero-text h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     .hero-text p {
       margin-top: 15px;
-      line-height: 1.6;
+      line-height: 1.8;
       font-size: 1.2rem;
-      color: #e6e6e6;
+      color: #f0f0f0;
       max-width: 600px;
     }
     .hero-buttons {
@@ -105,11 +92,11 @@
     .hero-buttons a {
       background: #00ffcc;
       color: #000;
-      padding: 12px 25px;
-      margin-right: 10px;
-      border-radius: 5px;
+      padding: 12px 28px;
+      margin-right: 15px;
+      border-radius: 8px;
       font-weight: 600;
-      transition: 0.3s;
+      transition: all 0.3s;
       display: inline-block;
       text-decoration: none;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -117,7 +104,7 @@
     .hero-buttons a:hover {
       background: #ffd700;
       transform: translateY(-3px);
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
     .hero-img {
@@ -128,16 +115,15 @@
       z-index: 1;
     }
     .hero-img img {
-      width: 280px;
+      width: 300px;
       height: auto;
-      border-radius: 15px;
-      border: 4px solid #00ffcc;
-      box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
-      transition: transform 0.3s ease;
+      border-radius: 20px;
+      border: 5px solid #00ffcc;
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.6);
+      transition: transform 0.4s ease;
     }
     .hero-img img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(0, 255, 204, 0.7);
+      transform: scale(1.03);
     }
 
     /* Features */
@@ -145,83 +131,100 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin: -40px auto 60px;
-      gap: 20px;
-      max-width: 1000px;
+      margin: -50px auto 60px;
+      gap: 25px;
+      max-width: 1100px;
       position: relative;
       z-index: 2;
+      padding: 0 20px;
     }
     .feature-box {
-      flex: 1 1 200px;
+      flex: 1 1 220px;
       background: white;
-      border-radius: 10px;
+      border-radius: 12px;
       text-align: center;
-      padding: 25px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: 0.3s;
+      padding: 30px 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s;
     }
     .feature-box:hover {
       transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
     }
     .feature-box h3 {
       color: #0c8b8d;
+      margin-top: 15px;
+      font-size: 1.3rem;
+    }
+    .feature-box p {
+      color: #666;
       margin-top: 10px;
+      font-size: 0.95rem;
     }
 
-    /* About Section */
+    /* Shared Section Styles */
     section {
-      padding: 60px 20px;
+      padding: 80px 20px;
       text-align: center;
     }
     h2 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: #0c8b8d;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
       position: relative;
       display: inline-block;
     }
     h2::after {
       content: "";
       display: block;
-      height: 3px;
-      width: 50%;
-      margin: 5px auto 0;
+      height: 4px;
+      width: 60%;
+      margin: 10px auto 0;
       background: #00ffcc;
-      border-radius: 3px;
+      border-radius: 2px;
     }
 
+    /* About Section */
     .about-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 30px;
-      margin-top: 40px;
+      gap: 50px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
     .about-text {
-      max-width: 500px;
+      flex: 1;
+      min-width: 300px;
       text-align: left;
+      font-size: 1.1rem;
       color: #444;
+      line-height: 1.8;
+    }
+    .links {
+      margin-top: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      display: inline-block;
     }
     .links a {
       color: #0c8b8d;
       font-weight: 600;
-      margin: 0 10px;
+      margin: 0 12px;
       text-decoration: none;
       transition: color 0.3s;
     }
     .links a:hover {
-      color: #00ffcc;
+      color: #ffd700;
     }
     .about-image img {
-      width: 250px;
-      border-radius: 10px;
-      border: 3px solid #0c8b8d;
-      transition: transform 0.3s;
-    }
-    .about-image img:hover {
-      transform: scale(1.03);
+      width: 280px;
+      border-radius: 15px;
+      border: 4px solid #0c8b8d;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
     /* Projects */
@@ -229,69 +232,85 @@
       max-width: 800px;
       margin: auto;
       text-align: left;
-      padding-left: 20px;
+      list-style: none;
     }
     .projects-list li {
       background: #fff;
-      margin: 10px 0;
-      padding: 20px;
+      margin: 15px 0;
+      padding: 25px;
       border-left: 6px solid #0c8b8d;
-      border-radius: 6px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      transition: 0.3s;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s;
       cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 500;
     }
     .projects-list li:hover {
-      background: #e0fffa;
-      transform: translateX(5px);
+      background: #f0fffd;
+      transform: translateX(10px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     }
 
-    /* Documents Section */
-    .documents-list {
-      max-width: 800px;
-      margin: auto;
+    /* Resources Section (Grid Layout) */
+    .documents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      max-width: 1100px;
+      margin: 0 auto;
       text-align: left;
+      list-style: none;
     }
-    .documents-list li {
+    .documents-grid li {
       background: #fff;
-      margin: 10px 0;
-      padding: 20px;
-      border-left: 6px solid #ffd700;
-      border-radius: 6px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      transition: 0.3s;
-      cursor: pointer;
+      padding: 25px;
+      border-top: 5px solid #ffd700;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
     }
-    .documents-list li:hover {
-      background: #fff9e6;
-      transform: translateX(5px);
+    .documents-grid li:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+    .doc-header {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
     }
     .doc-icon {
-      font-size: 1.5rem;
+      font-size: 2.2rem;
       margin-right: 15px;
-    }
-    .doc-info {
-      flex: 1;
+      line-height: 1;
     }
     .doc-info h3 {
       color: #0c8b8d;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
     }
     .doc-info p {
       color: #666;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .doc-action {
+      text-align: right;
+      margin-top: auto;
     }
     .doc-download {
       background: #0c8b8d;
       color: white;
-      padding: 8px 15px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border-radius: 6px;
       text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-block;
+      font-size: 0.9rem;
     }
     .doc-download:hover {
       background: #00ffcc;
@@ -304,20 +323,23 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
-      margin-top: 20px;
+      max-width: 900px;
+      margin: 0 auto;
     }
     .skill {
-      background: #0c8b8d;
-      color: white;
-      padding: 12px 25px;
+      background: #fff;
+      color: #0c8b8d;
+      border: 2px solid #0c8b8d;
+      padding: 12px 30px;
       border-radius: 30px;
-      font-weight: 500;
-      transition: transform 0.3s, background 0.3s;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
     .skill:hover {
-      background: #00ffcc;
-      color: #000;
-      transform: translateY(-3px);
+      background: #0c8b8d;
+      color: #fff;
+      transform: translateY(-5px);
     }
 
     /* Education */
@@ -325,19 +347,22 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
     }
     .edu-item {
       background: white;
-      padding: 20px 30px;
+      padding: 25px 35px;
       border-left: 6px solid #00ffcc;
-      border-radius: 6px;
-      max-width: 600px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       transition: transform 0.3s;
+      text-align: left;
+      font-size: 1.1rem;
     }
     .edu-item:hover {
-      transform: translateX(5px);
+      transform: translateX(10px);
     }
 
     /* Footer */
@@ -345,57 +370,42 @@
       background: #0c8b8d;
       color: white;
       text-align: center;
-      padding: 20px;
-      margin-top: 50px;
+      padding: 30px 20px;
+      margin-top: 60px;
+      font-size: 1rem;
     }
 
+    /* Mobile Responsiveness */
     @media (max-width: 800px) {
-      .hero { 
-        flex-direction: column; 
-        text-align: center; 
-        padding: 60px 20px;
-      }
-      .about-container { flex-direction: column; }
+      .hero { text-align: center; padding: 40px 20px; }
+      .hero-text h1 { font-size: 2.5rem; }
+      .about-container { flex-direction: column; text-align: center; }
       .about-text { text-align: center; }
-      nav {
-        flex-direction: column;
-        gap: 15px;
-      }
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .documents-list li {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-      }
+      nav { flex-direction: column; gap: 15px; padding: 15px 20px; }
+      nav ul { flex-wrap: wrap; justify-content: center; gap: 15px;}
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <h1>MD SAIDUZZAMAN SOJIB</h1>
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#documents">Documents</a></li>
+      <li><a href="#resources">Resources</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-text">
       <h1>Make Your Own Future</h1>
-      <p>I'm a passionate CSE student at Southeast University, focused on mastering algorithms, solving real-world problems, and creating impactful software projects.</p>
+      <p>I'm a passionate CSE student at Southeast University, focused on mastering algorithms, solving real-world problems, and creating impactful software.</p>
       <div class="hero-buttons">
         <a href="#about">About Me</a>
-        <a href="#contact">Contact</a>
+        <a href="#resources">View Notes</a>
       </div>
     </div>
     <div class="hero-img">
@@ -403,7 +413,6 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
   <div class="features">
     <div class="feature-box">
       <h3>💻 Web Development</h3>
@@ -423,13 +432,12 @@
     </div>
   </div>
 
-  <!-- ABOUT -->
   <section id="about">
     <h2>About Me</h2>
     <div class="about-container">
       <div class="about-text">
-        <p>I'm MD SAIDUZZAMAN SOJIB, a CSE student at Southeast University with strong interests in competitive programming, web development, and software engineering.</p>
-        <p><strong>Email:</strong> saiduzzaman.015.sojib@gmail.com</p>
+        <p>I'm MD SAIDUZZAMAN SOJIB, a CSE student at Southeast University with strong interests in competitive programming, app development, and software engineering.</p>
+        <p style="margin-top: 15px;"><strong>Email:</strong> saiduzzaman.015.sojib@gmail.com</p>
         <div class="links">
           <a href="https://github.com/SAIDUZZAMAN-sojib" target="_blank">GitHub</a> |
           <a href="https://codeforces.com/profile/MD_SAIDUZZAMAN" target="_blank">Codeforces</a> |
@@ -443,160 +451,82 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <h2>Projects</h2>
-    <ol class="projects-list">
+    <ul class="projects-list">
       <li onclick="window.location.href='projects/calculator.html'">🔢 Simple Calculator</li>
       <li onclick="window.location.href='projects/portfolio.html'">🌐 Portfolio Website</li>
-    </ol>
-  </section>
-
-  <!-- DOCUMENTS SECTION -->
-  <section id="documents">
-    <h2>Documents</h2>
-    <ul class="documents-list">
-      <!-- Personal Documents -->
-      <li>
-        <div style="display: flex; align-items: center; flex: 1;">
-          <span class="doc-icon">📄</span>
-          <div class="doc-info">
-            <h3>Resume</h3>
-            <p>My updated resume with skills and experience</p>
-          </div>
-        </div>
-        <a href="pdfs/resume.pdf" class="doc-download" download>Download</a>
-      </li>
-      <li>
-        <div style="display: flex; align-items: center; flex: 1;">
-          <span class="doc-icon">📋</span>
-          <div class="doc-info">
-            <h3>Curriculum Vitae</h3>
-            <p>Detailed CV with academic and professional background</p>
-          </div>
-        </div>
-        <a href="pdfs/cv.pdf" class="doc-download" download>Download</a>
-      </li>
-      
-      <!-- Academic Documents -->
-      <li>
-        <div style="display: flex; align-items: center; flex: 1;">
-          <span class="doc-icon">📊</span>
-          <div class="doc-info">
-            <h3>Academic Transcript</h3>
-            <p>University grades and academic performance</p>
-          </div>
-        </div>
-        <a href="pdfs/transcript.pdf" class="doc-download" download>Download</a>
-      </li>
-      <li>
-        <div style="display: flex; align-items: center; flex: 1;">
-          <span class="doc-icon">💻</span>
-          <div class="doc-info">
-            <h3>Sorting Algorithms Lab</h3>
-            <p>Insertion, Selection, and Merge Sort implementations in C++</p>
-          </div>
-        </div>
-        <a href="pdfs/lab 2.docx.pdf" class="doc-download" download>Download</a>
-      </li>
-      <li>
-        <div style="display: flex; align-items: center; flex: 1;">
-          <span class="doc-icon">📘</span>
-          <div class="doc-info">
-            <h3>Sorting Algorithms (C++)</h3>
-            <p>Implementation of Insertion, Selection, and Merge Sort algorithms</p>
-          </div>
-        </div>
-        <a href="sojib1.pdf" class="doc-download" download>Download</a>
-      </li>
-
-      <li>
-        <div style="display: flex; align-items: center; flex: 1;">
-          <span class="doc-icon">☕</span>
-          <div class="doc-info">
-            <h3>Java Learning Notes</h3>
-            <p>My organized study notes, concepts, and coursework for Java</p>
-          </div>
-        </div>
-        <a href="https://www.notion.so/Java-310fb3014e10802f95e0d4999eca3e0e?source=copy_link" target="_blank" class="doc-download">View Notes</a>
-      </li>
-      <!-- Coding/Technical Documents -->
-      <li>
-        <div style="display: flex; align-items: center; flex: 1;">
-          <span class="doc-icon">💻</span>
-          <div class="doc-info">
-            <h3>Sorting Algorithms Lab</h3>
-            <p>Insertion, Selection, and Merge Sort implementations in C++</p>
-          </div>
-        </div>
-        <a href="pdfs/lab 2.docx.pdf" class="doc-download" download>Download</a>
-      </li>
-      <li>
-        <div style="display: flex; align-items: center; flex: 1;">
-          <span class="doc-icon">📘</span>
-          <div class="doc-info">
-            <h3>Sorting Algorithms (C++)</h3>
-            <p>Implementation of Insertion, Selection, and Merge Sort algorithms</p>
-          </div>
-        </div>
-        <a href="sojib1.pdf" class="doc-download" download>Download</a>
-      </li>
-      
-      <!-- ADD MORE PDFS HERE -->
-      <!-- 
-      TEMPLATE FOR ADDING NEW PDFS:
-      
-      <li>
-        <div style="display: flex; align-items: center; flex: 1;">
-          <span class="doc-icon">[CHOOSE ICON]</span>
-          <div class="doc-info">
-            <h3>[DOCUMENT TITLE]</h3>
-            <p>[BRIEF DESCRIPTION]</p>
-          </div>
-        </div>
-        <a href="[PATH-TO-PDF-FILE]" class="doc-download" download>Download</a>
-      </li>
-      
-      ICON OPTIONS:
-      📄 Document
-      📋 List/Form
-      📊 Chart/Graph
-      💻 Code/Technical
-      📘 Book/Notes
-      📖 Open Book
-      🎓 Academic
-      📝 Assignment
-      🔍 Research
-      📈 Data Analysis
-      -->
-      
     </ul>
   </section>
 
-  <!-- EDUCATION -->
+  <section id="resources">
+    <h2>Resources & Notes</h2>
+    <ul class="documents-grid">
+      
+      <li>
+        <div class="doc-header">
+          <span class="doc-icon">☕</span>
+          <div class="doc-info">
+            <h3>Java Learning Notes</h3>
+            <p>My organized study notes, OOP concepts, and coursework for Java.</p>
+          </div>
+        </div>
+        <div class="doc-action">
+          <a href="https://www.notion.so/Java-310fb3014e10802f95e0d4999eca3e0e?source=copy_link" target="_blank" class="doc-download">View in Notion</a>
+        </div>
+      </li>
+
+      <li>
+        <div class="doc-header">
+          <span class="doc-icon">📄</span>
+          <div class="doc-info">
+            <h3>Resume</h3>
+            <p>My updated resume featuring my technical skills and education.</p>
+          </div>
+        </div>
+        <div class="doc-action">
+          <a href="pdfs/resume.pdf" class="doc-download" download>Download PDF</a>
+        </div>
+      </li>
+
+      <li>
+        <div class="doc-header">
+          <span class="doc-icon">💻</span>
+          <div class="doc-info">
+            <h3>Sorting Algorithms Lab</h3>
+            <p>Insertion, Selection, and Merge Sort implementations written in C++.</p>
+          </div>
+        </div>
+        <div class="doc-action">
+          <a href="pdfs/lab 2.docx.pdf" class="doc-download" download>Download PDF</a>
+        </div>
+      </li>
+
+      </ul>
+  </section>
+
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills">
+      <div class="skill">C++</div>
+      <div class="skill">Java & OOP</div>
+      <div class="skill">Flutter</div>
+      <div class="skill">Data Structures & Algorithms</div>
+      <div class="skill">Web Development</div>
+      <div class="skill">Competitive Programming</div>
+    </div>
+  </section>
+
   <section id="education">
     <h2>Education</h2>
     <div class="education">
-      <div class="edu-item"><strong>Cantonment College Jashore</strong> — Passing Year: 2022</div>
-      <div class="edu-item"><strong>Southeast University</strong> — CSE Department</div>
+      <div class="edu-item"><strong>Southeast University</strong> <br> B.Sc. in Computer Science & Engineering (CSE)</div>
+      <div class="edu-item"><strong>Cantonment College Jashore</strong> <br> Passing Year: 2022</div>
     </div>
   </section>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill">C++</div>
-      <div class="skill">Web Development</div>
-      <div class="skill">Problem Solving</div>
-      <div class="skill">Algorithms</div>
-      <div class="skill">Data Structures</div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="contact">
-    © 2025 MD SAIDUZZAMAN SOJIB — All Rights Reserved.
+  <footer>
+    © 2026 MD SAIDUZZAMAN SOJIB — All Rights Reserved.
   </footer>
 
 </body>
