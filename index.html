@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MD SAIDUZZAMAN SOJIB | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -216,24 +217,26 @@
       color: #444;
       line-height: 1.8;
     }
+    /* Social Media Icon Links */
     .links {
-      margin-top: 20px;
-      padding: 15px;
+      margin-top: 25px;
+      padding: 15px 30px;
       background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      display: inline-block;
-      line-height: 2;
+      border-radius: 50px; /* Makes it a nice pill shape */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      display: inline-flex;
+      gap: 25px; /* Space between icons */
+      align-items: center;
     }
     .links a {
       color: #0c8b8d;
-      font-weight: 600;
-      margin: 0 10px;
+      font-size: 1.8rem; /* Makes the icons larger */
       text-decoration: none;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
     }
     .links a:hover {
       color: #ffd700;
+      transform: translateY(-5px) scale(1.1); /* Slight pop-up effect on hover */
     }
     .about-image img {
       width: 280px;
@@ -455,10 +458,18 @@
         <p>I'm MD SAIDUZZAMAN SOJIB, a CSE student at Southeast University with strong interests in competitive programming, app development, and software engineering.</p>
         <p style="margin-top: 15px;"><strong>Email:</strong> saiduzzaman.015.sojib@gmail.com</p>
         <div class="links">
-          <a href="https://github.com/saiduzzaman-sojib" target="_blank">GitHub</a> |
-          <a href="https://www.linkedin.com/in/saiduzzaman-sojib/" target="_blank">LinkedIn</a> |
-          <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank">LeetCode</a> |
-          <a href="https://www.facebook.com/Sojib55555" target="_blank">Facebook</a>
+          <a href="https://github.com/saiduzzaman-sojib" target="_blank" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/saiduzzaman-sojib/" target="_blank" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" title="LeetCode">
+            <i class="fas fa-laptop-code"></i>
+          </a>
+          <a href="https://www.facebook.com/Sojib55555" target="_blank" title="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
         </div>
       </div>
       <div class="about-image">
