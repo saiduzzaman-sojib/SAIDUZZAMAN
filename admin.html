@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Add Resource</title>
+  <style>
+    body { font-family: 'Poppins', sans-serif; background: #f5f7fa; padding: 50px; text-align: center; }
+    form { background: white; padding: 30px; border-radius: 10px; max-width: 400px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+    button { background: #0c8b8d; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 10px; }
+    button:hover { background: #00ffcc; color: black; }
+    #status { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h2>Add a New Link to Portfolio</h2>
+  <form id="addLinkForm">
+    <input type="text" id="icon" placeholder="Emoji Icon (e.g., ☕, 🔗, 📘)" required>
+    <input type="text" id="title" placeholder="Resource Title (e.g., Java Notes)" required>
+    <input type="text" id="desc" placeholder="Short Description" required>
+    <input type="url" id="url" placeholder="Paste Full URL Here" required>
+    <button type="submit">Save to Database</button>
+  </form>
+  <p id="status"></p>
+
+  <script type="module">
+    // Import standard Firebase web functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // Your specific Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDDFLfDpr-km54jWhubUuaarcJlS2IOjUQ",
+      authDomain: "sojib-portfolio.firebaseapp.com",
+      projectId: "sojib-portfolio",
+      storageBucket: "sojib-portfolio.firebasestorage.app",
+      messagingSenderId: "51909586532",
+      appId: "1:51909586532:web:2d5e89354646a4dc013971"
+    };
+
+    // Initialize Firebase and Firestore Database
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Handle form submission
+    document.getElementById('addLinkForm').addEventListener('submit', async (e) => {
+      e.preventDefault(); // Prevent page reload
+      document.getElementById('status').innerText = "Saving to database...";
+      document.getElementById('status').style.color = "blue";
+
+      try {
+        // Send data to a collection named "resources"
+        await addDoc(collection(db, "resources"), {
+          icon: document.getElementById('icon').value,
+          title: document.getElementById('title').value,
+          desc: document.getElementById('desc').value,
+          url: document.getElementById('url').value,
+          timestamp: new Date()
+        });
+        
+        document.getElementById('status').innerText = "✅ Successfully saved to database!";
+        document.getElementById('status').style.color = "green";
+        document.getElementById('addLinkForm').reset(); // Clear form
+        
+      } catch (error) {
+        document.getElementById('status').innerText = "❌ Error saving: " + error.message;
+        document.getElementById('status').style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
