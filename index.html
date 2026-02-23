@@ -41,6 +41,7 @@
       display: flex;
       list-style: none;
       gap: 25px;
+      align-items: center;
     }
     nav a {
       color: white;
@@ -50,6 +51,19 @@
     }
     nav a:hover {
       color: #ffd700;
+    }
+    
+    .nav-btn-add {
+      background: #00ffcc;
+      color: #000 !important;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-weight: 700 !important;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .nav-btn-add:hover {
+      background: #ffd700;
+      transform: translateY(-2px);
     }
 
     /* Hero Section */
@@ -396,6 +410,7 @@
       <li><a href="#resources">Resources</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="admin.html" class="nav-btn-add" target="_blank">➕ Add Links</a></li>
     </ul>
   </nav>
 
@@ -461,6 +476,11 @@
 
   <section id="resources">
     <h2>Resources & Notes</h2>
+    
+    <div style="max-width: 1100px; margin: 0 auto 25px; text-align: right;">
+      <a href="admin.html" target="_blank" class="doc-download" style="background: #ffd700; color: #000; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">⚙️ Manage / Add Links</a>
+    </div>
+
     <ul class="documents-grid" id="dynamic-resources-list">
       <li style="text-align: center; width: 100%;">Loading resources from database...</li>
     </ul>
@@ -470,7 +490,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // 🔴 REPLACE THIS ENTIRE OBJECT WITH YOUR KEYS FROM FIREBASE 🔴
     const firebaseConfig = {
       apiKey: "AIzaSyDDFLfDpr-km54jWhubUuaarcJlS2IOjUQ",
       authDomain: "sojib-portfolio.firebaseapp.com",
@@ -487,11 +506,10 @@
       const listContainer = document.getElementById("dynamic-resources-list");
       
       try {
-        // Query the "resources" collection, ordered by newest first
         const q = query(collection(db, "resources"), orderBy("timestamp", "desc"));
         const querySnapshot = await getDocs(q);
         
-        listContainer.innerHTML = ""; // Clear "Loading" text
+        listContainer.innerHTML = ""; 
 
         if (querySnapshot.empty) {
           listContainer.innerHTML = "<p>No resources added yet.</p>";
@@ -500,7 +518,6 @@
 
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          // Construct the HTML for each card
           const cardHTML = `
             <li>
               <div class="doc-header">
@@ -524,7 +541,6 @@
       }
     }
 
-    // Run the function when the page loads
     loadResources();
   </script>
 
