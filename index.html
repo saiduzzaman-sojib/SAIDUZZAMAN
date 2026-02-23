@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MD SAIDUZZAMAN SOJIB | Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     * {
       margin: 0;
@@ -15,56 +17,79 @@
     }
 
     body {
-      background-color: #f5f7fa;
-      color: #333;
+      background-color: #f8fafc; /* Softer, premium off-white */
+      color: #1e293b;
       scroll-behavior: smooth;
     }
 
-    /* Navbar */
+    /* Glassmorphism Navbar */
     nav {
-      background: #0c8b8d;
+      background: rgba(12, 139, 141, 0.85);
+      backdrop-filter: blur(12px); /* Premium blur effect */
+      -webkit-backdrop-filter: blur(12px);
       color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 50px;
+      padding: 18px 50px;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
     }
     nav h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 1px;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
     nav ul {
       display: flex;
       list-style: none;
-      gap: 25px;
+      gap: 30px;
       align-items: center;
     }
     nav a {
-      color: white;
+      color: rgba(255, 255, 255, 0.9);
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+      position: relative;
+    }
+    /* Animated underline for nav links */
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #00ffcc;
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after {
+      width: 100%;
     }
     nav a:hover {
-      color: #ffd700;
+      color: #fff;
     }
     
     .nav-btn-add {
-      background: #00ffcc;
+      background: linear-gradient(135deg, #00ffcc, #14b8a6);
       color: #000 !important;
-      padding: 8px 15px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border-radius: 8px;
       font-weight: 700 !important;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0, 255, 204, 0.3);
+      border: none;
     }
+    .nav-btn-add::after { display: none; } /* Remove underline for button */
     .nav-btn-add:hover {
-      background: #ffd700;
       transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 255, 204, 0.5);
     }
 
     /* Hero Section */
@@ -73,14 +98,28 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      padding: 80px 50px;
+      padding: 100px 50px;
       min-height: 90vh;
       background: 
-        linear-gradient(135deg, rgba(12, 139, 141, 0.85) 0%, rgba(0, 0, 0, 0.8) 100%),
+        linear-gradient(135deg, rgba(12, 139, 141, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%),
         url('https://github.com/SAIDUZZAMAN-sojib/SAIDUZZAMAN/blob/main/IMG_3120.jpg?raw=true') center/cover no-repeat fixed;
       color: white;
       position: relative;
+      overflow: hidden;
     }
+    
+    /* Decorative Background Glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 255, 204, 0.2) 0%, rgba(0,0,0,0) 70%);
+      top: -100px;
+      left: -100px;
+      border-radius: 50%;
+    }
+
     .hero-text {
       flex: 1;
       min-width: 300px;
@@ -89,37 +128,54 @@
       z-index: 1;
     }
     .hero-text h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
+      font-size: 4rem;
+      font-weight: 800;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      line-height: 1.1;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    /* Highlight word effect */
+    .hero-text h1 span {
+      color: #00ffcc;
     }
     .hero-text p {
-      margin-top: 15px;
+      margin-top: 20px;
       line-height: 1.8;
-      font-size: 1.2rem;
-      color: #f0f0f0;
+      font-size: 1.25rem;
+      color: #cbd5e1;
       max-width: 600px;
+      font-weight: 300;
     }
     .hero-buttons {
-      margin-top: 30px;
+      margin-top: 40px;
+      display: flex;
+      gap: 15px;
     }
     .hero-buttons a {
       background: #00ffcc;
-      color: #000;
-      padding: 12px 28px;
-      margin-right: 15px;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s;
-      display: inline-block;
+      color: #0f172a;
+      padding: 14px 32px;
+      border-radius: 30px; /* Modern Pill Shape */
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
       text-decoration: none;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 20px rgba(0, 255, 204, 0.2);
+    }
+    .hero-buttons a.secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.5);
+      box-shadow: none;
     }
     .hero-buttons a:hover {
-      background: #ffd700;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 25px rgba(0, 255, 204, 0.4);
+    }
+    .hero-buttons a.secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: white;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
     .hero-img {
@@ -129,16 +185,19 @@
       position: relative;
       z-index: 1;
     }
-    .hero-img img {
-      width: 300px;
-      height: auto;
-      border-radius: 20px;
-      border: 5px solid #00ffcc;
-      box-shadow: 0 0 25px rgba(0, 255, 204, 0.6);
-      transition: transform 0.4s ease;
+    /* Continuous Floating Animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
     }
-    .hero-img img:hover {
-      transform: scale(1.03);
+    .hero-img img {
+      width: 320px;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      animation: float 6s ease-in-out infinite;
+      border: 2px solid rgba(255, 255, 255, 0.1);
     }
 
     /* Features */
@@ -146,57 +205,70 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin: -50px auto 60px;
-      gap: 25px;
-      max-width: 1100px;
+      margin: -60px auto 80px;
+      gap: 30px;
+      max-width: 1200px;
       position: relative;
       z-index: 2;
       padding: 0 20px;
     }
     .feature-box {
-      flex: 1 1 220px;
-      background: white;
-      border-radius: 12px;
-      text-align: center;
-      padding: 30px 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      transition: all 0.3s;
+      flex: 1 1 240px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      text-align: left;
+      padding: 35px 25px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0,0,0,0.02);
+      border-bottom: 4px solid #0c8b8d;
     }
     .feature-box:hover {
       transform: translateY(-10px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 20px 40px rgba(12, 139, 141, 0.15);
+      border-bottom-color: #00ffcc;
     }
     .feature-box h3 {
-      color: #0c8b8d;
-      margin-top: 15px;
-      font-size: 1.3rem;
+      color: #0f172a;
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .feature-box p {
-      color: #666;
-      margin-top: 10px;
+      color: #64748b;
       font-size: 0.95rem;
+      line-height: 1.6;
     }
 
     /* Shared Section Styles */
     section {
-      padding: 80px 20px;
+      padding: 100px 20px;
       text-align: center;
+    }
+    /* Alternating background color */
+    section:nth-child(even) {
+      background-color: white;
     }
     h2 {
       font-size: 2.5rem;
-      color: #0c8b8d;
-      margin-bottom: 40px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 60px;
       position: relative;
       display: inline-block;
     }
     h2::after {
       content: "";
       display: block;
-      height: 4px;
-      width: 60%;
-      margin: 10px auto 0;
-      background: #00ffcc;
-      border-radius: 2px;
+      height: 5px;
+      width: 40%;
+      margin: 15px auto 0;
+      background: linear-gradient(90deg, #0c8b8d, #00ffcc);
+      border-radius: 5px;
     }
 
     /* About Section */
@@ -205,44 +277,61 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 50px;
-      max-width: 1000px;
+      gap: 70px;
+      max-width: 1100px;
       margin: 0 auto;
     }
     .about-text {
       flex: 1;
-      min-width: 300px;
+      min-width: 320px;
       text-align: left;
-      font-size: 1.1rem;
-      color: #444;
+      font-size: 1.15rem;
+      color: #475569;
       line-height: 1.8;
     }
-    /* Social Media Icon Links */
+    
+    /* Social Media Icon Links Premium styling */
     .links {
-      margin-top: 25px;
-      padding: 15px 30px;
-      background: white;
-      border-radius: 50px; /* Makes it a nice pill shape */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-top: 30px;
       display: inline-flex;
-      gap: 25px; /* Space between icons */
-      align-items: center;
+      gap: 20px; 
     }
     .links a {
       color: #0c8b8d;
-      font-size: 1.8rem; /* Makes the icons larger */
+      font-size: 1.4rem; 
+      background: #f1f5f9;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
       text-decoration: none;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
     .links a:hover {
-      color: #ffd700;
-      transform: translateY(-5px) scale(1.1); /* Slight pop-up effect on hover */
+      background: #0c8b8d;
+      color: #fff;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(12, 139, 141, 0.3);
+    }
+
+    /* Premium offset image shadow */
+    .about-image {
+      position: relative;
     }
     .about-image img {
-      width: 280px;
-      border-radius: 15px;
-      border: 4px solid #0c8b8d;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      width: 300px;
+      border-radius: 20px;
+      box-shadow: 20px 20px 0px rgba(12, 139, 141, 0.15);
+      transition: all 0.3s ease;
+      z-index: 2;
+      position: relative;
+    }
+    .about-image:hover img {
+      transform: translate(-5px, -5px);
+      box-shadow: 25px 25px 0px rgba(0, 255, 204, 0.3);
     }
 
     /* Projects */
@@ -254,88 +343,71 @@
     }
     .projects-list li {
       background: #fff;
-      margin: 15px 0;
-      padding: 25px;
-      border-left: 6px solid #0c8b8d;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      transition: all 0.3s;
+      margin: 20px 0;
+      padding: 30px;
+      border-left: 8px solid #0c8b8d;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
       cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: 500;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
     }
     .projects-list li:hover {
-      background: #f0fffd;
-      transform: translateX(10px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transform: translateX(10px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      border-left-color: #00ffcc;
     }
 
-    /* Resources Section (Grid Layout) */
-    .documents-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 25px;
-      max-width: 1100px;
-      margin: 0 auto;
-      text-align: left;
-      list-style: none;
+    /* Resources Folder Card Premium Styling */
+    .folder-card {
+      background: linear-gradient(145deg, #ffffff, #f8fafc);
+      padding: 60px 40px;
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.03);
+      position: relative;
+      overflow: hidden;
     }
-    .documents-grid li {
-      background: #fff;
-      padding: 25px;
-      border-top: 5px solid #ffd700;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      transition: all 0.3s;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .folder-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 6px;
+      background: linear-gradient(90deg, #0c8b8d, #00ffcc);
     }
-    .documents-grid li:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    .folder-card i {
+      font-size: 5rem;
+      background: -webkit-linear-gradient(#0c8b8d, #14b8a6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 25px;
+      transition: transform 0.4s ease;
     }
-    .doc-header {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 20px;
+    .folder-card h3 {
+      color: #0f172a;
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      font-weight: 700;
     }
-    .doc-icon {
-      font-size: 2.2rem;
-      margin-right: 15px;
-      line-height: 1;
+    .folder-card p {
+      color: #64748b;
+      font-size: 1rem;
+      line-height: 1.6;
     }
-    .doc-info h3 {
-      color: #0c8b8d;
-      margin-bottom: 8px;
-      font-size: 1.2rem;
+    .folder-card-wrapper:hover .folder-card {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(12, 139, 141, 0.15);
     }
-    .doc-info p {
-      color: #666;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    .doc-action {
-      text-align: right;
-      margin-top: auto;
-    }
-    .doc-download {
-      background: #0c8b8d;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s;
-      display: inline-block;
-      font-size: 0.9rem;
-    }
-    .doc-download:hover {
-      background: #00ffcc;
-      color: #000;
+    .folder-card-wrapper:hover .folder-card i {
+      transform: scale(1.1);
     }
 
-    /* Skills */
+    /* Modern UI Skills Chips */
     .skills {
       display: flex;
       flex-wrap: wrap;
@@ -345,19 +417,21 @@
       margin: 0 auto;
     }
     .skill {
-      background: #fff;
+      background: rgba(12, 139, 141, 0.08);
       color: #0c8b8d;
-      border: 2px solid #0c8b8d;
-      padding: 12px 30px;
-      border-radius: 30px;
+      padding: 14px 30px;
+      border-radius: 50px;
       font-weight: 600;
-      transition: all 0.3s;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(12, 139, 141, 0.2);
     }
     .skill:hover {
-      background: #0c8b8d;
+      background: linear-gradient(135deg, #0c8b8d, #14b8a6);
       color: #fff;
       transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(12, 139, 141, 0.25);
+      border-color: transparent;
     }
 
     /* Education */
@@ -365,41 +439,52 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 25px;
     }
     .edu-item {
       background: white;
-      padding: 25px 35px;
-      border-left: 6px solid #00ffcc;
-      border-radius: 8px;
+      padding: 30px 40px;
+      border-radius: 16px;
       width: 100%;
-      max-width: 700px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      transition: transform 0.3s;
+      max-width: 800px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
       text-align: left;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
+      border-left: 6px solid #00ffcc;
+    }
+    .edu-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 1.3rem;
+      margin-bottom: 5px;
     }
     .edu-item:hover {
       transform: translateX(10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     }
 
     /* Footer */
     footer {
-      background: #0c8b8d;
-      color: white;
+      background: #0f172a;
+      color: #94a3b8;
       text-align: center;
-      padding: 30px 20px;
-      margin-top: 60px;
+      padding: 40px 20px;
       font-size: 1rem;
+      font-weight: 300;
     }
 
     /* Mobile Responsiveness */
-    @media (max-width: 800px) {
-      .hero { text-align: center; padding: 40px 20px; }
-      .hero-text h1 { font-size: 2.5rem; }
-      .about-container { flex-direction: column; text-align: center; }
+    @media (max-width: 900px) {
+      .hero { text-align: center; padding: 120px 20px 60px; }
+      .hero-text h1 { font-size: 2.8rem; }
+      .hero-buttons { justify-content: center; }
+      .about-container { flex-direction: column; text-align: center; gap: 40px; }
       .about-text { text-align: center; }
-      nav { flex-direction: column; gap: 15px; padding: 15px 20px; }
+      .links { justify-content: center; }
+      .about-image img { box-shadow: 0 20px 40px rgba(0,0,0,0.2); margin-top: 20px; }
+      .about-image:hover img { transform: none; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+      nav { flex-direction: column; gap: 20px; padding: 20px; }
       nav ul { flex-wrap: wrap; justify-content: center; gap: 15px;}
     }
   </style>
@@ -420,11 +505,11 @@
 
   <section class="hero">
     <div class="hero-text">
-      <h1>Make Your Own Future</h1>
+      <h1>Make Your <br><span>Own Future</span></h1>
       <p>I'm a passionate CSE student at Southeast University, focused on mastering DSA & Algorithms, solving real-world problems, and creating impactful applications.</p>
       <div class="hero-buttons">
-        <a href="#about">About Me</a>
-        <a href="#resources">View Notes</a>
+        <a href="#about">Explore Profile</a>
+        <a href="#resources" class="secondary">View Resources</a>
       </div>
     </div>
     <div class="hero-img">
@@ -434,19 +519,19 @@
 
   <div class="features">
     <div class="feature-box">
-      <h3>📱 App Development</h3>
+      <h3><i class="fas fa-mobile-alt" style="color: #0c8b8d;"></i> App Development</h3>
       <p>Building clean, responsive, and modern mobile applications.</p>
     </div>
     <div class="feature-box">
-      <h3>🧮 Problem Solving</h3>
+      <h3><i class="fas fa-lightbulb" style="color: #ffd700;"></i> Problem Solving</h3>
       <p>Focused on logical reasoning and algorithmic challenges.</p>
     </div>
     <div class="feature-box">
-      <h3>⚙️ Projects</h3>
+      <h3><i class="fas fa-code-branch" style="color: #00ffcc;"></i> Projects</h3>
       <p>Working on creative software and development projects.</p>
     </div>
     <div class="feature-box">
-      <h3>🧠 DSA & Algorithms</h3>
+      <h3><i class="fas fa-brain" style="color: #0c8b8d;"></i> DSA & Algorithms</h3>
       <p>Mastering Data Structures and Algorithms for optimized solutions.</p>
     </div>
   </div>
@@ -455,20 +540,23 @@
     <h2>About Me</h2>
     <div class="about-container">
       <div class="about-text">
-        <p>I'm MD SAIDUZZAMAN SOJIB, a CSE student at Southeast University with strong interests in competitive programming, app development, and software engineering.</p>
-        <p style="margin-top: 15px;"><strong>Email:</strong> saiduzzaman.015.sojib@gmail.com</p>
+        <p>I'm MD SAIDUZZAMAN SOJIB, a CSE student at Southeast University with strong interests in competitive programming, app development, and software engineering. I am constantly learning and building to refine my skills.</p>
+        <p style="margin-top: 15px; color: #0c8b8d; font-weight: 600;">
+          <i class="fas fa-envelope"></i> saiduzzaman.015.sojib@gmail.com
+        </p>
+        
         <div class="links">
           <a href="https://github.com/saiduzzaman-sojib" target="_blank" title="GitHub">
             <i class="fab fa-github"></i>
           </a>
           <a href="https://www.linkedin.com/in/saiduzzaman-sojib/" target="_blank" title="LinkedIn">
-            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-linkedin-in"></i>
           </a>
           <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" title="LeetCode">
             <i class="fas fa-laptop-code"></i>
           </a>
           <a href="https://www.facebook.com/Sojib55555" target="_blank" title="Facebook">
-            <i class="fab fa-facebook"></i>
+            <i class="fab fa-facebook-f"></i>
           </a>
         </div>
       </div>
@@ -481,85 +569,26 @@
   <section id="projects">
     <h2>Projects</h2>
     <ul class="projects-list">
-      <li onclick="window.location.href='projects/portfolio.html'">🌐 Portfolio Website</li>
+      <li onclick="window.location.href='projects/portfolio.html'">
+        <i class="fas fa-globe" style="color: #0c8b8d; margin-right: 15px; font-size: 1.5rem;"></i> 
+        Portfolio Website
+      </li>
     </ul>
   </section>
 
- <section id="resources">
+  <section id="resources">
     <h2>Resources & Notes</h2>
     
     <div style="display: flex; justify-content: center; margin-top: 20px;">
-      <a href="resources.html" style="text-decoration: none; color: inherit; width: 100%; max-width: 350px;">
-        <div style="background: white; padding: 50px 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); transition: all 0.3s; cursor: pointer; border-top: 10px solid #ffd700;" 
-             onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.15)';" 
-             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.08)';">
-          
-          <i class="fas fa-folder-open" style="font-size: 5rem; color: #0c8b8d; margin-bottom: 20px;"></i>
-          <h3 style="color: #333; font-size: 1.5rem; margin-bottom: 10px;">Cloud Resources</h3>
-          <p style="color: #666; font-size: 0.95rem;">Click to open folder and view all my saved database links and study notes.</p>
-          
+      <a href="resources.html" class="folder-card-wrapper" style="text-decoration: none; width: 100%; max-width: 400px;">
+        <div class="folder-card">
+          <i class="fas fa-folder-open"></i>
+          <h3>Cloud Resources</h3>
+          <p>Click to open folder and view all my saved database links and study notes.</p>
         </div>
       </a>
     </div>
   </section>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDDFLfDpr-km54jWhubUuaarcJlS2IOjUQ",
-      authDomain: "sojib-portfolio.firebaseapp.com",
-      projectId: "sojib-portfolio",
-      storageBucket: "sojib-portfolio.firebasestorage.app",
-      messagingSenderId: "51909586532",
-      appId: "1:51909586532:web:2d5e89354646a4dc013971"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    async function loadResources() {
-      const listContainer = document.getElementById("dynamic-resources-list");
-      
-      try {
-        const q = query(collection(db, "resources"), orderBy("timestamp", "desc"));
-        const querySnapshot = await getDocs(q);
-        
-        listContainer.innerHTML = ""; 
-
-        if (querySnapshot.empty) {
-          listContainer.innerHTML = "<p>No resources added yet.</p>";
-          return;
-        }
-
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          const cardHTML = `
-            <li>
-              <div class="doc-header">
-                <span class="doc-icon">${data.icon}</span>
-                <div class="doc-info">
-                  <h3>${data.title}</h3>
-                  <p>${data.desc}</p>
-                </div>
-              </div>
-              <div class="doc-action">
-                <a href="${data.url}" target="_blank" class="doc-download">View Resource</a>
-              </div>
-            </li>
-          `;
-          listContainer.innerHTML += cardHTML;
-        });
-
-      } catch (error) {
-        console.error("Error fetching documents: ", error);
-        listContainer.innerHTML = "<p>Error loading resources. Please try again later.</p>";
-      }
-    }
-
-    loadResources();
-  </script>
 
   <section id="skills">
     <h2>Technical Skills</h2>
@@ -576,13 +605,19 @@
   <section id="education">
     <h2>Education</h2>
     <div class="education">
-      <div class="edu-item"><strong>Southeast University</strong> <br> B.Sc. in Computer Science & Engineering (CSE)</div>
-      <div class="edu-item"><strong>Cantonment College Jashore</strong> <br> Passing Year: 2022</div>
+      <div class="edu-item">
+        <strong>Southeast University</strong>
+        B.Sc. in Computer Science & Engineering (CSE)
+      </div>
+      <div class="edu-item">
+        <strong>Cantonment College Jashore</strong>
+        Passing Year: 2022
+      </div>
     </div>
   </section>
 
   <footer>
-    © 2026 MD SAIDUZZAMAN SOJIB — All Rights Reserved.
+    © 2026 MD SAIDUZZAMAN SOJIB — Designed & Developed for the Future.
   </footer>
 
 </body>
