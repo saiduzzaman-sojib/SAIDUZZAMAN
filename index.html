@@ -138,44 +138,51 @@
       position: relative;
       overflow: hidden;
     }
-    /* HTML5 Canvas for Particles */
     #particle-canvas {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+      top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
     }
 
     .hero-content {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
+      grid-template-columns: 1.2fr 0.8fr; /* Adjusted ratio for better balance */
+      gap: 30px;
       align-items: center;
-      z-index: 1; /* Puts content above particles */
-      pointer-events: none; /* Allows mouse to interact with canvas behind it */
+      z-index: 1; 
+      pointer-events: none; 
     }
-    /* Re-enable pointer events for buttons so they are clickable */
     .hero-buttons, .hero-image-wrapper { pointer-events: auto; }
 
     .hero-text h1 {
-      font-family: var(--font-heading); font-size: 4.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 25px;
+      font-family: var(--font-heading); 
+      font-size: 3.8rem; /* Scaled down slightly for elegance */
+      font-weight: 800; 
+      line-height: 1.2; 
+      margin-bottom: 20px;
     }
     .hero-text h1 span.gradient-text {
       background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .hero-text h1 span.typewriter {
-      display: block; font-size: 2.2rem; color: var(--text-muted); font-weight: 500; margin-top: 10px;
+      display: block; 
+      font-size: 1.8rem; /* Scaled down tag line */
+      color: var(--text-muted); 
+      font-weight: 500; 
+      margin-top: 15px;
+      letter-spacing: 1px;
     }
     .hero-text p {
-      font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; max-width: 90%;
+      font-size: 1.15rem; 
+      color: var(--text-muted); 
+      margin-bottom: 40px; 
+      max-width: 90%;
+      line-height: 1.7;
     }
 
     .hero-buttons { display: flex; gap: 20px; }
     .btn {
-      padding: 16px 35px; border-radius: 12px; font-weight: 600; text-decoration: none;
+      padding: 15px 32px; border-radius: 10px; font-weight: 600; text-decoration: none;
       font-family: var(--font-heading); transition: var(--transition-smooth);
       display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
     }
@@ -195,14 +202,23 @@
 
     @keyframes float-complex {
       0% { transform: translateY(0) rotate(0deg); }
-      33% { transform: translateY(-15px) rotate(1deg); }
-      66% { transform: translateY(5px) rotate(-1deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
       100% { transform: translateY(0) rotate(0deg); }
     }
-    .hero-image-wrapper { position: relative; text-align: right; }
+    .hero-image-wrapper { 
+      position: relative; 
+      display: flex;
+      justify-content: center; /* Perfectly centers image in its grid area */
+    }
     .hero-image-wrapper img {
-      width: 85%; max-width: 450px; border-radius: 24px; animation: float-complex 8s ease-in-out infinite;
-      border: 1px solid var(--border-light); position: relative; z-index: 2;
+      width: 100%; 
+      max-width: 320px; /* Reduced max width for sleeker look */
+      border-radius: 16px; /* Slightly sharper corners */
+      animation: float-complex 8s ease-in-out infinite;
+      border: 1px solid rgba(255,255,255,0.08); 
+      position: relative; 
+      z-index: 2;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     }
 
     /* ==========================================================================
@@ -309,8 +325,8 @@
 
     @media (max-width: 992px) {
       .hero-content { grid-template-columns: 1fr; text-align: center; }
-      .hero-image-wrapper { order: -1; text-align: center; margin-bottom: 40px; }
-      .hero-text h1 { font-size: 3.5rem; }
+      .hero-image-wrapper { order: -1; text-align: center; margin-bottom: 30px; }
+      .hero-text h1 { font-size: 3rem; }
       .hero-buttons { justify-content: center; }
       .about-content { grid-template-columns: 1fr; }
       .about-image { max-width: 400px; margin: 0 auto 40px; }
@@ -339,7 +355,7 @@
 
     <div class="container hero-content">
       <div class="hero-text reveal">
-        <h1>Hello, I'm <br><span class="gradient-text">Saiduzzaman Sojib</span> <span class="typewriter">&lt;DSA Hacker /&gt;</span></h1>
+        <h1>Hello, I'm <br><span class="gradient-text">Saiduzzaman Sojib</span> <span class="typewriter">&lt;Software Engineer /&gt;</span></h1>
         <p>A passionate Computer Science student at Southeast University focused on mastering Data Structures, Algorithms, and engineering high-performance software applications.</p>
         <div class="hero-buttons">
           <a href="#about" class="btn btn-primary"><i class="fas fa-rocket"></i> Explore Profile</a>
@@ -490,7 +506,7 @@
     let mouse = {
       x: null,
       y: null,
-      radius: (canvas.height/80) * (canvas.width/80) // Interaction field size
+      radius: (canvas.height/80) * (canvas.width/80) 
     }
 
     window.addEventListener('mousemove', function(event) {
@@ -503,7 +519,7 @@
       mouse.y = undefined;
     });
 
-    // The Particle Object Logic (OOP)
+    // The Particle Object Logic
     class Particle {
       constructor(x, y, directionX, directionY, size, color) {
         this.x = x;
@@ -513,20 +529,16 @@
         this.size = size;
         this.color = color;
       }
-      // Draw individual particle
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
         ctx.fillStyle = this.color;
         ctx.fill();
       }
-      // Check mouse position, move the particle, draw the particle
       update() {
-        // Bounce off edges
         if (this.x > canvas.width || this.x < 0) { this.directionX = -this.directionX; }
         if (this.y > canvas.height || this.y < 0) { this.directionY = -this.directionY; }
 
-        // Collision detection with mouse interaction
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx*dx + dy*dy);
@@ -538,14 +550,13 @@
           if (mouse.y > this.y && this.y > this.size * 10) { this.y -= 2; }
         }
         
-        // Move particle normally
         this.x += this.directionX;
         this.y += this.directionY;
         this.draw();
       }
     }
 
-    // Populate particle array based on screen size
+    // Populate particle array
     function init() {
       particlesArray = [];
       let numberOfParticles = (canvas.height * canvas.width) / 10000;
@@ -560,7 +571,7 @@
       }
     }
 
-    // Connect particles with lines if close enough
+    // Connect particles
     function connect() {
       let opacityValue = 1;
       for (let a = 0; a < particlesArray.length; a++) {
@@ -590,7 +601,7 @@
       connect();
     }
 
-    // Resize event to keep canvas accurate
+    // Resize event
     window.addEventListener('resize', function(){
       canvas.width = innerWidth;
       canvas.height = innerHeight;
@@ -598,7 +609,6 @@
       init();
     });
 
-    // Start everything
     init();
     animate();
   </script>
