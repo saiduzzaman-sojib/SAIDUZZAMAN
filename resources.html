@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources Folder | MD SAIDUZZAMAN SOJIB</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background-color: #f5f7fa; color: #333; }
+    
+    /* Simple Nav */
+    nav { background: #0c8b8d; color: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    nav a { color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem; }
+    nav a:hover { color: #ffd700; }
+    
+    .folder-header { text-align: center; padding: 60px 20px 30px; }
+    .folder-header h1 { color: #0c8b8d; font-size: 2.5rem; }
+    .folder-header i { font-size: 3rem; color: #ffd700; margin-bottom: 15px; }
+
+    /* Grid layout from your main page */
+    .documents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; max-width: 1100px; margin: 0 auto 80px; text-align: left; list-style: none; padding: 0 20px; }
+    .documents-grid li { background: #fff; padding: 25px; border-top: 5px solid #ffd700; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: all 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+    .documents-grid li:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.12); }
+    .doc-header { display: flex; align-items: flex-start; margin-bottom: 20px; }
+    .doc-icon { font-size: 2.2rem; margin-right: 15px; line-height: 1; }
+    .doc-info h3 { color: #0c8b8d; margin-bottom: 8px; font-size: 1.2rem; }
+    .doc-info p { color: #666; font-size: 0.95rem; line-height: 1.5; }
+    .doc-action { text-align: right; margin-top: auto; }
+    .doc-download { background: #0c8b8d; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-block; font-size: 0.9rem; }
+    .doc-download:hover { background: #00ffcc; color: #000; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">🔙 Back to Portfolio</a>
+    <a href="admin.html" target="_blank" style="background: #ffd700; color: black; padding: 8px 15px; border-radius: 5px;">⚙️ Manage Links</a>
+  </nav>
+
+  <div class="folder-header">
+    <i class="fas fa-folder-open"></i>
+    <h1>My Resources & Notes</h1>
+    <p style="color: #666; margin-top: 10px;">All my dynamically saved database links and documents.</p>
+  </div>
+
+  <ul class="documents-grid" id="dynamic-resources-list">
+    <li style="text-align: center; width: 100%;">Loading resources from database...</li>
+  </ul>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDDFLfDpr-km54jWhubUuaarcJlS2IOjUQ",
+      authDomain: "sojib-portfolio.firebaseapp.com",
+      projectId: "sojib-portfolio",
+      storageBucket: "sojib-portfolio.firebasestorage.app",
+      messagingSenderId: "51909586532",
+      appId: "1:51909586532:web:2d5e89354646a4dc013971"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadResources() {
+      const listContainer = document.getElementById("dynamic-resources-list");
+      try {
+        const q = query(collection(db, "resources"), orderBy("timestamp", "desc"));
+        const querySnapshot = await getDocs(q);
+        listContainer.innerHTML = ""; 
+
+        if (querySnapshot.empty) {
+          listContainer.innerHTML = "<p style='text-align: center; width: 100%;'>No resources added yet.</p>";
+          return;
+        }
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const cardHTML = `
+            <li>
+              <div class="doc-header">
+                <span class="doc-icon">${data.icon}</span>
+                <div class="doc-info">
+                  <h3>${data.title}</h3>
+                  <p>${data.desc}</p>
+                </div>
+              </div>
+              <div class="doc-action">
+                <a href="${data.url}" target="_blank" class="doc-download">View Resource</a>
+              </div>
+            </li>
+          `;
+          listContainer.innerHTML += cardHTML;
+        });
+      } catch (error) {
+        listContainer.innerHTML = "<p>Error loading resources. Please try again later.</p>";
+      }
+    }
+    loadResources();
+  </script>
+
+</body>
+</html>
