@@ -52,7 +52,7 @@
     ::-webkit-scrollbar-track { background: var(--bg-deep); }
     ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 5px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
-    ::-selection { background: var(--accent-glow); color: #fff; }
+    ::selection { background: var(--accent-glow); color: #fff; }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     .section-padding { padding: 120px 0; position: relative; }
@@ -776,10 +776,8 @@
     function verifyPassword() {
       const pswd = document.getElementById('vaultPassword').value;
       if(pswd === 'cr7') {
-        // Success: Redirect to the resources page
         window.location.href = 'resources.html';
       } else {
-        // Failure: Show error and play a shake animation
         document.getElementById('modalError').style.display = 'block';
         const modalContent = document.querySelector('.modal-content');
         modalContent.animate([
@@ -791,14 +789,12 @@
       }
     }
 
-    // Allow user to hit 'Enter' key on their keyboard to submit the password
     document.getElementById('vaultPassword').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
           verifyPassword();
         }
     });
 
-    // Close modal if user clicks outside the modal box
     window.onclick = function(event) {
       const modal = document.getElementById('passwordModal');
       if (event.target === modal) {
@@ -885,7 +881,7 @@
       for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a; b < particlesArray.length; b++) {
           let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
-                         + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                       + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
           if (distance < (canvas.width/7) * (canvas.height/7)) {
             opacityValue = 1 - (distance/20000);
             ctx.strokeStyle = 'rgba(0, 255, 204,' + opacityValue + ')';
