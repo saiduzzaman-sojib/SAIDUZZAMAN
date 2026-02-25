@@ -337,57 +337,6 @@
     .cv-download-wrapper { text-align: center; margin-top: 50px; }
 
     /* ==========================================================================
-       RESOURCES GRID (FIREBASE INTEGRATION RESTORED)
-       ========================================================================== */
-    .documents-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-      gap: 25px; 
-      list-style: none; 
-      text-align: left; 
-    }
-    .documents-grid li { 
-      background: rgba(30, 41, 59, 0.4); 
-      padding: 30px; 
-      border-radius: 16px; 
-      border: 1px solid var(--border-light); 
-      border-top: 4px solid var(--accent-primary);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-      transition: var(--transition-smooth); 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: space-between; 
-    }
-    .documents-grid li:hover { 
-      transform: translateY(-8px); 
-      background: rgba(30, 41, 59, 0.8);
-      border-color: var(--border-highlight);
-      box-shadow: 0 20px 40px rgba(0, 255, 204, 0.1); 
-    }
-    .doc-header { display: flex; align-items: flex-start; margin-bottom: 20px; }
-    .doc-icon { font-size: 2.5rem; margin-right: 15px; line-height: 1; }
-    .doc-info h3 { color: var(--text-main); margin-bottom: 8px; font-size: 1.3rem; font-family: var(--font-heading); }
-    .doc-info p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-    .doc-action { text-align: right; margin-top: 20px; }
-    .doc-download { 
-      background: rgba(0, 255, 204, 0.1); 
-      color: var(--accent-primary); 
-      padding: 10px 20px; 
-      border-radius: 8px; 
-      text-decoration: none; 
-      font-weight: 600; 
-      transition: var(--transition-smooth); 
-      display: inline-block; 
-      font-size: 0.9rem; 
-      border: 1px solid var(--border-highlight);
-    }
-    .doc-download:hover { 
-      background: var(--accent-primary); 
-      color: #000; 
-      box-shadow: 0 5px 15px var(--accent-glow);
-    }
-
-    /* ==========================================================================
        CONTACT FORM
        ========================================================================== */
     .contact-container { max-width: 700px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--border-light); }
@@ -399,8 +348,123 @@
     .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-primary); outline: none; box-shadow: 0 0 10px var(--accent-glow); }
     .form-group textarea { resize: vertical; min-height: 150px; }
 
+    /* ==========================================================================
+       CLOUD RESOURCES FOLDER
+       ========================================================================== */
+    .folder-wrapper { display: flex; justify-content: center; }
+    .folder-card {
+      background: var(--bg-card); backdrop-filter: blur(10px); padding: 60px 40px; border-radius: 20px;
+      border: 1px solid var(--border-light); border-top: 1px solid rgba(255, 255, 255, 0.2);
+      transition: var(--transition-smooth); cursor: pointer; position: relative; overflow: hidden;
+      text-align: center; max-width: 500px; width: 100%; display: block;
+    }
+    .folder-card::before {
+      content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px;
+      background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+    }
+    .folder-card i.main-icon {
+      font-size: 6rem; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 25px; transition: transform 0.4s ease;
+    }
+    .folder-card h3 { color: var(--text-main); font-size: 2rem; margin-bottom: 15px; font-family: var(--font-heading); }
+    .folder-card p { color: var(--text-muted); font-size: 1.1rem; }
+    .folder-card:hover {
+      transform: translateY(-10px); background: rgba(30, 41, 59, 0.8);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 204, 0.15); border-color: var(--border-highlight);
+    }
+    .folder-card:hover i.main-icon { transform: scale(1.1); }
+
+    /* ==========================================================================
+       PASSWORD MODAL UI
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(5, 11, 20, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-smooth);
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      background: var(--bg-card);
+      padding: 40px 30px;
+      border-radius: 24px;
+      border: 1px solid var(--border-light);
+      border-top: 2px solid rgba(0, 255, 204, 0.4);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      transform: translateY(20px);
+      transition: var(--transition-smooth);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+    .close-modal {
+      position: absolute;
+      top: 15px; right: 20px;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .close-modal:hover { color: #ef4444; }
+    
+    #vaultPassword {
+      width: 100%;
+      padding: 15px;
+      margin-top: 20px;
+      background: var(--bg-deep);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      color: white;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition-smooth);
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    #vaultPassword:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
     /* Footer */
-    footer { background: #020617; border-top: 1px solid var(--border-light); padding: 40px 0; text-align: center; color: var(--text-muted); }
+    footer { 
+      background: #020617; 
+      border-top: 1px solid var(--border-light); 
+      padding: 40px 0; 
+      text-align: center; 
+      color: var(--text-muted); 
+    }
+
+    /* Vistor Badge Styling */
+    .visitor-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 8px 20px;
+      border-radius: 50px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+    .visitor-badge i { color: var(--accent-primary); }
 
     @media (max-width: 992px) {
       .hero-content { grid-template-columns: 1fr; text-align: center; }
@@ -424,10 +488,9 @@
         <li><a href="#cp-arena">CP Arena</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#resume">Resume</a></li>
         <li><a href="#resources">Resources</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="admin.html" class="nav-btn-add" target="_blank" id="btn-admin-nav"><i class="fas fa-database"></i> DB Admin</a></li>
+        <li><a href="admin.html" class="nav-btn-add" target="_blank"><i class="fas fa-database"></i> DB Admin</a></li>
       </ul>
     </div>
   </nav>
@@ -440,8 +503,8 @@
         <h1>Hello, I'm <br><span class="gradient-text">Saiduzzaman Sojib</span> <span class="typewriter">&lt;Software Engineer /&gt;</span></h1>
         <p>A passionate Computer Science student at Southeast University focused on mastering Data Structures, Algorithms, and engineering high-performance software applications.</p>
         <div class="hero-buttons">
-          <a href="#about" class="btn btn-primary" id="btn-explore"><i class="fas fa-rocket"></i> Explore Profile</a>
-          <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" class="btn btn-outline" id="btn-leetcode"><i class="fas fa-code"></i> View LeetCode</a>
+          <a href="#about" class="btn btn-primary"><i class="fas fa-rocket"></i> Explore Profile</a>
+          <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" class="btn btn-outline"><i class="fas fa-code"></i> View LeetCode</a>
         </div>
       </div>
       <div class="hero-image-wrapper reveal">
@@ -624,29 +687,8 @@
         </div>
       </div>
       <div class="cv-download-wrapper reveal">
-        <a href="#" class="btn btn-primary" id="btn-download-cv" download><i class="fas fa-file-download"></i> Download Full CV</a>
+        <a href="#" class="btn btn-primary" download><i class="fas fa-file-download"></i> Download Full CV</a>
       </div>
-    </div>
-  </section>
-
-  <section id="resources" class="section-padding" style="background: var(--bg-card);">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Digital Vault</h2>
-        <p>My dynamic database containing study notes, lab reports, and external links.</p>
-      </div>
-      
-      <div style="text-align: right; margin-bottom: 30px;" class="reveal">
-        <a href="admin.html" target="_blank" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">
-          <i class="fas fa-cog"></i> Manage Links
-        </a>
-      </div>
-
-      <ul class="documents-grid reveal" id="dynamic-resources-list">
-        <li style="text-align: center; width: 100%; color: var(--text-muted); background: transparent; border: none; box-shadow: none;">
-          Loading resources from database...
-        </li>
-      </ul>
     </div>
   </section>
 
@@ -673,80 +715,53 @@
     </div>
   </section>
 
+  <section id="resources" class="section-padding" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Digital Vault</h2>
+        <p>Access my dynamic database containing study notes, lab reports, and external links.</p>
+      </div>
+      <div class="folder-wrapper reveal">
+        <div class="folder-card" onclick="openModal()">
+          <i class="fas fa-folder-open main-icon"></i>
+          <h3>Cloud Resources</h3>
+          <p>Click to open the secure folder. Contains Notion notes, C++ implementations, and Firebase-driven data links.</p>
+          <div style="margin-top: 30px; display: inline-block; background: rgba(0,255,204,0.1); color: var(--accent-primary); padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;">
+            <i class="fas fa-lock" style="margin-right: 8px;"></i> Secure Access Required
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="container">
       <p>&copy; 2026 MD SAIDUZZAMAN SOJIB. Designed & Engineered for the Future.</p>
+      
+      <div class="visitor-badge">
+        <i class="fas fa-eye"></i>
+        <span>Visitors: </span>
+        <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fsaiduzzaman-sojib.github.io%2FSAIDUZZAMAN%2F&countColor=%2300ffcc&style=flat" alt="Visitor Count" style="vertical-align: middle; height: 20px;">
+      </div>
+
     </div>
   </footer>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-    // IMPORTING GOOGLE ANALYTICS
-    import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDDFLfDpr-km54jWhubUuaarcJlS2IOjUQ",
-      authDomain: "sojib-portfolio.firebaseapp.com",
-      projectId: "sojib-portfolio",
-      storageBucket: "sojib-portfolio.firebasestorage.app",
-      messagingSenderId: "51909586532",
-      appId: "1:51909586532:web:2d5e89354646a4dc013971"
-    };
-
-    // Initialize Firebase Services
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const analytics = getAnalytics(app); // THIS TURNS ON GOOGLE ANALYTICS!
-
-    // Track when users click specific buttons
-    document.getElementById('btn-explore')?.addEventListener('click', () => logEvent(analytics, 'clicked_explore_profile'));
-    document.getElementById('btn-leetcode')?.addEventListener('click', () => logEvent(analytics, 'clicked_view_leetcode'));
-    document.getElementById('btn-download-cv')?.addEventListener('click', () => logEvent(analytics, 'downloaded_resume'));
-    document.getElementById('btn-admin-nav')?.addEventListener('click', () => logEvent(analytics, 'clicked_admin_nav'));
-
-    async function loadResources() {
-      const listContainer = document.getElementById("dynamic-resources-list");
-      if(!listContainer) return;
+  <div id="passwordModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <i class="fas fa-user-secret" style="font-size: 3.5rem; color: var(--accent-primary); margin-bottom: 15px;"></i>
+      <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 5px;">Secure Vault</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">Enter the access code to proceed.</p>
       
-      try {
-        const q = query(collection(db, "resources"), orderBy("timestamp", "desc"));
-        const querySnapshot = await getDocs(q);
-        
-        listContainer.innerHTML = ""; 
-
-        if (querySnapshot.empty) {
-          listContainer.innerHTML = "<li style='text-align: center; width: 100%; color: var(--text-muted); background: transparent; border: none; box-shadow: none;'>No resources added yet.</li>";
-          return;
-        }
-
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          const cardHTML = `
-            <li>
-              <div class="doc-header">
-                <span class="doc-icon">${data.icon}</span>
-                <div class="doc-info">
-                  <h3>${data.title}</h3>
-                  <p>${data.desc}</p>
-                </div>
-              </div>
-              <div class="doc-action">
-                <a href="${data.url}" target="_blank" class="doc-download" onclick="logEvent(getAnalytics(), 'opened_resource', { resource_title: '${data.title}' })">View Resource</a>
-              </div>
-            </li>
-          `;
-          listContainer.innerHTML += cardHTML;
-        });
-
-      } catch (error) {
-        console.error("Error fetching documents: ", error);
-        listContainer.innerHTML = "<li style='text-align: center; width: 100%; color: #ef4444; background: transparent; border: none; box-shadow: none;'>Error loading resources. Please try again later.</li>";
-      }
-    }
-
-    loadResources();
-  </script>
+      <input type="password" id="vaultPassword" placeholder="•••••••" />
+      <p id="modalError" style="color: #ef4444; font-size: 0.85rem; margin-top: 10px; display: none; font-weight: 500;">Incorrect code. Access denied.</p>
+      
+      <button class="btn btn-primary" onclick="verifyPassword()" style="margin-top: 20px; width: 100%; justify-content: center;">
+        <i class="fas fa-unlock"></i> Unlock Vault
+      </button>
+    </div>
+  </div>
 
   <script>
     // 1. SCROLL REVEAL ANIMATIONS
@@ -773,7 +788,48 @@
       });
     });
 
-    // 2. ADVANCED INTERACTIVE CANVAS PARTICLE NETWORK
+    // 2. CUSTOM PASSWORD LOGIC
+    function openModal() {
+      document.getElementById('passwordModal').classList.add('active');
+      document.getElementById('vaultPassword').focus();
+      document.getElementById('modalError').style.display = 'none';
+      document.getElementById('vaultPassword').value = '';
+    }
+
+    function closeModal() {
+      document.getElementById('passwordModal').classList.remove('active');
+    }
+
+    function verifyPassword() {
+      const pswd = document.getElementById('vaultPassword').value;
+      if(pswd === 'cr7') {
+        window.location.href = 'resources.html';
+      } else {
+        document.getElementById('modalError').style.display = 'block';
+        const modalContent = document.querySelector('.modal-content');
+        modalContent.animate([
+          { transform: 'translateX(0)' },
+          { transform: 'translateX(-10px)' },
+          { transform: 'translateX(10px)' },
+          { transform: 'translateX(0)' }
+        ], { duration: 300 });
+      }
+    }
+
+    document.getElementById('vaultPassword').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          verifyPassword();
+        }
+    });
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('passwordModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+
+    // 3. ADVANCED INTERACTIVE CANVAS PARTICLE NETWORK
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     let particlesArray;
