@@ -295,98 +295,109 @@
     }
 
     /* ==========================================================================
-       CLOUD RESOURCES FOLDER (PASSWORD PROTECTED)
+       CP STATS ARENA
        ========================================================================== */
-    .folder-wrapper { display: flex; justify-content: center; }
-    .folder-card {
-      background: var(--bg-card); backdrop-filter: blur(10px); padding: 60px 40px; border-radius: 20px;
-      border: 1px solid var(--border-light); border-top: 1px solid rgba(255, 255, 255, 0.2);
-      transition: var(--transition-smooth); cursor: pointer; position: relative; overflow: hidden;
-      text-align: center; max-width: 500px; width: 100%; display: block;
-    }
-    .folder-card::before {
-      content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px;
-      background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
-    }
-    .folder-card i.main-icon {
-      font-size: 6rem; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 25px; transition: transform 0.4s ease;
-    }
-    .folder-card h3 { color: var(--text-main); font-size: 2rem; margin-bottom: 15px; font-family: var(--font-heading); }
-    .folder-card p { color: var(--text-muted); font-size: 1.1rem; }
-    .folder-card:hover {
-      transform: translateY(-10px); background: rgba(30, 41, 59, 0.8);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 204, 0.15); border-color: var(--border-highlight);
-    }
-    .folder-card:hover i.main-icon { transform: scale(1.1); }
+    .cp-stats-wrapper { background: linear-gradient(135deg, var(--bg-card), rgba(0, 255, 204, 0.05)); border: 1px solid var(--border-highlight); border-radius: 20px; padding: 50px; text-align: center; }
+    .cp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 40px; }
+    .stat-box { padding: 20px; background: rgba(5, 11, 20, 0.6); border-radius: 12px; border: 1px solid var(--border-light); }
+    .stat-number { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; color: var(--accent-primary); }
+    .stat-label { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
 
     /* ==========================================================================
-       PASSWORD MODAL UI
+       FEATURED PROJECTS
        ========================================================================== */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(5, 11, 20, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition-smooth);
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .project-card {
+      background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-light);
+      overflow: hidden; transition: var(--transition-smooth); position: relative;
     }
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
+    .project-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 15px 30px rgba(0, 255, 204, 0.1); }
+    .project-img { height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--text-muted); }
+    .project-info { padding: 25px; }
+    .project-info h3 { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 10px; }
+    .project-info p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+    .project-tech { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .project-tech span { font-size: 0.8rem; background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 20px; color: var(--accent-secondary); }
+    .project-links { display: flex; gap: 15px; }
+    .project-links a { color: var(--text-main); font-size: 1.2rem; transition: var(--transition-smooth); }
+    .project-links a:hover { color: var(--accent-primary); }
+
+    /* ==========================================================================
+       RESUME & TIMELINE
+       ========================================================================== */
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; border-left: 2px solid var(--accent-secondary); padding-left: 30px; }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -39px; top: 0; width: 16px; height: 16px;
+      background: var(--bg-deep); border: 3px solid var(--accent-primary); border-radius: 50%;
     }
-    .modal-content {
-      background: var(--bg-card);
-      padding: 40px 30px;
-      border-radius: 24px;
-      border: 1px solid var(--border-light);
-      border-top: 2px solid rgba(0, 255, 204, 0.4);
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
-      transform: translateY(20px);
-      transition: var(--transition-smooth);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-      position: relative;
+    .timeline-date { color: var(--accent-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; }
+    .timeline-title { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 5px; }
+    .timeline-desc { color: var(--text-muted); font-size: 0.95rem; }
+    .cv-download-wrapper { text-align: center; margin-top: 50px; }
+
+    /* ==========================================================================
+       RESOURCES GRID (FIREBASE INTEGRATION RESTORED)
+       ========================================================================== */
+    .documents-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+      gap: 25px; 
+      list-style: none; 
+      text-align: left; 
     }
-    .modal-overlay.active .modal-content {
-      transform: translateY(0);
+    .documents-grid li { 
+      background: rgba(30, 41, 59, 0.4); 
+      padding: 30px; 
+      border-radius: 16px; 
+      border: 1px solid var(--border-light); 
+      border-top: 4px solid var(--accent-primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+      transition: var(--transition-smooth); 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
     }
-    .close-modal {
-      position: absolute;
-      top: 15px; right: 20px;
-      color: var(--text-muted);
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: color 0.3s;
+    .documents-grid li:hover { 
+      transform: translateY(-8px); 
+      background: rgba(30, 41, 59, 0.8);
+      border-color: var(--border-highlight);
+      box-shadow: 0 20px 40px rgba(0, 255, 204, 0.1); 
     }
-    .close-modal:hover { color: #ef4444; }
-    
-    #vaultPassword {
-      width: 100%;
-      padding: 15px;
-      margin-top: 20px;
-      background: var(--bg-deep);
-      border: 1px solid var(--border-light);
-      border-radius: 10px;
-      color: white;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      outline: none;
-      transition: var(--transition-smooth);
-      text-align: center;
-      letter-spacing: 2px;
+    .doc-header { display: flex; align-items: flex-start; margin-bottom: 20px; }
+    .doc-icon { font-size: 2.5rem; margin-right: 15px; line-height: 1; }
+    .doc-info h3 { color: var(--text-main); margin-bottom: 8px; font-size: 1.3rem; font-family: var(--font-heading); }
+    .doc-info p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+    .doc-action { text-align: right; margin-top: 20px; }
+    .doc-download { 
+      background: rgba(0, 255, 204, 0.1); 
+      color: var(--accent-primary); 
+      padding: 10px 20px; 
+      border-radius: 8px; 
+      text-decoration: none; 
+      font-weight: 600; 
+      transition: var(--transition-smooth); 
+      display: inline-block; 
+      font-size: 0.9rem; 
+      border: 1px solid var(--border-highlight);
     }
-    #vaultPassword:focus {
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 15px var(--accent-glow);
+    .doc-download:hover { 
+      background: var(--accent-primary); 
+      color: #000; 
+      box-shadow: 0 5px 15px var(--accent-glow);
     }
+
+    /* ==========================================================================
+       CONTACT FORM
+       ========================================================================== */
+    .contact-container { max-width: 700px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--border-light); }
+    .form-group { margin-bottom: 25px; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 15px; background: rgba(5, 11, 20, 0.5); border: 1px solid var(--border-light);
+      border-radius: 10px; color: var(--text-main); font-family: var(--font-body); transition: var(--transition-smooth);
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-primary); outline: none; box-shadow: 0 0 10px var(--accent-glow); }
+    .form-group textarea { resize: vertical; min-height: 150px; }
 
     /* Footer */
     footer { background: #020617; border-top: 1px solid var(--border-light); padding: 40px 0; text-align: center; color: var(--text-muted); }
@@ -410,10 +421,13 @@
       <a href="#" class="logo">Sojib.Dev</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#cp-arena">CP Arena</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#resume">Resume</a></li>
         <li><a href="#resources">Resources</a></li>
-        <li><a href="admin.html" class="nav-btn-add" target="_blank"><i class="fas fa-database"></i> DB Admin</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="admin.html" class="nav-btn-add" target="_blank" id="btn-admin-nav"><i class="fas fa-database"></i> DB Admin</a></li>
       </ul>
     </div>
   </nav>
@@ -426,8 +440,8 @@
         <h1>Hello, I'm <br><span class="gradient-text">Saiduzzaman Sojib</span> <span class="typewriter">&lt;Software Engineer /&gt;</span></h1>
         <p>A passionate Computer Science student at Southeast University focused on mastering Data Structures, Algorithms, and engineering high-performance software applications.</p>
         <div class="hero-buttons">
-          <a href="#about" class="btn btn-primary"><i class="fas fa-rocket"></i> Explore Profile</a>
-          <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" class="btn btn-outline"><i class="fas fa-code"></i> View LeetCode</a>
+          <a href="#about" class="btn btn-primary" id="btn-explore"><i class="fas fa-rocket"></i> Explore Profile</a>
+          <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" class="btn btn-outline" id="btn-leetcode"><i class="fas fa-code"></i> View LeetCode</a>
         </div>
       </div>
       <div class="hero-image-wrapper reveal">
@@ -511,21 +525,150 @@
     </div>
   </section>
 
+  <section id="cp-arena" class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Competitive Programming</h2>
+        <p>The road to becoming a top-tier programmer in Asia requires relentless practice and algorithm mastery.</p>
+      </div>
+      <div class="cp-stats-wrapper reveal">
+        <h3 style="font-family: var(--font-heading); font-size: 1.8rem;">Current Standing</h3>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 10px auto 0;">Regularly competing and solving complex data structure problems to sharpen my problem-solving architecture.</p>
+        <div class="cp-grid">
+          <div class="stat-box">
+            <div class="stat-number">350+</div>
+            <div class="stat-label">Problems Solved</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">1450</div>
+            <div class="stat-label">Max Rating</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">Top 10%</div>
+            <div class="stat-label">Contest Rank</div>
+          </div>
+        </div>
+        <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" class="btn btn-primary" style="margin-top: 40px;">
+          <i class="fas fa-trophy"></i> View Full Profile
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section-padding" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Featured Projects</h2>
+        <p>A selection of my recent engineering work across mobile, object-oriented systems, and algorithms.</p>
+      </div>
+      <div class="projects-grid reveal">
+        <div class="project-card">
+          <div class="project-img"><i class="fas fa-mobile-alt"></i></div>
+          <div class="project-info">
+            <h3>Flutter E-Commerce UI</h3>
+            <p>A high-performance, cross-platform mobile application featuring complex state management and a premium user interface.</p>
+            <div class="project-tech">
+              <span>Flutter</span><span>Dart</span><span>Firebase</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank" title="GitHub Repo"><i class="fab fa-github"></i></a>
+              <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img"><i class="fab fa-java"></i></div>
+          <div class="project-info">
+            <h3>University Management System</h3>
+            <p>A robust desktop application built applying strict Object-Oriented Programming (OOP) principles to handle student data.</p>
+            <div class="project-tech">
+              <span>Java</span><span>OOP</span><span>SQL</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank" title="GitHub Repo"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img"><i class="fas fa-project-diagram"></i></div>
+          <div class="project-info">
+            <h3>DSA Visualizer Engine</h3>
+            <p>A tool developed to visualize complex graph and tree algorithms, deeply reinforcing core computer science fundamentals.</p>
+            <div class="project-tech">
+              <span>C++</span><span>DSA</span><span>Logic Design</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank" title="GitHub Repo"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Education & Experience</h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-date">Current</div>
+          <div class="timeline-title">BSc. Computer Science & Engineering</div>
+          <div class="timeline-desc">Southeast University. Actively bridging technical and analytical disciplines through coursework in Java, Statistical Methods, Communication Theory, and Business Management.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2024 - Present</div>
+          <div class="timeline-title">Competitive Programming Journey</div>
+          <div class="timeline-desc">Relentless pursuit of algorithmic efficiency. Transitioning from foundational syntax to advanced dynamic programming and graph theory to dominate the Asian competitive circuit.</div>
+        </div>
+      </div>
+      <div class="cv-download-wrapper reveal">
+        <a href="#" class="btn btn-primary" id="btn-download-cv" download><i class="fas fa-file-download"></i> Download Full CV</a>
+      </div>
+    </div>
+  </section>
+
   <section id="resources" class="section-padding" style="background: var(--bg-card);">
     <div class="container">
       <div class="section-header reveal">
         <h2>Digital Vault</h2>
-        <p>Access my dynamic database containing study notes, lab reports, and external links.</p>
+        <p>My dynamic database containing study notes, lab reports, and external links.</p>
       </div>
-      <div class="folder-wrapper reveal">
-        <div class="folder-card" onclick="openModal()">
-          <i class="fas fa-folder-open main-icon"></i>
-          <h3>Cloud Resources</h3>
-          <p>Click to open the secure folder. Contains Notion notes, C++ implementations, and Firebase-driven data links.</p>
-          <div style="margin-top: 30px; display: inline-block; background: rgba(0,255,204,0.1); color: var(--accent-primary); padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;">
-            <i class="fas fa-lock" style="margin-right: 8px;"></i> Secure Access Required
+      
+      <div style="text-align: right; margin-bottom: 30px;" class="reveal">
+        <a href="admin.html" target="_blank" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">
+          <i class="fas fa-cog"></i> Manage Links
+        </a>
+      </div>
+
+      <ul class="documents-grid reveal" id="dynamic-resources-list">
+        <li style="text-align: center; width: 100%; color: var(--text-muted); background: transparent; border: none; box-shadow: none;">
+          Loading resources from database...
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Initiate Contact</h2>
+        <p>Whether it's an engineering challenge or a collaboration opportunity, my inbox is open.</p>
+      </div>
+      <div class="contact-container reveal">
+        <form onsubmit="event.preventDefault(); alert('Form submitted! (Replace with your backend later)');">
+          <div class="form-group">
+            <input type="text" placeholder="Your Name" required>
           </div>
-        </div>
+          <div class="form-group">
+            <input type="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
       </div>
     </div>
   </section>
@@ -536,21 +679,74 @@
     </div>
   </footer>
 
-  <div id="passwordModal" class="modal-overlay">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <i class="fas fa-user-secret" style="font-size: 3.5rem; color: var(--accent-primary); margin-bottom: 15px;"></i>
-      <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 5px;">Secure Vault</h3>
-      <p style="color: var(--text-muted); font-size: 0.9rem;">Enter the access code to proceed.</p>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    // IMPORTING GOOGLE ANALYTICS
+    import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDDFLfDpr-km54jWhubUuaarcJlS2IOjUQ",
+      authDomain: "sojib-portfolio.firebaseapp.com",
+      projectId: "sojib-portfolio",
+      storageBucket: "sojib-portfolio.firebasestorage.app",
+      messagingSenderId: "51909586532",
+      appId: "1:51909586532:web:2d5e89354646a4dc013971"
+    };
+
+    // Initialize Firebase Services
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const analytics = getAnalytics(app); // THIS TURNS ON GOOGLE ANALYTICS!
+
+    // Track when users click specific buttons
+    document.getElementById('btn-explore')?.addEventListener('click', () => logEvent(analytics, 'clicked_explore_profile'));
+    document.getElementById('btn-leetcode')?.addEventListener('click', () => logEvent(analytics, 'clicked_view_leetcode'));
+    document.getElementById('btn-download-cv')?.addEventListener('click', () => logEvent(analytics, 'downloaded_resume'));
+    document.getElementById('btn-admin-nav')?.addEventListener('click', () => logEvent(analytics, 'clicked_admin_nav'));
+
+    async function loadResources() {
+      const listContainer = document.getElementById("dynamic-resources-list");
+      if(!listContainer) return;
       
-      <input type="password" id="vaultPassword" placeholder="•••••••" />
-      <p id="modalError" style="color: #ef4444; font-size: 0.85rem; margin-top: 10px; display: none; font-weight: 500;">Incorrect code. Access denied.</p>
-      
-      <button class="btn btn-primary" onclick="verifyPassword()" style="margin-top: 20px; width: 100%; justify-content: center;">
-        <i class="fas fa-unlock"></i> Unlock Vault
-      </button>
-    </div>
-  </div>
+      try {
+        const q = query(collection(db, "resources"), orderBy("timestamp", "desc"));
+        const querySnapshot = await getDocs(q);
+        
+        listContainer.innerHTML = ""; 
+
+        if (querySnapshot.empty) {
+          listContainer.innerHTML = "<li style='text-align: center; width: 100%; color: var(--text-muted); background: transparent; border: none; box-shadow: none;'>No resources added yet.</li>";
+          return;
+        }
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const cardHTML = `
+            <li>
+              <div class="doc-header">
+                <span class="doc-icon">${data.icon}</span>
+                <div class="doc-info">
+                  <h3>${data.title}</h3>
+                  <p>${data.desc}</p>
+                </div>
+              </div>
+              <div class="doc-action">
+                <a href="${data.url}" target="_blank" class="doc-download" onclick="logEvent(getAnalytics(), 'opened_resource', { resource_title: '${data.title}' })">View Resource</a>
+              </div>
+            </li>
+          `;
+          listContainer.innerHTML += cardHTML;
+        });
+
+      } catch (error) {
+        console.error("Error fetching documents: ", error);
+        listContainer.innerHTML = "<li style='text-align: center; width: 100%; color: #ef4444; background: transparent; border: none; box-shadow: none;'>Error loading resources. Please try again later.</li>";
+      }
+    }
+
+    loadResources();
+  </script>
 
   <script>
     // 1. SCROLL REVEAL ANIMATIONS
@@ -577,52 +773,7 @@
       });
     });
 
-    // 2. CUSTOM PASSWORD LOGIC
-    function openModal() {
-      document.getElementById('passwordModal').classList.add('active');
-      document.getElementById('vaultPassword').focus();
-      document.getElementById('modalError').style.display = 'none';
-      document.getElementById('vaultPassword').value = '';
-    }
-
-    function closeModal() {
-      document.getElementById('passwordModal').classList.remove('active');
-    }
-
-    function verifyPassword() {
-      const pswd = document.getElementById('vaultPassword').value;
-      if(pswd === 'cr7') {
-        // Success: Redirect to the resources page
-        window.location.href = 'resources.html';
-      } else {
-        // Failure: Show error and play a shake animation
-        document.getElementById('modalError').style.display = 'block';
-        const modalContent = document.querySelector('.modal-content');
-        modalContent.animate([
-          { transform: 'translateX(0)' },
-          { transform: 'translateX(-10px)' },
-          { transform: 'translateX(10px)' },
-          { transform: 'translateX(0)' }
-        ], { duration: 300 });
-      }
-    }
-
-    // Allow user to hit 'Enter' key on their keyboard to submit the password
-    document.getElementById('vaultPassword').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-          verifyPassword();
-        }
-    });
-
-    // Close modal if user clicks outside the modal box
-    window.onclick = function(event) {
-      const modal = document.getElementById('passwordModal');
-      if (event.target === modal) {
-        closeModal();
-      }
-    }
-
-    // 3. ADVANCED INTERACTIVE CANVAS PARTICLE NETWORK
+    // 2. ADVANCED INTERACTIVE CANVAS PARTICLE NETWORK
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     let particlesArray;
