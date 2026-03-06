@@ -50,7 +50,7 @@
     p.subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 0.95rem; }
 
     /* Inputs */
-    input[type="text"], input[type="url"], input[type="file"] {
+    input[type="text"], input[type="url"], input[type="file"], input[type="password"] {
       width: 100%;
       padding: 15px;
       margin-bottom: 20px;
@@ -63,6 +63,12 @@
     }
     input:focus { border-color: var(--accent-primary); outline: none; box-shadow: 0 0 10px rgba(0,255,204,0.2); }
     
+    #admin-password {
+      text-align: center;
+      letter-spacing: 3px;
+      font-size: 1.2rem;
+    }
+
     /* File Upload Specifics */
     input[type="file"] { padding: 12px; cursor: pointer; color: var(--text-muted); }
     input[type="file"]::file-selector-button {
@@ -93,7 +99,7 @@
     button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3); }
 
     .btn-logout { background: transparent; border: 1px solid #ef4444; color: #ef4444; margin-top: 15px; padding: 10px; }
-    .btn-logout:hover { background: rgba(239, 68, 68, 0.1); box-shadow: none; transform: none; }
+    .btn-logout:hover { background: rgba(239, 68, 68, 0.1); box-shadow: none; transform: none; color: #ef4444; }
 
     /* Sections */
     #dashboard-section { display: none; } /* Hidden by default */
@@ -103,11 +109,14 @@
 <body>
 
   <div class="admin-card" id="login-section">
-    <i class="fas fa-fingerprint" style="font-size: 4rem; color: var(--accent-primary); margin-bottom: 20px;"></i>
+    <i class="fas fa-lock" style="font-size: 4rem; color: var(--accent-primary); margin-bottom: 20px;"></i>
     <h2>Security Node</h2>
-    <p class="subtitle">Only authorized personnel may access the database.</p>
-    <button id="google-login-btn"><i class="fab fa-google"></i> Authenticate with Google</button>
-    <p id="login-status" style="margin-top: 20px; color: #ef4444; font-size: 0.9rem;"></p>
+    <p class="subtitle">Enter the master password to unlock the database.</p>
+    
+    <input type="password" id="admin-password" placeholder="•••••••">
+    <button id="unlock-btn"><i class="fas fa-key"></i> Unlock Vault</button>
+    
+    <p id="login-status" style="margin-top: 20px; color: #ef4444; font-size: 0.9rem; font-weight: 500;"></p>
   </div>
 
   <div class="admin-card" id="dashboard-section">
@@ -127,14 +136,13 @@
     </form>
     
     <p id="status"></p>
-    <button id="logout-btn" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Terminate Session</button>
+    <button id="logout-btn" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Lock Vault</button>
   </div>
 
   <script type="module">
-    // Import all required Firebase SDKs (App, Auth, Firestore, Storage)
+    // Import Firestore and Storage SDKs
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
     // Firebase Configuration
@@ -150,57 +158,55 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const auth = getAuth(app);
     const storage = getStorage(app);
-    const provider = new GoogleAuthProvider();
 
     // DOM Elements
     const loginSection = document.getElementById('login-section');
     const dashboardSection = document.getElementById('dashboard-section');
     const statusText = document.getElementById('status');
     const loginStatus = document.getElementById('login-status');
+    const passwordInput = document.getElementById('admin-password');
 
-    // SECURITY: The only email allowed to pass this screen
-    const ADMIN_EMAIL = "saiduzzaman.015.sojib@gmail.com";
+    // ==========================================
+    // 1. PASSWORD SECURITY LOGIC
+    // ==========================================
+    const MASTER_PASSWORD = "cr7"; // You can change your password here!
 
-    // 1. AUTHENTICATION LISTENER
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        if (user.email === ADMIN_EMAIL) {
-          // Success! Right user. Show Dashboard.
-          loginSection.style.display = 'none';
-          dashboardSection.style.display = 'block';
-        } else {
-          // Intruder detected. Kick them out.
-          signOut(auth);
-          loginStatus.innerText = "Access Denied: You are not authorized.";
-        }
+    function attemptLogin() {
+      const enteredPassword = passwordInput.value;
+      if (enteredPassword === MASTER_PASSWORD) {
+        loginSection.style.display = 'none';
+        dashboardSection.style.display = 'block';
+        passwordInput.value = ''; // Clear password field
       } else {
-        // Logged out state
-        loginSection.style.display = 'block';
-        dashboardSection.style.display = 'none';
+        loginStatus.innerText = "Incorrect password. Access denied.";
+        // Shake animation for visual feedback
+        loginSection.animate([
+          { transform: 'translateX(0)' },
+          { transform: 'translateX(-10px)' },
+          { transform: 'translateX(10px)' },
+          { transform: 'translateX(0)' }
+        ], { duration: 300 });
+      }
+    }
+
+    document.getElementById('unlock-btn').addEventListener('click', attemptLogin);
+
+    // Allow pressing "Enter" on keyboard to login
+    passwordInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        attemptLogin();
       }
     });
 
-    // 2. LOGIN BUTTON
-    document.getElementById('google-login-btn').addEventListener('click', () => {
-      loginStatus.innerText = "Authenticating...";
-      signInWithPopup(auth, provider).catch((error) => {
-        loginStatus.innerText = "Authentication failed.";
-        console.error(error);
-      });
-    });
-
-    // 3. LOGOUT BUTTON
+    // Logout Button (Just reloads the page to lock it)
     document.getElementById('logout-btn').addEventListener('click', () => {
-      signOut(auth).then(() => {
-        loginStatus.innerText = "Session terminated successfully.";
-        document.getElementById('addLinkForm').reset();
-        statusText.innerText = "";
-      });
+      window.location.reload();
     });
 
-    // 4. FORM SUBMISSION (FILE UPLOAD + DATABASE)
+    // ==========================================
+    // 2. FIREBASE UPLOAD & DATABASE LOGIC
+    // ==========================================
     document.getElementById('addLinkForm').addEventListener('submit', async (e) => {
       e.preventDefault(); 
       statusText.innerText = "Initializing upload protocol...";
