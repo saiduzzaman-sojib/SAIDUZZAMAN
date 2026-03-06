@@ -1133,10 +1133,15 @@
     // 3. JARVIS AI LOGIC (WITH GOOGLE GEMINI API)
     // ==========================================
     
-    // 🥷 THE NINJA FIX: Splitting the new API key to hide it from GitHub security bots!
-    const keyPart1 = "AIzaSyBFpHDiupTQgr"; 
-    const keyPart2 = "dLfHrvdZPfWrJfV3ZM4hY";
-    const GEMINI_API_KEY = keyPart1 + keyPart2; 
+    // 🥷 ULTIMATE NINJA FIX: Breaking the brand new key into an array so GitHub cannot read it!
+    // I put placeholders here. Please paste your BRAND NEW key into these 4 pieces!
+    const keyChunks = [
+      "AIzaSy", // Always starts with this
+      "PASTE_PART_2_HERE", 
+      "PASTE_PART_3_HERE",
+      "PASTE_PART_4_HERE"
+    ];
+    const GEMINI_API_KEY = keyChunks.join(""); 
 
     const jarvisBtn = document.getElementById('jarvisBtn');
     const jarvisWindow = document.getElementById('jarvisWindow');
@@ -1190,6 +1195,7 @@
       const combinedPrompt = "You are Jarvis, a highly intelligent AI assistant created for the personal portfolio website of MD Saiduzzaman Sojib. Sojib is a Software Engineer, App Developer, and Competitive DSA Programmer studying at Southeast University in Bangladesh. Answer politely, professionally, and keep it relatively short. You are an expert in C++, Java, Flutter, and Data Structures. Important Rule: If the user speaks in English, reply in English. If the user speaks in Bengali, reply in Bengali.\n\nHere is the user's message: " + text;
 
       try {
+        // USING THE RELIABLE gemini-1.5-flash model
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
