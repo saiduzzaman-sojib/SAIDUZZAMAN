@@ -1030,7 +1030,7 @@
 
       <div class="jarvis-body" id="jarvisChatBody">
         <div class="chat-bubble chat-bot">
-          Hello! I am Jarvis, an AI powered by Google Gemini. I am trained to assist you with MD Saiduzzaman Sojib's portfolio, C++, Java, and DSA problems. How can I help you today?
+          Hi I am Jarvis. Sojib's assistant.
         </div>
       </div>
 
@@ -1192,21 +1192,23 @@
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            system_instruction: { parts: { text: systemInstruction } },
+            system_instruction: { parts: [{ text: systemInstruction }] },
             contents: [{ role: "user", parts: [{ text: text }] }]
           })
         });
 
         const data = await response.json();
         
+        console.log("Gemini API Response:", data);
+        
         if(data.candidates && data.candidates.length > 0) {
           const aiResponseText = data.candidates[0].content.parts[0].text;
           botDiv.innerHTML = formatBotResponse(aiResponseText);
         } else {
-          botDiv.innerHTML = "Sorry, I am having trouble connecting to my neural network right now.";
+          botDiv.innerHTML = "API Error: " + (data.error?.message || "Check the browser console for details.");
         }
       } catch (error) {
-        console.error(error);
+        console.error("Fetch Error:", error);
         botDiv.innerHTML = "Error: Connection to Gemini API failed.";
       }
       
