@@ -210,15 +210,18 @@
       display: flex;
       justify-content: center; 
     }
+    /* UPDATED: Circular Image Styling */
     .hero-image-wrapper img {
       width: 100%; 
-      max-width: 320px; 
-      border-radius: 16px; 
+      max-width: 320px;
+      height: 320px; /* Fixed height to match max-width for a perfect circle */
+      object-fit: cover; /* Ensures the image fills the circle without stretching */
+      border-radius: 50%; /* Makes the image a perfect circle */
       animation: float-complex 8s ease-in-out infinite;
-      border: 1px solid rgba(255,255,255,0.08); 
+      border: 4px solid var(--accent-primary); /* Glow ring around the image */
       position: relative; 
       z-index: 2;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 20px rgba(0, 255, 204, 0.3); /* Adds depth and a subtle glow */
     }
 
     /* ==========================================================================
@@ -228,13 +231,23 @@
       display: grid; grid-template-columns: 1fr 1.2fr; gap: 70px; align-items: center;
     }
     .about-image { position: relative; }
-    .about-image img { width: 100%; border-radius: 20px; border: 1px solid var(--border-light); z-index: 2; position: relative; }
+    /* UPDATED: Circular Image Styling for About Section */
+    .about-image img { 
+      width: 100%; 
+      max-width: 350px;
+      aspect-ratio: 1/1; /* Keeps it perfectly square before rounding */
+      object-fit: cover;
+      border-radius: 50%; /* Circle shape */
+      border: 2px solid var(--border-light); 
+      z-index: 2; 
+      position: relative; 
+    }
     .about-image::after {
-      content: ''; position: absolute; top: 25px; left: 25px; width: 100%; height: 100%;
-      border-radius: 20px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      content: ''; position: absolute; top: 20px; left: 20px; width: 100%; max-width: 350px; aspect-ratio: 1/1;
+      border-radius: 50%; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       z-index: 1; opacity: 0.3; transition: var(--transition-smooth);
     }
-    .about-image:hover::after { top: 15px; left: 15px; opacity: 0.6; filter: blur(15px); }
+    .about-image:hover::after { top: 10px; left: 10px; opacity: 0.6; filter: blur(15px); }
 
     .about-text h3 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 20px; }
     .about-text p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px; }
@@ -508,7 +521,7 @@
         </div>
       </div>
       <div class="hero-image-wrapper reveal">
-        <img src="https://github.com/SAIDUZZAMAN-sojib/SAIDUZZAMAN/blob/main/IMG_3120.jpg?raw=true" alt="MD SAIDUZZAMAN SOJIB">
+        <img src="https://github.com/saiduzzaman-sojib/SAIDUZZAMAN/blob/main/md-saiduzzaman-sojib.jpeg?raw=true" alt="MD SAIDUZZAMAN SOJIB">
       </div>
     </div>
   </section>
@@ -521,16 +534,15 @@
       </div>
       <div class="about-content reveal">
         <div class="about-image">
-          <img src="https://github.com/SAIDUZZAMAN-sojib/SAIDUZZAMAN/blob/main/IMG_3120.jpg?raw=true" alt="Profile View">
+          <img src="https://github.com/saiduzzaman-sojib/SAIDUZZAMAN/blob/main/md-saiduzzaman-sojib.jpeg?raw=true" alt="Profile View">
         </div>
         <div class="about-text">
           <h3>Driven by Logic, <br>Designed for Users.</h3>
-      <p>I am a Computer Science student at Southeast University with a strong focus on algorithmic problem-solving and cross-platform app development.</p>       
-      <p>I specialize in C++ and Flutter. Whether I am fine-tuning an algorithm or designing a user interface, my mission is to write highly efficient code.</p>
+          <p>I am a Computer Science student at Southeast University with a strong focus on algorithmic problem-solving and cross-platform app development.</p>       
+          <p>I specialize in C++ and Flutter. Whether I am fine-tuning an algorithm or designing a user interface, my mission is to write highly efficient code.</p>
           
           <div class="about-contact-info">
             <p><i class="fas fa-envelope"></i> saiduzzaman.015.sojib@gmail.com</p>
-            
           </div>
 
           <div class="social-links">
@@ -588,7 +600,34 @@
     </div>
   </section>
 
-
+  <section id="cp-arena" class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Competitive Programming</h2>
+        <p>The road to becoming a top-tier programmer in Asia requires relentless practice and algorithm mastery.</p>
+      </div>
+      <div class="cp-stats-wrapper reveal">
+        <h3 style="font-family: var(--font-heading); font-size: 1.8rem;">Current Standing</h3>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 10px auto 0;">Regularly competing and solving complex data structure problems to sharpen my problem-solving architecture.</p>
+        <div class="cp-grid">
+          <div class="stat-box">
+            <div class="stat-number">350+</div>
+            <div class="stat-label">Problems Solved</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">1450</div>
+            <div class="stat-label">Max Rating</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">Top 10%</div>
+            <div class="stat-label">Contest Rank</div>
+          </div>
+        </div>
+        <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" class="btn btn-primary" style="margin-top: 40px;">
+          <i class="fas fa-trophy"></i> View Full Profile
+        </a>
+      </div>
+    </div>
   </section>
 
   <section id="projects" class="section-padding" style="background: var(--bg-card);">
