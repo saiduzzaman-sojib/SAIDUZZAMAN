@@ -2,34 +2,142 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin - Add Resource</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Vault | Sojib.Dev</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
+  
   <style>
-    body { font-family: 'Poppins', sans-serif; background: #f5f7fa; padding: 50px; text-align: center; }
-    form { background: white; padding: 30px; border-radius: 10px; max-width: 400px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-    button { background: #0c8b8d; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 10px; }
-    button:hover { background: #00ffcc; color: black; }
-    #status { margin-top: 20px; font-weight: bold; }
+    :root {
+      --bg-deep: #050b14;
+      --bg-card: rgba(10, 17, 34, 0.8);
+      --accent-primary: #00ffcc;
+      --accent-secondary: #3b82f6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-light: rgba(255, 255, 255, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Glassmorphism Card */
+    .admin-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid var(--border-light);
+      border-top: 3px solid var(--accent-primary);
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    h2 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; font-size: 2rem; }
+    p.subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 0.95rem; }
+
+    /* Inputs */
+    input[type="text"], input[type="url"], input[type="file"] {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      background: rgba(5, 11, 20, 0.6);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+    }
+    input:focus { border-color: var(--accent-primary); outline: none; box-shadow: 0 0 10px rgba(0,255,204,0.2); }
+    
+    /* File Upload Specifics */
+    input[type="file"] { padding: 12px; cursor: pointer; color: var(--text-muted); }
+    input[type="file"]::file-selector-button {
+      background: var(--border-light); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s;
+    }
+    input[type="file"]::file-selector-button:hover { background: var(--accent-primary); color: black; }
+
+    .divider { color: var(--text-muted); margin: -5px 0 15px 0; font-size: 0.85rem; font-weight: bold; }
+
+    /* Buttons */
+    button {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #000;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3); }
+
+    .btn-logout { background: transparent; border: 1px solid #ef4444; color: #ef4444; margin-top: 15px; padding: 10px; }
+    .btn-logout:hover { background: rgba(239, 68, 68, 0.1); box-shadow: none; transform: none; }
+
+    /* Sections */
+    #dashboard-section { display: none; } /* Hidden by default */
+    #status { margin-top: 20px; font-weight: 600; font-size: 0.95rem; min-height: 20px; }
   </style>
 </head>
 <body>
 
-  <h2>Add a New Link to Portfolio</h2>
-  <form id="addLinkForm">
-    <input type="text" id="icon" placeholder="Emoji Icon (e.g., ☕, 🔗, 📘)" required>
-    <input type="text" id="title" placeholder="Resource Title (e.g., Java Notes)" required>
-    <input type="text" id="desc" placeholder="Short Description" required>
-    <input type="url" id="url" placeholder="Paste Full URL Here" required>
-    <button type="submit">Save to Database</button>
-  </form>
-  <p id="status"></p>
+  <div class="admin-card" id="login-section">
+    <i class="fas fa-fingerprint" style="font-size: 4rem; color: var(--accent-primary); margin-bottom: 20px;"></i>
+    <h2>Security Node</h2>
+    <p class="subtitle">Only authorized personnel may access the database.</p>
+    <button id="google-login-btn"><i class="fab fa-google"></i> Authenticate with Google</button>
+    <p id="login-status" style="margin-top: 20px; color: #ef4444; font-size: 0.9rem;"></p>
+  </div>
+
+  <div class="admin-card" id="dashboard-section">
+    <h2><i class="fas fa-database" style="color: var(--accent-primary);"></i> Data Vault</h2>
+    <p class="subtitle">Upload files or paste links to sync with your portfolio.</p>
+    
+    <form id="addLinkForm">
+      <input type="text" id="icon" placeholder="Icon (e.g., ☕, 📘 or FA class)" required>
+      <input type="text" id="title" placeholder="Resource Title (e.g., Java OOP Notes)" required>
+      <input type="text" id="desc" placeholder="Short Description..." required>
+      
+      <input type="file" id="pdf-file" accept="application/pdf, image/*, .docx">
+      <div class="divider">OR</div>
+      <input type="url" id="url" placeholder="Paste External URL (if no file chosen)">
+      
+      <button type="submit"><i class="fas fa-cloud-upload-alt"></i> Deploy to Server</button>
+    </form>
+    
+    <p id="status"></p>
+    <button id="logout-btn" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Terminate Session</button>
+  </div>
 
   <script type="module">
-    // Import standard Firebase web functions
+    // Import all required Firebase SDKs (App, Auth, Firestore, Storage)
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
-    // Your specific Firebase configuration
+    // Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDDFLfDpr-km54jWhubUuaarcJlS2IOjUQ",
       authDomain: "sojib-portfolio.firebaseapp.com",
@@ -39,33 +147,106 @@
       appId: "1:51909586532:web:2d5e89354646a4dc013971"
     };
 
-    // Initialize Firebase and Firestore Database
+    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const auth = getAuth(app);
+    const storage = getStorage(app);
+    const provider = new GoogleAuthProvider();
 
-    // Handle form submission
+    // DOM Elements
+    const loginSection = document.getElementById('login-section');
+    const dashboardSection = document.getElementById('dashboard-section');
+    const statusText = document.getElementById('status');
+    const loginStatus = document.getElementById('login-status');
+
+    // SECURITY: The only email allowed to pass this screen
+    const ADMIN_EMAIL = "saiduzzaman.015.sojib@gmail.com";
+
+    // 1. AUTHENTICATION LISTENER
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if (user.email === ADMIN_EMAIL) {
+          // Success! Right user. Show Dashboard.
+          loginSection.style.display = 'none';
+          dashboardSection.style.display = 'block';
+        } else {
+          // Intruder detected. Kick them out.
+          signOut(auth);
+          loginStatus.innerText = "Access Denied: You are not authorized.";
+        }
+      } else {
+        // Logged out state
+        loginSection.style.display = 'block';
+        dashboardSection.style.display = 'none';
+      }
+    });
+
+    // 2. LOGIN BUTTON
+    document.getElementById('google-login-btn').addEventListener('click', () => {
+      loginStatus.innerText = "Authenticating...";
+      signInWithPopup(auth, provider).catch((error) => {
+        loginStatus.innerText = "Authentication failed.";
+        console.error(error);
+      });
+    });
+
+    // 3. LOGOUT BUTTON
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      signOut(auth).then(() => {
+        loginStatus.innerText = "Session terminated successfully.";
+        document.getElementById('addLinkForm').reset();
+        statusText.innerText = "";
+      });
+    });
+
+    // 4. FORM SUBMISSION (FILE UPLOAD + DATABASE)
     document.getElementById('addLinkForm').addEventListener('submit', async (e) => {
-      e.preventDefault(); // Prevent page reload
-      document.getElementById('status').innerText = "Saving to database...";
-      document.getElementById('status').style.color = "blue";
+      e.preventDefault(); 
+      statusText.innerText = "Initializing upload protocol...";
+      statusText.style.color = "var(--accent-primary)";
 
       try {
-        // Send data to a collection named "resources"
+        const fileInput = document.getElementById('pdf-file');
+        const file = fileInput.files[0];
+        let finalUrl = document.getElementById('url').value;
+
+        // Condition A: User attached a file (Priority)
+        if (file) {
+          statusText.innerText = "Uploading file to secure storage... Please wait.";
+          
+          // Create a unique name for the file to prevent overwriting
+          const uniqueFileName = Date.now() + '_' + file.name;
+          const storageRef = ref(storage, 'resources/' + uniqueFileName);
+          
+          // Upload the file
+          const uploadTask = await uploadBytesResumable(storageRef, file);
+          
+          // Get the public download URL from Firebase Storage
+          finalUrl = await getDownloadURL(storageRef);
+          statusText.innerText = "File uploaded! Linking to database...";
+        } 
+        // Condition B: No file, No URL
+        else if (!finalUrl) {
+          throw new Error("You must either upload a file OR paste an external URL.");
+        }
+
+        // Save everything to Firestore Database
         await addDoc(collection(db, "resources"), {
           icon: document.getElementById('icon').value,
           title: document.getElementById('title').value,
           desc: document.getElementById('desc').value,
-          url: document.getElementById('url').value,
+          url: finalUrl, // This is either the uploaded PDF link or the pasted YouTube link
           timestamp: new Date()
         });
         
-        document.getElementById('status').innerText = "✅ Successfully saved to database!";
-        document.getElementById('status').style.color = "green";
-        document.getElementById('addLinkForm').reset(); // Clear form
+        statusText.innerText = "✅ Deployment Successful!";
+        statusText.style.color = "#00ffcc";
+        document.getElementById('addLinkForm').reset(); 
         
       } catch (error) {
-        document.getElementById('status').innerText = "❌ Error saving: " + error.message;
-        document.getElementById('status').style.color = "red";
+        statusText.innerText = "❌ Error: " + error.message;
+        statusText.style.color = "#ef4444";
       }
     });
   </script>
