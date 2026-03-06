@@ -531,6 +531,47 @@
       animation: pulse 2s infinite;
     }
 
+    /* --- NEW TOOLTIP STYLE --- */
+    .jarvis-tooltip {
+      position: absolute;
+      bottom: 85px; /* Floats directly above the button */
+      right: 0;
+      background: rgba(5, 11, 20, 0.95);
+      color: var(--text-main);
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--accent-primary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      white-space: nowrap;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 204, 0.2);
+      opacity: 0;
+      pointer-events: none;
+      /* Animates in after 1 second, then floats continuously */
+      animation: fadeInTooltip 0.5s forwards 1.5s, floatTooltip 3s ease-in-out infinite 2s;
+    }
+    /* The little triangle pointing down to your avatar */
+    .jarvis-tooltip::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 25px;
+      width: 10px;
+      height: 10px;
+      background: rgba(5, 11, 20, 0.95);
+      border-bottom: 1px solid var(--accent-primary);
+      border-right: 1px solid var(--accent-primary);
+      transform: rotate(45deg);
+    }
+    @keyframes fadeInTooltip {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatTooltip {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
     @keyframes pulse {
       0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
       70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
@@ -1001,6 +1042,7 @@
     </div>
     
     <div class="jarvis-button" id="jarvisBtn">
+      <div class="jarvis-tooltip" id="jarvisTooltip">Hi, I'm MD SOJIB's AI assistant 👋</div>
       <img src="https://github.com/saiduzzaman-sojib/SAIDUZZAMAN/blob/main/md-saiduzzaman-sojib.jpeg?raw=true" alt="Jarvis AI">
     </div>
   </div>
@@ -1091,8 +1133,8 @@
     // 3. JARVIS AI LOGIC (WITH GOOGLE GEMINI API)
     // ==========================================
     
-    // ⚠️ PASTE YOUR GOOGLE AI STUDIO API KEY HERE ⚠️
-    const GEMINI_API_KEY = AIzaSyCLvRajxP4ncxP7SV_naQKz3NfiVtx65uU; 
+    // ⚠️ FIXED: Added quotation marks around the API key! ⚠️
+    const GEMINI_API_KEY = "AIzaSyCLvRajxP4ncxP7SV_naQKz3NfiVtx65uU"; 
 
     const jarvisBtn = document.getElementById('jarvisBtn');
     const jarvisWindow = document.getElementById('jarvisWindow');
@@ -1100,10 +1142,17 @@
     const jarvisInput = document.getElementById('jarvisInput');
     const sendJarvisBtn = document.getElementById('sendJarvisBtn');
     const jarvisChatBody = document.getElementById('jarvisChatBody');
+    const jarvisTooltip = document.getElementById('jarvisTooltip');
 
-    // Open/Close Window
-    jarvisBtn.addEventListener('click', () => { jarvisWindow.classList.add('active'); });
-    closeJarvisBtn.addEventListener('click', () => { jarvisWindow.classList.remove('active'); });
+    // Open/Close Window & Hide Tooltip permanently when clicked
+    jarvisBtn.addEventListener('click', () => { 
+      jarvisWindow.classList.add('active'); 
+      jarvisTooltip.style.display = 'none'; // Hides the popup message
+    });
+    
+    closeJarvisBtn.addEventListener('click', () => { 
+      jarvisWindow.classList.remove('active'); 
+    });
 
     // A simple function to make the Markdown code blocks look nice
     function formatBotResponse(text) {
