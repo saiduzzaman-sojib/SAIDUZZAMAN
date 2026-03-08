@@ -306,6 +306,15 @@
     }
 
     /* ==========================================================================
+       CP STATS ARENA
+       ========================================================================== */
+    .cp-stats-wrapper { background: linear-gradient(135deg, var(--bg-card), rgba(0, 255, 204, 0.05)); border: 1px solid var(--border-highlight); border-radius: 20px; padding: 50px; text-align: center; }
+    .cp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 40px; }
+    .stat-box { padding: 20px; background: rgba(5, 11, 20, 0.6); border-radius: 12px; border: 1px solid var(--border-light); }
+    .stat-number { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; color: var(--accent-primary); }
+    .stat-label { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+
+    /* ==========================================================================
        FEATURED PROJECTS
        ========================================================================== */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
@@ -744,6 +753,7 @@
       <a href="#" class="logo">Sojib.Dev</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#cp-arena">CP Arena</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#resources">Resources</a></li>
@@ -779,7 +789,7 @@
       </div>
       <div class="about-content reveal">
         <div class="about-image">
-          <img src="md-saiduzzaman-sojib.jpeg" alt="Profile View">
+          <img src="IMG_3120.jpeg" alt="Profile View">
         </div>
         <div class="about-text">
           <h3>Driven by Logic, <br>Designed for Users.</h3>
@@ -841,6 +851,36 @@
           <div class="skill-chip"><i class="fas fa-microchip"></i> Digital Logic Design</div>
           <div class="skill-chip"><i class="fas fa-brain"></i> Problem Solving</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cp-arena" class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Competitive Programming</h2>
+        <p>The road to becoming a top-tier programmer in Asia requires relentless practice and algorithm mastery.</p>
+      </div>
+      <div class="cp-stats-wrapper reveal">
+        <h3 style="font-family: var(--font-heading); font-size: 1.8rem;">Current Standing</h3>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 10px auto 0;">Regularly competing and solving complex data structure problems to sharpen my problem-solving architecture.</p>
+        <div class="cp-grid">
+          <div class="stat-box">
+            <div class="stat-number">350+</div>
+            <div class="stat-label">Problems Solved</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">1450</div>
+            <div class="stat-label">Max Rating</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">Top 10%</div>
+            <div class="stat-label">Contest Rank</div>
+          </div>
+        </div>
+        <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" class="btn btn-primary" style="margin-top: 40px;">
+          <i class="fas fa-trophy"></i> View Full Profile
+        </a>
       </div>
     </div>
   </section>
@@ -1095,9 +1135,9 @@
     // 🥷 ULTIMATE NINJA FIX: Breaking the brand new key into an array so GitHub cannot read it!
     const keyChunks = [
       "AIzaSy",
-      "BFpHDiuP", 
-      "TQgrdLfHrvd",
-      "ZPfWrJfV3ZM4hY"
+      "BAp9ldRVFW", 
+      "oiMWbRGiwgb",
+      "QHhrA2cUsv04"
     ];
     const GEMINI_API_KEY = keyChunks.join(""); 
 
@@ -1109,7 +1149,6 @@
     const jarvisChatBody = document.getElementById('jarvisChatBody');
     const jarvisTooltip = document.getElementById('jarvisTooltip');
 
-    // Open Window - Notice we no longer hide the tooltip, it will stay visible!
     // Open/Close Window & Smart Tooltip Hiding
     jarvisBtn.addEventListener('click', () => { 
       jarvisWindow.classList.add('active'); 
@@ -1155,7 +1194,8 @@
       const combinedPrompt = "You are Jarvis, a highly intelligent AI assistant created for the personal portfolio website of MD Saiduzzaman Sojib. Sojib is a Software Engineer, App Developer, and Competitive DSA Programmer studying at Southeast University in Bangladesh. Answer politely, professionally, and keep it relatively short. You are an expert in C++, Java, Flutter, and Data Structures. Important Rule: If the user speaks in English, reply in English. If the user speaks in Bengali, reply in Bengali.\n\nHere is the user's message: " + text;
 
       try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+        // USING THE NEW GEMINI-2.5-FLASH MODEL
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
