@@ -1110,12 +1110,15 @@
     const jarvisTooltip = document.getElementById('jarvisTooltip');
 
     // Open Window - Notice we no longer hide the tooltip, it will stay visible!
+    // Open/Close Window & Smart Tooltip Hiding
     jarvisBtn.addEventListener('click', () => { 
       jarvisWindow.classList.add('active'); 
+      jarvisTooltip.style.display = 'none'; // Hides the popup so you can type!
     });
     
     closeJarvisBtn.addEventListener('click', () => { 
       jarvisWindow.classList.remove('active'); 
+      jarvisTooltip.style.display = 'block'; // Brings the popup back when chat is closed!
     });
 
     // A simple function to make the Markdown code blocks look nice
