@@ -13,22 +13,22 @@
   
   <style>
     /* ==========================================================================
-       CSS VARIABLES & THEME SETUP
+       CSS VARIABLES & PREMIUM MONGODB THEME SETUP
        ========================================================================== */
     :root {
-      --bg-deep: #050b14;
-      --bg-card: #0a1122;
-      --bg-glass: rgba(10, 17, 34, 0.7);
+      --bg-deep: #020617; /* Richer, darker premium slate */
+      --bg-card: #0f172a; /* Sophisticated slightly lighter slate for cards */
+      --bg-glass: rgba(15, 23, 42, 0.75);
       
-      --accent-primary: #00ffcc;
-      --accent-secondary: #3b82f6;
-      --accent-glow: rgba(0, 255, 204, 0.4);
+      --accent-primary: #00ED64; /* Official Premium MongoDB Green */
+      --accent-secondary: #0ea5e9; /* Deep sleek cyan/blue for gradients */
+      --accent-glow: rgba(0, 237, 100, 0.35);
       
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --text-muted: #cbd5e1; /* Brighter muted text for high-end contrast */
       
-      --border-light: rgba(255, 255, 255, 0.05);
-      --border-highlight: rgba(0, 255, 204, 0.2);
+      --border-light: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(0, 237, 100, 0.25);
       
       --font-heading: 'Poppins', sans-serif;
       --font-body: 'Inter', sans-serif;
@@ -42,6 +42,8 @@
     html { scroll-behavior: smooth; }
     body {
       background-color: var(--bg-deep);
+      /* Adds a premium subtle radial light in the top right corner */
+      background-image: radial-gradient(circle at top right, #0a192f 0%, var(--bg-deep) 70%);
       color: var(--text-main);
       font-family: var(--font-body);
       overflow-x: hidden;
@@ -90,7 +92,7 @@
     nav {
       position: fixed; top: 0; width: 100%;
       background: var(--bg-glass);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
       border-bottom: 1px solid var(--border-light);
       padding: 20px 0; z-index: 1000; transition: var(--transition-smooth);
     }
@@ -101,7 +103,7 @@
     .logo {
       font-family: var(--font-heading); font-size: 1.5rem; font-weight: 900;
       text-transform: uppercase; letter-spacing: 1px;
-      background: linear-gradient(to right, #fff, #94a3b8);
+      background: linear-gradient(to right, #fff, #cbd5e1);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       text-decoration: none;
     }
@@ -118,7 +120,7 @@
     .nav-links a:hover::after { width: 100%; }
 
     .nav-btn-add {
-      background: rgba(0, 255, 204, 0.05); color: var(--accent-primary) !important;
+      background: rgba(0, 237, 100, 0.05); color: var(--accent-primary) !important;
       border: 1px solid var(--border-highlight); padding: 10px 20px;
       border-radius: 8px; font-weight: 600 !important; transition: var(--transition-smooth);
     }
@@ -187,10 +189,10 @@
       display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none;
     }
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-primary), #0891b2); color: #000;
+      background: linear-gradient(135deg, var(--accent-primary), #019473); color: #000;
       box-shadow: 0 10px 25px var(--accent-glow);
     }
-    .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 255, 204, 0.5); }
+    .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 237, 100, 0.4); }
     .btn-outline {
       background: transparent; color: var(--text-main); border: 1px solid var(--border-light);
       backdrop-filter: blur(10px);
@@ -220,7 +222,7 @@
       border: 4px solid var(--accent-primary); 
       position: relative; 
       z-index: 2;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 20px rgba(0, 255, 204, 0.3); 
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 25px var(--accent-glow); 
     }
 
     /* ==========================================================================
@@ -243,9 +245,9 @@
     .about-image::after {
       content: ''; position: absolute; top: 20px; left: 20px; width: 100%; max-width: 350px; aspect-ratio: 1/1;
       border-radius: 50%; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      z-index: 1; opacity: 0.3; transition: var(--transition-smooth);
+      z-index: 1; opacity: 0.25; transition: var(--transition-smooth);
     }
-    .about-image:hover::after { top: 10px; left: 10px; opacity: 0.6; filter: blur(15px); }
+    .about-image:hover::after { top: 10px; left: 10px; opacity: 0.5; filter: blur(15px); }
 
     .about-text h3 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 20px; }
     .about-text p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px; }
@@ -260,7 +262,7 @@
       color: var(--text-muted); font-size: 1.5rem; text-decoration: none; transition: var(--transition-smooth);
     }
     .social-links a:hover {
-      background: rgba(0, 255, 204, 0.1); color: var(--accent-primary);
+      background: rgba(0, 237, 100, 0.08); color: var(--accent-primary);
       border-color: var(--accent-primary); transform: translateY(-8px); box-shadow: 0 10px 20px var(--accent-glow);
     }
 
@@ -278,7 +280,7 @@
       transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
     }
     .expertise-card:hover {
-      transform: translateY(-10px); background: rgba(10, 17, 34, 0.9);
+      transform: translateY(-10px); background: #131f37;
       box-shadow: 0 20px 40px rgba(0,0,0,0.6); border-color: var(--border-highlight);
     }
     .expertise-card:hover::before { transform: scaleX(1); }
@@ -301,16 +303,16 @@
     }
     .skill-chip i { font-size: 1.3rem; }
     .skill-chip:hover {
-      background: rgba(0, 255, 204, 0.05); color: var(--accent-primary); border-color: var(--accent-primary);
+      background: rgba(0, 237, 100, 0.08); color: var(--accent-primary); border-color: var(--accent-primary);
       transform: translateY(-5px); box-shadow: 0 5px 15px var(--accent-glow);
     }
 
     /* ==========================================================================
        CP STATS ARENA
        ========================================================================== */
-    .cp-stats-wrapper { background: linear-gradient(135deg, var(--bg-card), rgba(0, 255, 204, 0.05)); border: 1px solid var(--border-highlight); border-radius: 20px; padding: 50px; text-align: center; }
+    .cp-stats-wrapper { background: linear-gradient(135deg, var(--bg-card), rgba(0, 237, 100, 0.05)); border: 1px solid var(--border-highlight); border-radius: 20px; padding: 50px; text-align: center; }
     .cp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 40px; }
-    .stat-box { padding: 20px; background: rgba(5, 11, 20, 0.6); border-radius: 12px; border: 1px solid var(--border-light); }
+    .stat-box { padding: 20px; background: rgba(2, 6, 23, 0.6); border-radius: 12px; border: 1px solid var(--border-light); }
     .stat-number { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; color: var(--accent-primary); }
     .stat-label { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
 
@@ -322,7 +324,7 @@
       background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-light);
       overflow: hidden; transition: var(--transition-smooth); position: relative;
     }
-    .project-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 15px 30px rgba(0, 255, 204, 0.1); }
+    .project-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 15px 30px rgba(0, 237, 100, 0.15); }
     .project-img { height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--text-muted); }
     .project-info { padding: 25px; }
     .project-info h3 { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 10px; }
@@ -353,7 +355,7 @@
     .contact-container { max-width: 700px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--border-light); }
     .form-group { margin-bottom: 25px; }
     .form-group input, .form-group textarea {
-      width: 100%; padding: 15px; background: rgba(5, 11, 20, 0.5); border: 1px solid var(--border-light);
+      width: 100%; padding: 15px; background: rgba(2, 6, 23, 0.5); border: 1px solid var(--border-light);
       border-radius: 10px; color: var(--text-main); font-family: var(--font-body); transition: var(--transition-smooth);
     }
     .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-primary); outline: none; box-shadow: 0 0 10px var(--accent-glow); }
@@ -380,8 +382,8 @@
     .folder-card h3 { color: var(--text-main); font-size: 2rem; margin-bottom: 15px; font-family: var(--font-heading); }
     .folder-card p { color: var(--text-muted); font-size: 1.1rem; }
     .folder-card:hover {
-      transform: translateY(-10px); background: rgba(30, 41, 59, 0.8);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 204, 0.15); border-color: var(--border-highlight);
+      transform: translateY(-10px); background: #131f37;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 237, 100, 0.15); border-color: var(--border-highlight);
     }
     .folder-card:hover i.main-icon { transform: scale(1.1); }
 
@@ -391,9 +393,9 @@
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(5, 11, 20, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -411,7 +413,7 @@
       padding: 40px 30px;
       border-radius: 24px;
       border: 1px solid var(--border-light);
-      border-top: 2px solid rgba(0, 255, 204, 0.4);
+      border-top: 2px solid rgba(0, 237, 100, 0.4);
       text-align: center;
       max-width: 400px;
       width: 90%;
@@ -495,7 +497,7 @@
       height: 65px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      box-shadow: 0 10px 25px rgba(0, 255, 204, 0.4);
+      box-shadow: 0 10px 25px rgba(0, 237, 100, 0.4);
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -514,7 +516,7 @@
 
     .jarvis-button:hover {
       transform: scale(1.1);
-      box-shadow: 0 15px 35px rgba(0, 255, 204, 0.6);
+      box-shadow: 0 15px 35px rgba(0, 237, 100, 0.6);
     }
 
     /* Notification dot */
@@ -536,7 +538,7 @@
       position: absolute;
       bottom: 85px; /* Floats directly above the button */
       right: 0;
-      background: rgba(5, 11, 20, 0.95);
+      background: rgba(15, 23, 42, 0.95);
       color: var(--text-main);
       padding: 12px 18px;
       border-radius: 12px;
@@ -544,7 +546,7 @@
       font-size: 0.9rem;
       font-weight: 500;
       white-space: nowrap;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 204, 0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 237, 100, 0.2);
       pointer-events: none;
       /* Animates in after 1 second, then floats continuously */
       animation: fadeInTooltip 0.5s forwards 1.5s, floatTooltip 3s ease-in-out infinite 2s;
@@ -557,7 +559,7 @@
       right: 25px;
       width: 10px;
       height: 10px;
-      background: rgba(5, 11, 20, 0.95);
+      background: rgba(15, 23, 42, 0.95);
       border-bottom: 1px solid var(--accent-primary);
       border-right: 1px solid var(--accent-primary);
       transform: rotate(45deg);
@@ -590,7 +592,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7);
       opacity: 0;
       pointer-events: none;
       transform: translateY(20px) scale(0.95);
@@ -606,7 +608,7 @@
 
     .jarvis-header {
       padding: 15px 20px;
-      background: rgba(5, 11, 20, 0.9);
+      background: rgba(15, 23, 42, 0.9);
       border-bottom: 1px solid var(--border-light);
       display: flex;
       justify-content: space-between;
@@ -687,7 +689,7 @@
 
     .jarvis-input-area {
       padding: 15px;
-      background: rgba(5, 11, 20, 0.9);
+      background: rgba(15, 23, 42, 0.9);
       border-top: 1px solid var(--border-light);
       display: flex;
       gap: 10px;
@@ -731,7 +733,7 @@
     /* Markdown Code Block Styling */
     .jarvis-code-block {
       background: #000;
-      color: #00ffcc;
+      color: var(--accent-primary);
       padding: 10px;
       border-radius: 8px;
       font-family: monospace;
@@ -753,7 +755,6 @@
       <a href="#" class="logo">Sojib.Dev</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#cp-arena">CP Arena</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#resources">Resources</a></li>
@@ -851,36 +852,6 @@
           <div class="skill-chip"><i class="fas fa-microchip"></i> Digital Logic Design</div>
           <div class="skill-chip"><i class="fas fa-brain"></i> Problem Solving</div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="cp-arena" class="section-padding">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Competitive Programming</h2>
-        <p>The road to becoming a top-tier programmer in Asia requires relentless practice and algorithm mastery.</p>
-      </div>
-      <div class="cp-stats-wrapper reveal">
-        <h3 style="font-family: var(--font-heading); font-size: 1.8rem;">Current Standing</h3>
-        <p style="color: var(--text-muted); max-width: 600px; margin: 10px auto 0;">Regularly competing and solving complex data structure problems to sharpen my problem-solving architecture.</p>
-        <div class="cp-grid">
-          <div class="stat-box">
-            <div class="stat-number">350+</div>
-            <div class="stat-label">Problems Solved</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">1450</div>
-            <div class="stat-label">Max Rating</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">Top 10%</div>
-            <div class="stat-label">Contest Rank</div>
-          </div>
-        </div>
-        <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" class="btn btn-primary" style="margin-top: 40px;">
-          <i class="fas fa-trophy"></i> View Full Profile
-        </a>
       </div>
     </div>
   </section>
@@ -993,7 +964,7 @@
           <i class="fas fa-folder-open main-icon"></i>
           <h3>Cloud Resources</h3>
           <p>Click to open the secure folder. Contains Notion notes, C++ implementations, and Firebase-driven data links.</p>
-          <div style="margin-top: 30px; display: inline-block; background: rgba(0,255,204,0.1); color: var(--accent-primary); padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;">
+          <div style="margin-top: 30px; display: inline-block; background: rgba(0, 237, 100, 0.08); color: var(--accent-primary); padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;">
             <i class="fas fa-lock" style="margin-right: 8px;"></i> Secure Access Required
           </div>
         </div>
@@ -1008,7 +979,7 @@
       <div class="visitor-badge">
         <i class="fas fa-eye"></i>
         <span>Visitors: </span>
-        <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fsaiduzzaman-sojib.github.io%2FSAIDUZZAMAN%2F&countColor=%2300ffcc&style=flat" alt="Visitor Count" style="vertical-align: middle; height: 20px;">
+        <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fsaiduzzaman-sojib.github.io%2FSAIDUZZAMAN%2F&countColor=%2300ED64&style=flat" alt="Visitor Count" style="vertical-align: middle; height: 20px;">
       </div>
     </div>
   </footer>
@@ -1078,10 +1049,10 @@
       const navbar = document.getElementById("navbar");
       window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
-          navbar.style.background = "rgba(5, 11, 20, 0.9)";
+          navbar.style.background = "rgba(15, 23, 42, 0.9)";
           navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)";
         } else {
-          navbar.style.background = "rgba(10, 17, 34, 0.7)";
+          navbar.style.background = "rgba(15, 23, 42, 0.75)";
           navbar.style.boxShadow = "none";
         }
       });
@@ -1194,7 +1165,7 @@
       const combinedPrompt = "You are Jarvis, a highly intelligent AI assistant created for the personal portfolio website of MD Saiduzzaman Sojib. Sojib is a Software Engineer, App Developer, and Competitive DSA Programmer studying at Southeast University in Bangladesh. Answer politely, professionally, and keep it relatively short. You are an expert in C++, Java, Flutter, and Data Structures. Important Rule: If the user speaks in English, reply in English. If the user speaks in Bengali, reply in Bengali.\n\nHere is the user's message: " + text;
 
       try {
-        // USING THE NEW GEMINI-2.5-FLASH MODEL
+        // USING THE NEW GEMINI-2.5-FLASH MODEL TO FIX "NOT FOUND" ERROR
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -1299,7 +1270,8 @@
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
         let directionX = (Math.random() * 1) - 0.5;
         let directionY = (Math.random() * 1) - 0.5;
-        let color = 'rgba(0, 255, 204, 0.8)';
+        // Updated particle color to match the MongoDB theme
+        let color = 'rgba(0, 237, 100, 0.6)'; 
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
       }
     }
@@ -1312,7 +1284,7 @@
                        + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
           if (distance < (canvas.width/7) * (canvas.height/7)) {
             opacityValue = 1 - (distance/20000);
-            ctx.strokeStyle = 'rgba(0, 255, 204,' + opacityValue + ')';
+            ctx.strokeStyle = 'rgba(0, 237, 100,' + opacityValue + ')';
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
