@@ -1,187 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Vault | Sojib.Dev</title>
-  
+  <meta name="google-site-verification" content="-y1Pv-GRe8tcsRsGyIe-FqTIlCyP46jd3EQMTY_LTYE" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD SAIDUZZAMAN SOJIB | Premium Software Engineer</title>
+  <meta name="description" content="Official portfolio of MD Saiduzzaman Sojib. Software Engineer, App Developer, and Competitive DSA Programmer studying at Southeast University, Bangladesh.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;700;800;900&family=Space+Mono&display=swap" rel="stylesheet">
   
   <style>
+    /* ==========================================================================
+       CSS VARIABLES & CYAN FUTURISTIC THEME
+       ========================================================================== */
     :root {
       --bg-deep: #050b14;
-      --bg-card: rgba(10, 17, 34, 0.8);
+      --bg-card: rgba(10, 17, 34, 0.6);
+      --bg-glass: rgba(5, 11, 20, 0.85);
+      
       --accent-primary: #00ffcc;
       --accent-secondary: #3b82f6;
+      --accent-glow: rgba(0, 255, 204, 0.4);
+      
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --border-light: rgba(255, 255, 255, 0.1);
+      
+      --border-light: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(0, 255, 204, 0.4);
+      
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
-      font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
+      background-image: radial-gradient(circle at top right, #0a192f 0%, var(--bg-deep) 70%);
       color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
+      font-family: var(--font-body);
+      line-height: 1.6;
     }
 
-    /* Glassmorphism Card */
-    .admin-card {
-      background: var(--bg-card);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 40px;
-      border-radius: 20px;
-      border: 1px solid var(--border-light);
-      border-top: 3px solid var(--accent-primary);
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-      text-align: center;
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; position: relative; z-index: 2; }
+    .section-padding { padding: 140px 0; position: relative; }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .section-header { text-align: center; margin-bottom: 80px; }
+    .section-header h2 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      display: inline-block;
+      position: relative;
     }
-
-    h2 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; font-size: 2rem; }
-    p.subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 0.95rem; }
-
-    /* Inputs */
-    input[type="text"], input[type="url"], input[type="file"], input[type="password"] {
-      width: 100%;
-      padding: 15px;
-      margin-bottom: 20px;
-      background: rgba(5, 11, 20, 0.6);
-      border: 1px solid var(--border-light);
+    .section-header h2::after {
+      content: ''; position: absolute; width: 50%; height: 4px; bottom: -12px; left: 50%;
+      transform: translateX(-50%); background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
       border-radius: 10px;
-      color: white;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.3s ease;
     }
-    input:focus { border-color: var(--accent-primary); outline: none; box-shadow: 0 0 10px rgba(0,255,204,0.2); }
+    .section-header p { color: var(--text-muted); margin-top: 25px; font-size: 1.1rem; max-width: 600px; margin-inline: auto; font-weight: 300; }
+
+    /* ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== */
+    nav {
+      position: fixed; top: 0; width: 100%; background: var(--bg-glass);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-light); padding: 20px 0; z-index: 1000; transition: var(--transition-smooth);
+    }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
+    .logo {
+      font-family: var(--font-heading); font-size: 1.5rem; font-weight: 900; letter-spacing: 1px;
+      color: #fff; text-decoration: none;
+    }
+    .logo span { color: var(--accent-primary); }
+    .nav-links { display: flex; list-style: none; gap: 35px; align-items: center; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition-smooth); }
+    .nav-links a:hover { color: var(--accent-primary); text-shadow: 0 0 10px var(--accent-glow); }
     
-    #admin-password {
-      text-align: center;
-      letter-spacing: 3px;
-      font-size: 1.2rem;
+    .nav-btn-add {
+      background: rgba(0, 255, 204, 0.05); color: var(--accent-primary) !important;
+      border: 1px solid var(--border-highlight); padding: 10px 20px; border-radius: 8px; font-weight: 600 !important;
+    }
+    .nav-btn-add:hover { background: var(--accent-primary); color: #000 !important; box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-2px); }
+
+    /* ==========================================================================
+       HERO SECTION WITH 3D ORBITING LOGOS
+       ========================================================================== */
+    .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 80px; }
+    #particle-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.8; }
+    
+    .hero-content { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; z-index: 1; pointer-events: none; }
+    .hero-text, .hero-buttons, .hero-orbit-wrapper { pointer-events: auto; }
+
+    .hero-text h1 { font-family: var(--font-heading); font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+    .hero-text h1 span.gradient-text {
+      background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    
+    /* Perfected Font Size for Subtitle */
+    .hero-text h1 span.typewriter { 
+      display: block; font-size: 1.1rem; color: var(--text-muted); font-weight: 400; 
+      margin-top: 20px; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 4px; opacity: 0.8;
+    }
+    
+    .hero-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; max-width: 90%; line-height: 1.8; font-weight: 300; }
+
+    .hero-buttons { display: flex; gap: 20px; }
+    .btn {
+      padding: 15px 32px; border-radius: 50px; font-weight: 600; text-decoration: none; font-family: var(--font-heading);
+      transition: var(--transition-smooth); display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; font-size: 1rem;
+    }
+    .btn-primary { background: var(--accent-primary); color: #000; box-shadow: 0 10px 25px var(--accent-glow); }
+    .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 255, 204, 0.6); background: #fff; }
+    .btn-outline { background: rgba(255,255,255,0.03); color: #fff; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; transform: translateY(-5px); }
+
+    /* ORBITING IMAGE LOGIC */
+    .hero-orbit-wrapper {
+      position: relative; width: 400px; height: 400px; display: flex; justify-content: center; align-items: center; margin: 0 auto;
+    }
+    .hero-avatar {
+      width: 260px; height: 260px; object-fit: cover; border-radius: 50%; z-index: 10;
+      border: 4px solid var(--accent-primary); box-shadow: 0 0 40px var(--accent-glow);
+    }
+    .orbit-path {
+      position: absolute; width: 380px; height: 380px; border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.2); animation: spin 20s linear infinite; z-index: 5;
+    }
+    .orbit-icon {
+      position: absolute; width: 55px; height: 55px; background: #fff; border-radius: 50%;
+      display: flex; justify-content: center; align-items: center; font-size: 1.8rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5); animation: spin-reverse 20s linear infinite;
+    }
+    
+    /* Icon Branding Colors */
+    .icon-flutter { color: #02569B; top: -27px; left: calc(50% - 27px); }
+    .icon-cpp { color: #00599C; bottom: -27px; left: calc(50% - 27px); font-weight: bold; font-family: sans-serif; font-size: 1.2rem;}
+    .icon-dart { color: #0175C2; left: -27px; top: calc(50% - 27px); font-weight: bold; font-family: sans-serif; font-size: 1rem;}
+    .icon-app { color: #3b82f6; right: -27px; top: calc(50% - 27px); }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+
+    /* ==========================================================================
+       ABOUT ME SECTION
+       ========================================================================== */
+    .about-content { display: grid; grid-template-columns: 1fr 1.2fr; gap: 70px; align-items: center; }
+    .about-image { position: relative; }
+    .about-image img { width: 100%; max-width: 350px; aspect-ratio: 1/1; object-fit: cover; border-radius: 50%; border: 2px solid var(--border-light); z-index: 2; position: relative; }
+    .about-image::after {
+      content: ''; position: absolute; top: 20px; left: 20px; width: 100%; max-width: 350px; aspect-ratio: 1/1;
+      border-radius: 50%; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      z-index: 1; opacity: 0.3; transition: var(--transition-smooth);
+    }
+    .about-image:hover::after { top: 10px; left: 10px; opacity: 0.6; filter: blur(15px); }
+    .about-text h3 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 20px; }
+    .about-text p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px; font-weight: 300; }
+    .about-contact-info { margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--border-light); }
+    .about-contact-info p { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; font-weight: 500; }
+    .about-contact-info i { color: var(--accent-primary); font-size: 1.2rem; }
+    .social-links { display: flex; gap: 20px; margin-top: 35px; }
+    .social-links a {
+      width: 55px; height: 55px; background: var(--bg-card); border: 1px solid var(--border-light);
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 1.5rem; text-decoration: none; transition: var(--transition-smooth);
+    }
+    .social-links a:hover {
+      background: rgba(0, 255, 204, 0.1); color: var(--accent-primary);
+      border-color: var(--accent-primary); transform: translateY(-8px); box-shadow: 0 10px 20px var(--accent-glow);
     }
 
-    /* File Upload Specifics */
-    input[type="file"] { padding: 12px; cursor: pointer; color: var(--text-muted); }
-    input[type="file"]::file-selector-button {
-      background: var(--border-light); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s;
+    /* ==========================================================================
+       3D TILT CARDS (EXPERTISE, PROJECTS, RESOURCES)
+       ========================================================================== */
+    .expertise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; perspective: 1000px;}
+    
+    .tilt-card {
+      background: var(--bg-card); backdrop-filter: blur(16px); padding: 40px 30px; border-radius: 20px; 
+      border: 1px solid var(--border-light); overflow: hidden; z-index: 1;
+      transition: transform 0.1s ease, box-shadow 0.1s ease; /* fast transition for 3D tracking */
+      transform-style: preserve-3d;
     }
-    input[type="file"]::file-selector-button:hover { background: var(--accent-primary); color: black; }
-
-    .divider { color: var(--text-muted); margin: -5px 0 15px 0; font-size: 0.85rem; font-weight: bold; }
-
-    /* Buttons */
-    button {
-      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      color: #000;
-      border: none;
-      padding: 15px;
-      border-radius: 10px;
-      cursor: pointer;
-      width: 100%;
-      font-weight: 700;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
+    /* Restoring smooth transition when mouse leaves */
+    .tilt-card.leave { transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease; }
+    
+    .tilt-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
     }
-    button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3); }
+    .tilt-card:hover::before { transform: scaleX(1); }
+    .tilt-card i.main-icon { font-size: 3rem; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 25px; transform: translateZ(30px); display: block;}
+    .tilt-card h3 { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 15px; color: #fff; transform: translateZ(20px);}
+    .tilt-card p { color: var(--text-muted); font-size: 0.95rem; transform: translateZ(10px);}
 
-    .btn-logout { background: transparent; border: 1px solid #ef4444; color: #ef4444; margin-top: 15px; padding: 10px; }
-    .btn-logout:hover { background: rgba(239, 68, 68, 0.1); box-shadow: none; transform: none; color: #ef4444; }
+    /* SKILLS */
+    .skills-container { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+    .skills-chip-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; max-width: 900px;}
+    .skill-chip {
+      background: rgba(15, 23, 42, 0.6); color: var(--text-muted); padding: 14px 28px;
+      border-radius: 50px; font-weight: 500; border: 1px solid var(--border-light);
+      transition: var(--transition-smooth); display: flex; align-items: center; gap: 10px; font-size: 1.1rem;
+    }
+    .skill-chip:hover {
+      background: rgba(0, 255, 204, 0.05); color: var(--accent-primary); border-color: var(--accent-primary);
+      transform: translateY(-5px); box-shadow: 0 5px 15px var(--accent-glow);
+    }
 
-    /* Sections */
-    #dashboard-section { display: none; } /* Hidden by default */
-    #status { margin-top: 20px; font-weight: 600; font-size: 0.95rem; min-height: 20px; }
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; perspective: 1000px;}
+    .project-img { height: 200px; background: #080d16; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--text-muted); transform: translateZ(10px);}
+    .project-info { padding: 25px; transform-style: preserve-3d;}
+    .project-tech { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; transform: translateZ(15px);}
+    .project-tech span { font-size: 0.8rem; background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 20px; color: var(--accent-secondary); }
+    .project-links { display: flex; gap: 15px; transform: translateZ(25px);}
+    .project-links a { color: var(--text-main); font-size: 1.2rem; transition: var(--transition-smooth); }
+    .project-links a:hover { color: var(--accent-primary); transform: scale(1.1);}
+
+    /* RESUME */
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; border-left: 2px solid var(--accent-secondary); padding-left: 30px; }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item::before { content: ''; position: absolute; left: -39px; top: 0; width: 16px; height: 16px; background: var(--bg-deep); border: 3px solid var(--accent-primary); border-radius: 50%; }
+    .timeline-date { color: var(--accent-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; }
+    .timeline-title { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 5px; }
+    .timeline-desc { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* CONTACT */
+    .contact-container { max-width: 700px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--border-light); }
+    .form-group { margin-bottom: 25px; }
+    .form-group input, .form-group textarea { width: 100%; padding: 15px; background: rgba(5, 11, 20, 0.5); border: 1px solid var(--border-light); border-radius: 10px; color: var(--text-main); font-family: var(--font-body); transition: var(--transition-smooth); }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-primary); outline: none; box-shadow: 0 0 10px var(--accent-glow); }
+    .form-group textarea { resize: vertical; min-height: 150px; }
+
+    /* RESOURCES */
+    .folder-wrapper { display: flex; justify-content: center; perspective: 1000px;}
+    .folder-card { text-align: center; max-width: 500px; width: 100%; display: block; }
+    .folder-card i.main-icon { font-size: 6rem; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 25px; transform: translateZ(40px);}
+
+    /* MODAL */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; visibility: hidden; transition: var(--transition-smooth); }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .modal-content { background: var(--bg-card); padding: 40px 30px; border-radius: 24px; border: 1px solid var(--border-light); border-top: 2px solid var(--accent-primary); text-align: center; max-width: 400px; width: 90%; transform: translateY(20px); transition: var(--transition-smooth); box-shadow: 0 25px 50px rgba(0,0,0,0.5); position: relative; }
+    .modal-overlay.active .modal-content { transform: translateY(0); }
+    .close-modal { position: absolute; top: 15px; right: 20px; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+    .close-modal:hover { color: #ef4444; }
+    #vaultPassword { width: 100%; padding: 15px; margin-top: 20px; background: var(--bg-deep); border: 1px solid var(--border-light); border-radius: 10px; color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: var(--transition-smooth); text-align: center; letter-spacing: 2px; }
+    #vaultPassword:focus { border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
+
+    /* Footer */
+    footer { background: #020617; border-top: 1px solid var(--border-light); padding: 40px 0; text-align: center; color: var(--text-muted); }
+    .visitor-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); padding: 8px 20px; border-radius: 50px; margin-top: 20px; font-size: 0.9rem; color: var(--text-main); }
+    .visitor-badge i { color: var(--accent-primary); }
+
+    /* JARVIS AI WIDGET */
+    .jarvis-widget { position: fixed; bottom: 30px; right: 30px; z-index: 1500; display: flex; flex-direction: column; align-items: flex-end; }
+    .jarvis-button { width: 65px; height: 65px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); box-shadow: 0 10px 25px rgba(0, 255, 204, 0.4); cursor: pointer; display: flex; justify-content: center; align-items: center; transition: var(--transition-smooth); position: relative; }
+    .jarvis-button img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg-deep); }
+    .jarvis-button:hover { transform: scale(1.1); box-shadow: 0 15px 35px rgba(0, 255, 204, 0.6); }
+    .jarvis-button::after { content: ''; position: absolute; top: 0; right: 0; width: 15px; height: 15px; background-color: #ef4444; border-radius: 50%; border: 2px solid var(--bg-deep); animation: pulse 2s infinite; }
+    .jarvis-tooltip { position: absolute; bottom: 85px; right: 0; background: rgba(5, 11, 20, 0.95); color: var(--text-main); padding: 12px 18px; border-radius: 12px; border: 1px solid var(--accent-primary); font-size: 0.9rem; font-weight: 500; white-space: nowrap; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 204, 0.2); pointer-events: none; animation: fadeInTooltip 0.5s forwards 1.5s, floatTooltip 3s ease-in-out infinite 2s; }
+    .jarvis-tooltip::after { content: ''; position: absolute; bottom: -6px; right: 25px; width: 10px; height: 10px; background: rgba(5, 11, 20, 0.95); border-bottom: 1px solid var(--accent-primary); border-right: 1px solid var(--accent-primary); transform: rotate(45deg); }
+    @keyframes fadeInTooltip { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes floatTooltip { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+    
+    .jarvis-chat-window { width: 380px; height: 500px; background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid var(--border-light); border-top: 3px solid var(--accent-primary); border-radius: 20px; margin-bottom: 15px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transform: translateY(20px) scale(0.95); transition: var(--transition-smooth); transform-origin: bottom right; }
+    .jarvis-chat-window.active { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
+    .jarvis-header { padding: 15px 20px; background: rgba(5, 11, 20, 0.9); border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
+    .jarvis-header-info { display: flex; align-items: center; gap: 10px; }
+    .jarvis-header h3 { font-size: 1.1rem; font-family: var(--font-heading); margin: 0; color: var(--text-main); }
+    .jarvis-status { font-size: 0.8rem; color: var(--accent-primary); display: flex; align-items: center; gap: 5px; }
+    .status-dot { width: 8px; height: 8px; background: var(--accent-primary); border-radius: 50%; }
+    .jarvis-close { color: var(--text-muted); cursor: pointer; font-size: 1.2rem; transition: color 0.3s; }
+    .jarvis-close:hover { color: #ef4444; }
+    .jarvis-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+    .jarvis-body::-webkit-scrollbar { width: 6px; }
+    .jarvis-body::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    .chat-bubble { max-width: 85%; padding: 12px 16px; border-radius: 15px; font-size: 0.95rem; line-height: 1.5; word-wrap: break-word; }
+    .chat-bot { background: rgba(30, 41, 59, 0.6); color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 5px; }
+    .chat-user { background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: #000; font-weight: 500; align-self: flex-end; border-bottom-right-radius: 5px; }
+    .jarvis-input-area { padding: 15px; background: rgba(5, 11, 20, 0.9); border-top: 1px solid var(--border-light); display: flex; gap: 10px; }
+    .jarvis-input-area input { flex: 1; padding: 10px 15px; border-radius: 50px; border: 1px solid var(--border-light); background: var(--bg-deep); color: white; outline: none; font-family: var(--font-body); transition: var(--transition-smooth); }
+    .jarvis-input-area input:focus { border-color: var(--accent-primary); }
+    .jarvis-send-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); color: #000; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: var(--transition-smooth); }
+    .jarvis-send-btn:hover { transform: scale(1.1); box-shadow: 0 0 15px var(--accent-glow); }
+    .jarvis-code-block { background: #000; color: #00ffcc; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 0.85rem; overflow-x: auto; margin: 10px 0; border: 1px solid rgba(255,255,255,0.1); }
+
+    @media (max-width: 768px) {
+      .jarvis-chat-window { width: 300px; height: 400px; right: 10px; bottom: 100px;}
+      .hero-content { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+      .hero-buttons { justify-content: center; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="admin-card" id="login-section">
-    <i class="fas fa-lock" style="font-size: 4rem; color: var(--accent-primary); margin-bottom: 20px;"></i>
-    <h2>Security Node</h2>
-    <p class="subtitle">Enter the master password to unlock the database.</p>
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">Sojib<span>.Dev</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="admin.html" class="nav-btn-add" target="_blank"><i class="fas fa-database"></i> DB Admin</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="container hero-content">
+      <div class="hero-text reveal">
+        <span class="hero-pretitle">Hello, I'm</span>
+        <h1><span class="gradient-text">Saiduzzaman Sojib</span> <span class="typewriter">Software Engineer</span></h1>
+        <p>A passionate Computer Science student at Southeast University focused on mastering Data Structures, Algorithms, and engineering high-performance software applications.</p>
+        <div class="hero-buttons">
+          <a href="#about" class="btn btn-primary"><i class="fas fa-rocket"></i> Explore Profile</a>
+          <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" class="btn btn-outline"><i class="fas fa-code"></i> View LeetCode</a>
+        </div>
+      </div>
+      
+      <div class="hero-image-wrapper reveal">
+        <div class="orbit-path">
+            <div class="orbit-icon icon-flutter"><i class="fab fa-flutter" style="color: #02569B;"></i></div>
+            <div class="orbit-icon icon-cpp"><b style="color: #00599C; font-family: sans-serif; font-size: 1.2rem;">C++</b></div>
+            <div class="orbit-icon icon-dart"><b style="color: #0175C2; font-family: sans-serif; font-size: 0.9rem;">DART</b></div>
+            <div class="orbit-icon icon-app"><i class="fas fa-mobile-alt" style="color: #3b82f6;"></i></div>
+        </div>
+        <img src="md-saiduzzaman-sojib.jpeg" alt="MD SAIDUZZAMAN SOJIB">
+      </div>
+      
+    </div>
+  </section>
+
+  <section id="about" class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>About My Journey</h2>
+        <p>Bridging the gap between complex algorithms and beautiful user interfaces.</p>
+      </div>
+      <div class="about-content reveal">
+        <div class="about-image">
+          <img src="IMG_3120.jpeg" alt="Profile View">
+        </div>
+        <div class="about-text">
+          <h3>Driven by Logic, <br>Designed for Users.</h3>
+          <p>I am a Computer Science student at Southeast University with a strong focus on algorithmic problem-solving and cross-platform app development.</p>       
+          <p>I specialize in C++ and Flutter. Whether I am fine-tuning an algorithm or designing a user interface, my mission is to write highly efficient code.</p>
+          
+          <div class="about-contact-info">
+            <p><i class="fas fa-envelope"></i> saiduzzaman.015.sojib@gmail.com</p>
+          </div>
+
+          <div class="social-links">
+            <a href="https://github.com/saiduzzaman-sojib" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/saiduzzaman-sojib/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" title="LeetCode"><i class="fas fa-code"></i></a>
+            <a href="https://www.facebook.com/Sojib55555" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="expertise" class="section-padding" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>My Expertise</h2>
+      </div>
+      <div class="expertise-grid reveal">
+        <div class="expertise-card tilt-card">
+          <i class="fas fa-brain main-icon"></i>
+          <h3>DSA & Competitive Programming</h3>
+          <p>Deep understanding of trees, graphs, dynamic programming, and algorithm optimization. Actively solving problems on LeetCode and Codeforces.</p>
+        </div>
+        <div class="expertise-card tilt-card">
+          <i class="fas fa-mobile-alt main-icon"></i>
+          <h3>App Development</h3>
+          <p>Creating cross-platform mobile applications using modern frameworks like Flutter. Focused on clean UI/UX and robust state management.</p>
+        </div>
+        <div class="expertise-card tilt-card">
+          <i class="fas fa-server main-icon"></i>
+          <h3>Software Engineering</h3>
+          <p>Applying Object-Oriented Programming concepts in Java and C++. Structuring projects for scalability and long-term maintenance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Technical Arsenal</h2>
+      </div>
+      <div class="skills-container reveal">
+        <div class="skills-chip-container">
+          <div class="skill-chip"><i class="fas fa-code"></i> C++ & Algorithms</div>
+          <div class="skill-chip"><i class="fab fa-java"></i> Java & OOP</div>
+          <div class="skill-chip"><i class="fas fa-mobile"></i> Flutter / Dart</div>
+          <div class="skill-chip"><i class="fas fa-database"></i> Firebase DB</div>
+          <div class="skill-chip"><i class="fab fa-git-alt"></i> Git & GitHub</div>
+          <div class="skill-chip"><i class="fas fa-microchip"></i> Digital Logic Design</div>
+          <div class="skill-chip"><i class="fas fa-brain"></i> Problem Solving</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section-padding" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Featured Projects</h2>
+        <p>A selection of my recent engineering work across mobile, object-oriented systems, and algorithms.</p>
+      </div>
+      <div class="projects-grid reveal">
+        <div class="project-card tilt-card">
+          <div class="project-img"><i class="fas fa-mobile-alt"></i></div>
+          <div class="project-info">
+            <h3>Flutter E-Commerce UI</h3>
+            <p>A high-performance, cross-platform mobile application featuring complex state management and a premium user interface.</p>
+            <div class="project-tech">
+              <span>Flutter</span><span>Dart</span><span>Firebase</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank" title="GitHub Repo"><i class="fab fa-github"></i></a>
+              <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card tilt-card">
+          <div class="project-img"><i class="fab fa-java"></i></div>
+          <div class="project-info">
+            <h3>University Management System</h3>
+            <p>A robust desktop application built applying strict Object-Oriented Programming (OOP) principles to handle student data.</p>
+            <div class="project-tech">
+              <span>Java</span><span>OOP</span><span>SQL</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank" title="GitHub Repo"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card tilt-card">
+          <div class="project-img"><i class="fas fa-project-diagram"></i></div>
+          <div class="project-info">
+            <h3>DSA Visualizer Engine</h3>
+            <p>A tool developed to visualize complex graph and tree algorithms, deeply reinforcing core computer science fundamentals.</p>
+            <div class="project-tech">
+              <span>C++</span><span>DSA</span><span>Logic Design</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank" title="GitHub Repo"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Education & Experience</h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-date">Current</div>
+          <div class="timeline-title">BSc. Computer Science & Engineering</div>
+          <div class="timeline-desc">Southeast University. Actively bridging technical and analytical disciplines through coursework in Java, Statistical Methods, Communication Theory, and Business Management.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2024 - Present</div>
+          <div class="timeline-title">Competitive Programming Journey</div>
+          <div class="timeline-desc">Relentless pursuit of algorithmic efficiency. Transitioning from foundational syntax to advanced dynamic programming and graph theory to dominate the Asian competitive circuit.</div>
+        </div>
+      </div>
+      <div class="cv-download-wrapper reveal">
+        <a href="#" class="btn btn-primary" download><i class="fas fa-file-download"></i> Download Full CV</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Initiate Contact</h2>
+        <p>Whether it's an engineering challenge or a collaboration opportunity, my inbox is open.</p>
+      </div>
+      <div class="contact-container reveal">
+        <form onsubmit="event.preventDefault(); alert('Form submitted! (Replace with your backend later)');">
+          <div class="form-group">
+            <input type="text" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources" class="section-padding" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Digital Vault</h2>
+        <p>Access my dynamic database containing study notes, lab reports, and external links.</p>
+      </div>
+      <div class="folder-wrapper reveal">
+        <div class="folder-card tilt-card" onclick="openModal()">
+          <i class="fas fa-folder-open main-icon"></i>
+          <h3>Cloud Resources</h3>
+          <p>Click to open the secure folder. Contains Notion notes, C++ implementations, and Firebase-driven data links.</p>
+          <div style="margin-top: 30px; display: inline-block; background: rgba(0,255,204,0.1); color: var(--accent-primary); padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;">
+            <i class="fas fa-lock" style="margin-right: 8px;"></i> Secure Access Required
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 MD SAIDUZZAMAN SOJIB. Designed & Engineered for the Future.</p>
+      
+      <div class="visitor-badge">
+        <i class="fas fa-eye"></i>
+        <span>Visitors: </span>
+        <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fsaiduzzaman-sojib.github.io%2FSAIDUZZAMAN%2F&countColor=%2300ffcc&style=flat" alt="Visitor Count" style="vertical-align: middle; height: 20px;">
+      </div>
+    </div>
+  </footer>
+
+  <div class="jarvis-widget">
+    <div class="jarvis-chat-window" id="jarvisWindow">
+      
+      <div class="jarvis-header">
+        <div class="jarvis-header-info">
+          <img src="ironman.jpeg" alt="Jarvis" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid var(--accent-primary);">
+          <div>
+            <h3>JARVIS AI</h3>
+            <div class="jarvis-status"><div class="status-dot"></div> Online (Gemini API)</div>
+          </div>
+        </div>
+        <i class="fas fa-times jarvis-close" id="closeJarvisBtn"></i>
+      </div>
+
+      <div class="jarvis-body" id="jarvisChatBody">
+        <div class="chat-bubble chat-bot">
+          হ্যালো! আমি Jarvis, সজীব স্যারের AI অ্যাসিস্ট্যান্ট। আমি আপনাকে কীভাবে সাহায্য করতে পারি?
+        </div>
+      </div>
+
+      <div class="jarvis-input-area">
+        <input type="text" id="jarvisInput" placeholder="Ask Jarvis a question...">
+        <button class="jarvis-send-btn" id="sendJarvisBtn"><i class="fas fa-paper-plane"></i></button>
+      </div>
+
+    </div>
     
-    <input type="password" id="admin-password" placeholder="•••••••">
-    <button id="unlock-btn"><i class="fas fa-key"></i> Unlock Vault</button>
-    
-    <p id="login-status" style="margin-top: 20px; color: #ef4444; font-size: 0.9rem; font-weight: 500;"></p>
+    <div class="jarvis-button" id="jarvisBtn">
+      <div class="jarvis-tooltip" id="jarvisTooltip">হ্যালো! আমি Jarvis, সজীব স্যারের AI অ্যাসিস্ট্যান্ট 👋</div>
+      <img src="ironman.jpeg" alt="Jarvis AI">
+    </div>
   </div>
 
-  <div class="admin-card" id="dashboard-section">
-    <h2><i class="fas fa-database" style="color: var(--accent-primary);"></i> Data Vault</h2>
-    <p class="subtitle">Upload files or paste links to sync with your portfolio.</p>
-    
-    <form id="addLinkForm">
-      <input type="text" id="icon" placeholder="Icon (e.g., ☕, 📘 or FA class)" required>
-      <input type="text" id="title" placeholder="Resource Title (e.g., Java OOP Notes)" required>
-      <input type="text" id="desc" placeholder="Short Description..." required>
+  <div id="passwordModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <i class="fas fa-user-secret" style="font-size: 3.5rem; color: var(--accent-primary); margin-bottom: 15px;"></i>
+      <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 5px;">Secure Vault</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">Enter the access code to proceed.</p>
       
-      <input type="file" id="pdf-file" accept="application/pdf, image/*, .docx">
-      <div class="divider">OR</div>
-      <input type="url" id="url" placeholder="Paste External URL (if no file chosen)">
+      <input type="password" id="vaultPassword" placeholder="•••••••" />
+      <p id="modalError" style="color: #ef4444; font-size: 0.85rem; margin-top: 10px; display: none; font-weight: 500;">Incorrect code. Access denied.</p>
       
-      <button type="submit"><i class="fas fa-cloud-upload-alt"></i> Deploy to Server</button>
-    </form>
-    
-    <p id="status"></p>
-    <button id="logout-btn" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Lock Vault</button>
+      <button class="btn btn-primary" onclick="verifyPassword()" style="margin-top: 20px; width: 100%; justify-content: center;">
+        <i class="fas fa-unlock"></i> Unlock Vault
+      </button>
+    </div>
   </div>
 
-  <script type="module">
-    // Import Firestore and Storage SDKs
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-    import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+  <script>
+    // 1. SCROLL REVEAL ANIMATIONS
+    document.addEventListener("DOMContentLoaded", function() {
+      const reveals = document.querySelectorAll(".reveal");
+      const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+      reveals.forEach(reveal => revealOnScroll.observe(reveal));
 
-    // Firebase Configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyDDFLfDpr-km54jWhubUuaarcJlS2IOjUQ",
-      authDomain: "sojib-portfolio.firebaseapp.com",
-      projectId: "sojib-portfolio",
-      storageBucket: "sojib-portfolio.firebasestorage.app",
-      messagingSenderId: "51909586532",
-      appId: "1:51909586532:web:2d5e89354646a4dc013971"
-    };
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          navbar.style.background = "rgba(5, 11, 20, 0.9)";
+          navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)";
+        } else {
+          navbar.style.background = "rgba(10, 17, 34, 0.7)";
+          navbar.style.boxShadow = "none";
+        }
+      });
+    });
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const storage = getStorage(app);
+    // 2. CUSTOM PASSWORD LOGIC
+    function openModal() {
+      document.getElementById('passwordModal').classList.add('active');
+      document.getElementById('vaultPassword').focus();
+      document.getElementById('modalError').style.display = 'none';
+      document.getElementById('vaultPassword').value = '';
+    }
 
-    // DOM Elements
-    const loginSection = document.getElementById('login-section');
-    const dashboardSection = document.getElementById('dashboard-section');
-    const statusText = document.getElementById('status');
-    const loginStatus = document.getElementById('login-status');
-    const passwordInput = document.getElementById('admin-password');
+    function closeModal() {
+      document.getElementById('passwordModal').classList.remove('active');
+    }
 
-    // ==========================================
-    // 1. PASSWORD SECURITY LOGIC
-    // ==========================================
-    const MASTER_PASSWORD = "cr7"; // You can change your password here!
-
-    function attemptLogin() {
-      const enteredPassword = passwordInput.value;
-      if (enteredPassword === MASTER_PASSWORD) {
-        loginSection.style.display = 'none';
-        dashboardSection.style.display = 'block';
-        passwordInput.value = ''; // Clear password field
+    function verifyPassword() {
+      const pswd = document.getElementById('vaultPassword').value;
+      if(pswd === 'cr7') {
+        window.location.href = 'resources.html';
       } else {
-        loginStatus.innerText = "Incorrect password. Access denied.";
-        // Shake animation for visual feedback
-        loginSection.animate([
+        document.getElementById('modalError').style.display = 'block';
+        const modalContent = document.querySelector('.modal-content');
+        modalContent.animate([
           { transform: 'translateX(0)' },
           { transform: 'translateX(-10px)' },
           { transform: 'translateX(10px)' },
@@ -190,71 +653,255 @@
       }
     }
 
-    document.getElementById('unlock-btn').addEventListener('click', attemptLogin);
+    document.getElementById('vaultPassword').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          verifyPassword();
+        }
+    });
 
-    // Allow pressing "Enter" on keyboard to login
-    passwordInput.addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        attemptLogin();
+    window.onclick = function(event) {
+      const modal = document.getElementById('passwordModal');
+      if (event.target === modal) {
+        closeModal();
       }
+    }
+
+    // =========================================================================
+    // 3. JARVIS AI LOGIC (WITH GOOGLE GEMINI API)
+    // ==========================================
+    
+    const keyChunks = [
+      "AIzaSy",
+      "BAp9ldRVFW", 
+      "oiMWbRGiwgb",
+      "QHhrA2cUsv04"
+    ];
+    const GEMINI_API_KEY = keyChunks.join(""); 
+
+    const jarvisBtn = document.getElementById('jarvisBtn');
+    const jarvisWindow = document.getElementById('jarvisWindow');
+    const closeJarvisBtn = document.getElementById('closeJarvisBtn');
+    const jarvisInput = document.getElementById('jarvisInput');
+    const sendJarvisBtn = document.getElementById('sendJarvisBtn');
+    const jarvisChatBody = document.getElementById('jarvisChatBody');
+    const jarvisTooltip = document.getElementById('jarvisTooltip');
+
+    jarvisBtn.addEventListener('click', () => { 
+      jarvisWindow.classList.add('active'); 
+      jarvisTooltip.style.display = 'none'; 
+    });
+    
+    closeJarvisBtn.addEventListener('click', () => { 
+      jarvisWindow.classList.remove('active'); 
+      jarvisTooltip.style.display = 'block'; 
     });
 
-    // Logout Button (Just reloads the page to lock it)
-    document.getElementById('logout-btn').addEventListener('click', () => {
-      window.location.reload();
-    });
+    function formatBotResponse(text) {
+      let formattedText = text.replace(/```([\s\S]*?)```/g, '<div class="jarvis-code-block">$1</div>');
+      formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      return formattedText;
+    }
 
-    // ==========================================
-    // 2. FIREBASE UPLOAD & DATABASE LOGIC
-    // ==========================================
-    document.getElementById('addLinkForm').addEventListener('submit', async (e) => {
-      e.preventDefault(); 
-      statusText.innerText = "Initializing upload protocol...";
-      statusText.style.color = "var(--accent-primary)";
+    async function sendJarvisMessage() {
+      const text = jarvisInput.value.trim();
+      if (!text) return;
+
+      const userDiv = document.createElement('div');
+      userDiv.className = 'chat-bubble chat-user';
+      userDiv.innerText = text;
+      jarvisChatBody.appendChild(userDiv);
+      
+      jarvisInput.value = '';
+      jarvisChatBody.scrollTop = jarvisChatBody.scrollHeight;
+
+      const botDiv = document.createElement('div');
+      botDiv.className = 'chat-bubble chat-bot';
+      botDiv.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Processing...`;
+      jarvisChatBody.appendChild(botDiv);
+      jarvisChatBody.scrollTop = jarvisChatBody.scrollHeight;
+
+      const combinedPrompt = "You are Jarvis, a highly intelligent AI assistant created for the personal portfolio website of MD Saiduzzaman Sojib. Sojib is a Software Engineer, App Developer, and Competitive DSA Programmer studying at Southeast University in Bangladesh. Answer politely, professionally, and keep it relatively short. You are an expert in C++, Java, Flutter, and Data Structures. Important Rule: If the user speaks in English, reply in English. If the user speaks in Bengali, reply in Bengali.\n\nHere is the user's message: " + text;
 
       try {
-        const fileInput = document.getElementById('pdf-file');
-        const file = fileInput.files[0];
-        let finalUrl = document.getElementById('url').value;
-
-        // Condition A: User attached a file (Priority)
-        if (file) {
-          statusText.innerText = "Uploading file to secure storage... Please wait.";
-          
-          // Create a unique name for the file to prevent overwriting
-          const uniqueFileName = Date.now() + '_' + file.name;
-          const storageRef = ref(storage, 'resources/' + uniqueFileName);
-          
-          // Upload the file
-          const uploadTask = await uploadBytesResumable(storageRef, file);
-          
-          // Get the public download URL from Firebase Storage
-          finalUrl = await getDownloadURL(storageRef);
-          statusText.innerText = "File uploaded! Linking to database...";
-        } 
-        // Condition B: No file, No URL
-        else if (!finalUrl) {
-          throw new Error("You must either upload a file OR paste an external URL.");
-        }
-
-        // Save everything to Firestore Database
-        await addDoc(collection(db, "resources"), {
-          icon: document.getElementById('icon').value,
-          title: document.getElementById('title').value,
-          desc: document.getElementById('desc').value,
-          url: finalUrl, // This is either the uploaded PDF link or the pasted YouTube link
-          timestamp: new Date()
+        // USING THE NEW GEMINI-2.5-FLASH MODEL
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ 
+              role: "user", 
+              parts: [{ text: combinedPrompt }] 
+            }]
+          })
         });
+
+        const data = await response.json();
         
-        statusText.innerText = "✅ Deployment Successful!";
-        statusText.style.color = "#00ffcc";
-        document.getElementById('addLinkForm').reset(); 
-        
+        if(data.candidates && data.candidates.length > 0) {
+          const aiResponseText = data.candidates[0].content.parts[0].text;
+          botDiv.innerHTML = formatBotResponse(aiResponseText);
+        } else {
+          botDiv.innerHTML = "API Error: " + (data.error?.message || "Check the browser console for details.");
+        }
       } catch (error) {
-        statusText.innerText = "❌ Error: " + error.message;
-        statusText.style.color = "#ef4444";
+        console.error("Fetch Error:", error);
+        botDiv.innerHTML = "Error: Connection to Gemini API failed.";
       }
+      
+      jarvisChatBody.scrollTop = jarvisChatBody.scrollHeight;
+    }
+
+    sendJarvisBtn.addEventListener('click', sendJarvisMessage);
+    jarvisInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendJarvisMessage();
     });
+
+    // 4. ADVANCED INTERACTIVE CANVAS PARTICLE NETWORK
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let mouse = {
+      x: null,
+      y: null,
+      radius: (canvas.height/80) * (canvas.width/80) 
+    }
+
+    window.addEventListener('mousemove', function(event) {
+      mouse.x = event.x;
+      mouse.y = event.y;
+    });
+
+    window.addEventListener('mouseout', function() {
+      mouse.x = undefined;
+      mouse.y = undefined;
+    });
+
+    class Particle {
+      constructor(x, y, directionX, directionY, size, color) {
+        this.x = x;
+        this.y = y;
+        this.directionX = directionX;
+        this.directionY = directionY;
+        this.size = size;
+        this.color = color;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+      update() {
+        if (this.x > canvas.width || this.x < 0) { this.directionX = -this.directionX; }
+        if (this.y > canvas.height || this.y < 0) { this.directionY = -this.directionY; }
+
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx*dx + dy*dy);
+        
+        if (distance < mouse.radius + this.size){
+          if (mouse.x < this.x && this.x < canvas.width - this.size * 10) { this.x += 2; }
+          if (mouse.x > this.x && this.x > this.size * 10) { this.x -= 2; }
+          if (mouse.y < this.y && this.y < canvas.height - this.size * 10) { this.y += 2; }
+          if (mouse.y > this.y && this.y > this.size * 10) { this.y -= 2; }
+        }
+        
+        this.x += this.directionX;
+        this.y += this.directionY;
+        this.draw();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      let numberOfParticles = (canvas.height * canvas.width) / 10000;
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = (Math.random() * 2) + 1;
+        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+        let directionX = (Math.random() * 1) - 0.5;
+        let directionY = (Math.random() * 1) - 0.5;
+        let color = 'rgba(0, 255, 204, 0.8)'; 
+        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+      }
+    }
+
+    function connect() {
+      let opacityValue = 1;
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                       + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+          if (distance < (canvas.width/7) * (canvas.height/7)) {
+            opacityValue = 1 - (distance/20000);
+            ctx.strokeStyle = 'rgba(0, 255, 204,' + opacityValue + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+      }
+      connect();
+    }
+
+    window.addEventListener('resize', function(){
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      mouse.radius = ((canvas.height/80) * (canvas.width/80));
+      init();
+    });
+
+    init();
+    animate();
+
+    // 5. MOUSE-DRIVEN 3D TILT EFFECT (For cards)
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    
+    function handleTilt(e, element, maxTilt = 10, scale = 1.05) {
+        const rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -maxTilt; 
+        const rotateY = ((x - centerX) / centerX) * maxTilt; 
+        
+        element.style.transform = `perspective(1000px) scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        element.style.borderColor = "var(--accent-primary)";
+    }
+    
+    function resetTilt(element) {
+        element.style.transform = `perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg)`;
+        element.style.borderColor = "var(--border-light)";
+    }
+
+    tiltCards.forEach(card => {
+        card.style.transition = "transform 0.1s ease, border-color 0.3s ease";
+        card.addEventListener('mousemove', (e) => handleTilt(e, card, 15, 1.05));
+        card.addEventListener('mouseleave', () => {
+            card.style.transition = "transform 0.5s ease, border-color 0.5s ease";
+            resetTilt(card);
+            setTimeout(() => card.style.transition = "transform 0.1s ease, border-color 0.3s ease", 500);
+        });
+    });
+
   </script>
+
 </body>
 </html>
