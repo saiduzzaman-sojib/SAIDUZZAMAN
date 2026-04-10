@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta name="google-site-verification" content="-y1Pv-GRe8tcsRsGyIe-FqTIlCyP46jd3EQMTY_LTYE" />
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" /> <!-- Supports high zoom -->
   <title>MD SAIDUZZAMAN SOJIB | Software Engineer</title>
   <meta name="description" content="Official portfolio of MD Saiduzzaman Sojib. Software Engineer, App Developer, and Competitive DSA Programmer studying at Southeast University, Bangladesh.">
   
@@ -26,785 +26,856 @@
   }
   </script>
 
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     /* ==========================================================================
-       1. PREMIUM DESIGN SYSTEM (OLED BLACK & CYAN)
+       1. PREMIUM DESIGN SYSTEM (MIDNIGHT & VIOLET)
        ========================================================================== */
     :root {
-      --bg-base: #000000; /* Pure OLED Black */
-      --bg-surface: #0a0a0a; /* Dark Slate */
-      --bg-glass: rgba(5, 5, 5, 0.85);
+      /* Palette: Deep midnight background with violet/indigo premium accents */
+      --bg-deep: #020617;       /* Deepest slate/black */
+      --bg-surface: #0f172a;    /* Lighter slate for cards */
+      --bg-glass: rgba(15, 23, 42, 0.7);
       
-      --accent-primary: #00e5ff; /* Electric Cyan */
-      --accent-secondary: #0077ff; /* Cobalt Blue */
-      --accent-glow: rgba(0, 229, 255, 0.2);
+      --accent-primary: #6366f1; /* Indigo 500 */
+      --accent-secondary: #8b5cf6; /* Violet 500 */
+      --accent-glow: rgba(99, 102, 241, 0.25);
+      --accent-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       
-      --text-high: #ffffff;
-      --text-medium: #a1a1aa;
-      --text-low: #52525b;
+      --text-high: #f8fafc;     /* Slate 50 */
+      --text-medium: #94a3b8;   /* Slate 400 */
+      --text-low: #475569;      /* Slate 600 */
       
-      --border-light: rgba(255, 255, 255, 0.06);
-      --border-highlight: rgba(0, 229, 255, 0.3);
+      --border-light: rgba(255, 255, 255, 0.05);
+      --border-hover: rgba(99, 102, 241, 0.4);
       
-      --font-heading: 'Poppins', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --font-mono: 'Space Mono', monospace;
+      /* Typography */
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-code: 'JetBrains Mono', monospace;
       
-      --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --radius-md: 12px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      
+      --transition-premium: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-premium: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
     body {
-      background-color: var(--bg-base);
+      background-color: var(--bg-deep);
       color: var(--text-medium);
       font-family: var(--font-body);
-      line-height: 1.6;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      /* Subtle grain texture for 4K feel */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
     }
 
-    /* Cinematic Ambient Background */
-    .ambient-bg {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 50px 50px;
-      mask-image: radial-gradient(circle at center, black, transparent 80%);
-      -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
-    }
-    .glow-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.3; animation: drift 15s infinite alternate ease-in-out; }
-    .orb-1 { width: 500px; height: 500px; background: var(--accent-primary); top: -10%; left: -10%; }
-    .orb-2 { width: 600px; height: 600px; background: var(--accent-secondary); bottom: -10%; right: -10%; animation-delay: -5s; opacity: 0.15; }
-    @keyframes drift { 100% { transform: translate(50px, 50px) scale(1.1); } }
-
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+    /* Selection */
+    ::selection { background: var(--accent-primary); color: #fff; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
-    ::selection { background: var(--accent-primary); color: #000; }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 10; }
+    /* Typography Utilities */
+    h1, h2, h3, h4 { font-family: var(--font-display); color: var(--text-high); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; }
+    a { text-decoration: none; color: inherit; transition: var(--transition-premium); }
+    ul { list-style: none; }
+
+    /* Container */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 10; }
     .section-padding { padding: 140px 0; position: relative; }
+    
+    /* Ambient Background Glow */
+    .ambient-glow {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none;
+      background: radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08), transparent 40%),
+                  radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 40%);
+    }
 
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    /* Animation: Reveal Up */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
+    /* Section Header */
     .section-header { text-align: center; margin-bottom: 80px; }
-    .section-header h2 { font-family: var(--font-heading); font-size: 3rem; font-weight: 800; color: var(--text-high); display: inline-block; position: relative; letter-spacing: -1px; }
-    .section-header h2::after { content: ''; position: absolute; width: 40px; height: 4px; bottom: -12px; left: 50%; transform: translateX(-50%); background: var(--accent-primary); border-radius: 10px; box-shadow: 0 0 10px var(--accent-glow); }
-    .section-header p { color: var(--text-muted); margin-top: 25px; font-size: 1.1rem; max-width: 600px; margin-inline: auto; font-weight: 300; }
+    .section-header h2 { 
+      font-size: clamp(2.5rem, 5vw, 4rem); 
+      background: linear-gradient(to right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .section-header p { font-size: 1.15rem; margin-top: 20px; color: var(--text-medium); max-width: 600px; margin-inline: auto; }
 
     /* ==========================================================================
-       2. NAVIGATION BAR
+       2. NAVIGATION
        ========================================================================== */
     nav {
-      position: fixed; top: 0; width: 100%; background: var(--bg-glass);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-light); padding: 16px 0; z-index: 1000; transition: var(--transition-smooth);
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 24px 0; transition: var(--transition-premium);
     }
-    .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-    .logo { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--text-high); text-decoration: none; }
+    nav.scrolled { padding: 16px 0; background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-light); }
+    
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+    .logo { 
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--text-high); 
+      letter-spacing: -0.05em; display: flex; align-items: center; gap: 10px; 
+    }
     .logo span { color: var(--accent-primary); }
-    .nav-links { display: flex; list-style: none; gap: 40px; align-items: center; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition-smooth); font-family: var(--font-mono); }
-    .nav-links a:hover { color: var(--text-high); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-    .nav-btn-add { background: rgba(0, 229, 255, 0.05); color: var(--accent-primary) !important; border: 1px solid var(--border-highlight); padding: 8px 24px; border-radius: 50px; font-weight: 600 !important; transition: var(--transition-smooth); }
-    .nav-btn-add:hover { background: var(--accent-primary); color: #000 !important; box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-2px); }
+    
+    .nav-links { display: flex; gap: 40px; align-items: center; }
+    .nav-links a { 
+      font-size: 0.9rem; font-weight: 500; color: var(--text-medium); 
+      font-family: var(--font-code); text-transform: uppercase; letter-spacing: 0.05em; 
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-high); text-shadow: 0 0 20px rgba(255,255,255,0.2); }
+    
+    .btn-nav {
+      background: rgba(255,255,255,0.05); padding: 10px 24px; border-radius: var(--radius-full); border: 1px solid var(--border-light);
+      font-family: var(--font-code); font-size: 0.8rem; transition: var(--transition-premium);
+    }
+    .btn-nav:hover { background: var(--text-high); color: var(--bg-deep); border-color: var(--text-high); transform: translateY(-2px); }
 
     /* ==========================================================================
-       3. HERO SECTION (CENTERED & SOLAR SYSTEM)
+       3. HERO SECTION (TECH ORBIT)
        ========================================================================== */
-    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 100px; }
-    .hero-content { display: flex; flex-direction: column; align-items: center; gap: 60px; z-index: 1; max-width: 900px;}
-
-    /* Professional Typography */
-    .hero-pretitle { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px; font-family: var(--font-mono); display: block; }
-    .hero-text h1 { font-family: var(--font-heading); font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 10px; letter-spacing: -2px; color: var(--text-high);}
-    .hero-text h1 span.typewriter { display: block; font-size: 1rem; color: var(--accent-primary); font-weight: 400; margin-top: 20px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 5px; opacity: 0.8; }
-    .hero-text p { font-size: 1.1rem; color: var(--text-muted); margin-top: 30px; margin-bottom: 40px; max-width: 650px; margin-inline: auto; line-height: 1.8; font-weight: 300; }
-
-    .hero-buttons { display: flex; gap: 20px; justify-content: center; }
-    .btn { padding: 16px 36px; border-radius: 50px; font-weight: 600; text-decoration: none; font-family: var(--font-heading); transition: var(--transition-smooth); display: inline-flex; align-items: center; gap: 10px; font-size: 0.95rem; border: 1px solid transparent; }
-    .btn-primary { background: var(--text-high); color: #000; }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,255,255,0.2); background: var(--accent-primary); }
-    .btn-outline { background: transparent; color: var(--text-high); border-color: var(--border-light); backdrop-filter: blur(10px); }
-    .btn-outline:hover { border-color: var(--accent-primary); color: var(--accent-primary); transform: translateY(-3px); background: rgba(0, 229, 255, 0.05); }
-
-    /* ==========================================================================
-       4. THE SOLAR SYSTEM ORBIT ENGINE
-       ========================================================================== */
-    .orbital-system {
-      position: relative;
-      width: 450px;
-      height: 450px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto;
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding-top: 80px; position: relative; overflow: hidden;
     }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; }
+    
+    .hero-text { z-index: 2; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: var(--radius-full); border: 1px solid var(--border-light);
+      background: rgba(255,255,255,0.03); color: var(--accent-primary);
+      font-family: var(--font-code); font-size: 0.8rem; margin-bottom: 24px;
+    }
+    .hero-tag i { font-size: 0.7rem; }
+    
+    .hero-text h1 { 
+      font-size: clamp(3rem, 6vw, 5rem); line-height: 1; margin-bottom: 24px;
+      letter-spacing: -0.04em;
+    }
+    .hero-text p { 
+      font-size: 1.25rem; color: var(--text-medium); margin-bottom: 40px; max-width: 550px; line-height: 1.6;
+    }
+    
+    .cta-group { display: flex; gap: 20px; }
+    .btn-primary {
+      background: var(--accent-gradient); color: #fff; padding: 16px 36px; border-radius: var(--radius-full);
+      font-weight: 600; font-family: var(--font-display); display: inline-flex; align-items: center; gap: 10px;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3); border: none; cursor: pointer;
+    }
+    .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4); }
+    
+    .btn-glass {
+      background: transparent; color: var(--text-high); padding: 16px 36px; border-radius: var(--radius-full);
+      border: 1px solid var(--border-light); font-weight: 600; font-family: var(--font-display);
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .btn-glass:hover { background: rgba(255,255,255,0.05); border-color: var(--text-high); transform: translateY(-4px); }
 
-    /* The Sun (Your Profile Picture) */
-    .orbit-center {
-      position: relative;
-      width: 220px;
-      height: 220px;
-      z-index: 10;
+    /* THE ORBIT SYSTEM (Upgraded) */
+    .orbit-wrapper { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; height: 600px; }
+    
+    .system-container {
+      position: relative; width: 500px; height: 500px; display: flex; justify-content: center; align-items: center;
     }
-    .orbit-center img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.1);
-      position: relative;
-      z-index: 2;
+    
+    /* Sun (Profile) */
+    .core-profile {
+      position: relative; width: 220px; height: 220px; border-radius: 50%; z-index: 10;
+      padding: 6px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
     }
-    /* Breathing Sun Glow */
+    .core-profile img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
     .core-glow {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 100%; height: 100%; border-radius: 50%;
-      box-shadow: 0 0 60px var(--accent-primary), inset 0 0 30px var(--accent-primary);
-      z-index: 1; opacity: 0.4;
-      animation: sunPulse 4s infinite alternate ease-in-out;
+      position: absolute; inset: -20px; border-radius: 50%; background: var(--accent-primary);
+      filter: blur(60px); opacity: 0.2; z-index: -1; animation: pulse 4s infinite ease-in-out;
     }
-    @keyframes sunPulse { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; } 100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.6; } }
-
-    /* Orbital Rings (Planetary Paths) */
-    .orbit-path {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      border-radius: 50%; border: 1px dashed rgba(255,255,255,0.15);
-      pointer-events: none;
+    
+    /* Rings */
+    .orbit-ring {
+      position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,0.08);
+      display: flex; justify-content: center; align-items: center;
     }
-    .path-1 { width: 340px; height: 340px; animation: rotateSystem 20s linear infinite; z-index: 5; }
-    .path-2 { width: 460px; height: 460px; animation: rotateSystemRev 30s linear infinite; z-index: 4; }
-
-    /* The Planets (Tech Logos) */
-    .planet {
-      position: absolute; width: 50px; height: 50px;
-      background: var(--bg-card); border: 1px solid var(--border-highlight);
+    .ring-1 { width: 380px; height: 380px; animation: rotateClockwise 25s linear infinite; }
+    .ring-2 { width: 520px; height: 520px; animation: rotateCounterClockwise 35s linear infinite; border-style: dashed; opacity: 0.5; }
+    
+    /* Planets */
+    .planet-node {
+      position: absolute; width: 60px; height: 60px;
+      background: var(--bg-surface); border: 1px solid var(--border-light);
       border-radius: 50%; display: flex; justify-content: center; align-items: center;
-      font-size: 1.4rem; color: var(--text-main);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.8), 0 0 15px var(--accent-glow);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-size: 1.5rem; color: var(--text-high);
+      z-index: 5; transition: var(--transition-premium);
     }
-    .planet img { width: 24px; height: 24px; object-fit: contain; }
-
-    /* Planet Colors */
-    .planet-flutter { color: #40d1f9; }
-    .planet-cpp { color: #00599c; font-family: var(--font-heading); font-weight: 900; font-size: 1rem; }
-    .planet-java { color: #f89820; }
-    .planet-dart { color: #00c4b3; font-family: var(--font-mono); font-weight: bold; font-size: 0.75rem; }
-    .planet-firebase { color: #ffca28; }
-
-    /* Math Positioning on the circles & Counter Rotation */
-    .path-1 .p1 { top: -25px; left: calc(50% - 25px); animation: counterRotate 20s linear infinite; }
-    .path-1 .p2 { bottom: -25px; left: calc(50% - 25px); animation: counterRotate 20s linear infinite; }
+    .planet-node:hover { border-color: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow); transform: scale(1.1); }
     
-    .path-2 .p3 { top: 15%; left: 15%; transform: translate(-50%, -50%); animation: counterRotateRev 30s linear infinite; }
-    .path-2 .p4 { bottom: 15%; right: 15%; transform: translate(50%, 50%); animation: counterRotateRev 30s linear infinite; }
-    .path-2 .p5 { top: 50%; left: -25px; transform: translateY(-50%); animation: counterRotateRev 30s linear infinite; }
+    /* Positions */
+    .ring-1 .p-1 { top: -30px; left: 50%; transform: translateX(-50%); animation: counterRotateClockwise 25s linear infinite; }
+    .ring-1 .p-2 { bottom: -30px; left: 50%; transform: translateX(-50%); animation: counterRotateClockwise 25s linear infinite; }
+    .ring-2 .p-3 { top: 50%; left: -30px; transform: translateY(-50%); animation: counterRotateCounterClockwise 35s linear infinite; }
+    .ring-2 .p-4 { top: 50%; right: -30px; transform: translateY(-50%); animation: counterRotateCounterClockwise 35s linear infinite; }
 
-    /* Keyframes for smooth continuous orbit */
-    @keyframes rotateSystem { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-    @keyframes rotateSystemRev { 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
-    @keyframes counterRotate { 100% { transform: rotate(-360deg); } }
-    @keyframes counterRotateRev { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-
-    /* ==========================================================================
-       5. ABOUT SECTION
-       ========================================================================== */
-    .about-content { display: grid; grid-template-columns: 1fr 1.2fr; gap: 70px; align-items: center; }
-    .about-image { position: relative; }
-    .about-image img { width: 100%; max-width: 350px; aspect-ratio: 1/1; object-fit: cover; border-radius: 20px; border: 1px solid var(--border-light); z-index: 2; position: relative; filter: grayscale(20%); transition: var(--transition-smooth);}
-    .about-image:hover img { filter: grayscale(0%); }
-    .about-image::after { content: ''; position: absolute; top: 20px; left: 20px; width: 100%; max-width: 350px; aspect-ratio: 1/1; border-radius: 20px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); z-index: 1; opacity: 0.15; transition: var(--transition-smooth); }
-    .about-image:hover::after { top: 10px; left: 10px; opacity: 0.3; filter: blur(15px); }
-
-    .about-text h3 { font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 20px; letter-spacing: -0.5px; color: var(--text-high);}
-    .about-text p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 20px; font-weight: 300; line-height: 1.8;}
-    .about-contact-info { margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--border-light); }
-    .about-contact-info p { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; font-weight: 500; font-size: 0.95rem; }
-    .about-contact-info i { color: var(--accent-primary); font-size: 1.2rem; width: 20px; text-align: center;}
-
-    .social-links { display: flex; gap: 15px; margin-top: 35px; }
-    .social-links a { width: 50px; height: 50px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 1.2rem; text-decoration: none; transition: var(--transition-smooth); }
-    .social-links a:hover { background: var(--text-main); color: #000; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
+    @keyframes rotateClockwise { 100% { transform: rotate(360deg); } }
+    @keyframes rotateCounterClockwise { 100% { transform: rotate(-360deg); } }
+    @keyframes counterRotateClockwise { 100% { transform: translateX(-50%) rotate(-360deg); } }
+    @keyframes counterRotateCounterClockwise { 100% { transform: translateY(-50%) rotate(360deg); } }
+    @keyframes pulse { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.1); } }
 
     /* ==========================================================================
-       6. GLASS CARDS (EXPERTISE, PROJECTS)
+       4. ABOUT & STATS
        ========================================================================== */
-    .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-img-box { position: relative; }
+    .about-img-box img { 
+      width: 100%; border-radius: var(--radius-lg); filter: grayscale(100%); 
+      transition: var(--transition-premium); border: 1px solid var(--border-light);
+    }
+    .about-img-box:hover img { filter: grayscale(0%); transform: scale(0.98); }
+    .about-img-box::after {
+      content: ''; position: absolute; inset: -20px; border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg); z-index: -1; opacity: 0.3;
+    }
     
-    .glass-card {
-      background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--border-light);
-      position: relative; overflow: hidden; transition: var(--transition-smooth);
-    }
-    .glass-card:hover { transform: translateY(-8px); border-color: var(--border-highlight); box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(0, 229, 255, 0.05); background: #111; }
+    .stat-row { display: flex; gap: 40px; margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border-light); }
+    .stat-item h4 { font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 5px; font-family: var(--font-code); }
+    .stat-item p { font-size: 0.9rem; color: var(--text-low); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ==========================================================================
+       5. EXPERTISE (Cards)
+       ========================================================================== */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
     
-    .expertise-card i { font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 25px; display: block; filter: drop-shadow(0 0 10px var(--accent-glow));}
-    .expertise-card h3 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 15px; color: #fff; letter-spacing: -0.5px;}
-    .expertise-card p { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; line-height: 1.7;}
-
-    .project-card { padding: 0; }
-    .project-img-display { height: 200px; background: #050505; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--border-light); transition: var(--transition-smooth); }
-    .project-card:hover .project-img-display { color: var(--accent-primary); background: #0a0a0a;}
-    .project-info { padding: 30px; }
-    .project-info h3 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 10px; color: var(--text-high); }
-    .project-info p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; font-weight: 300; line-height: 1.6;}
-    .project-tech { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 25px; }
-    .project-tech span { font-size: 0.75rem; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: 50px; color: var(--text-muted); font-family: var(--font-mono); border: 1px solid var(--border-light);}
-    .project-links { display: flex; gap: 20px; border-top: 1px solid var(--border-light); padding-top: 20px;}
-    .project-links a { color: var(--text-muted); font-size: 1.2rem; transition: var(--transition-smooth); }
-    .project-links a:hover { color: var(--text-main); transform: translateY(-3px); }
-
-    /* ==========================================================================
-       7. SKILLS (Minimalist Chips)
-       ========================================================================== */
-    .skills-container { display: flex; flex-direction: column; align-items: center; gap: 40px; }
-    .skills-chip-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; max-width: 900px;}
-    .skill-chip {
-      background: transparent; color: var(--text-muted); padding: 12px 24px;
-      border-radius: 50px; font-weight: 400; border: 1px solid var(--border-light);
-      transition: var(--transition-smooth); display: flex; align-items: center; gap: 10px; font-size: 0.95rem;
-      font-family: var(--font-mono);
+    .tech-card {
+      background: var(--bg-surface); padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-light);
+      transition: var(--transition-premium); position: relative; overflow: hidden; group: hover;
     }
-    .skill-chip i { font-size: 1.1rem; color: var(--text-muted); transition: var(--transition-smooth);}
-    .skill-chip:hover {
-      background: var(--text-main); color: #000; border-color: var(--text-main);
-      transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+    .tech-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); background: linear-gradient(180deg, var(--bg-surface), rgba(99,102,241,0.05)); }
+    .tech-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent-gradient);
+      transform: scaleX(0); transform-origin: left; transition: var(--transition-premium);
     }
-    .skill-chip:hover i { color: #000; }
-
-    /* ==========================================================================
-       8. RESUME & TIMELINE
-       ========================================================================== */
-    .timeline { position: relative; max-width: 800px; margin: 0 auto; border-left: 1px solid var(--border-light); padding-left: 40px; }
-    .timeline-item { position: relative; margin-bottom: 50px; }
-    .timeline-item::before {
-      content: ''; position: absolute; left: -45px; top: 5px; width: 10px; height: 10px;
-      background: var(--accent-primary); border-radius: 50%; box-shadow: 0 0 10px var(--accent-glow);
-    }
-    .timeline-date { color: var(--text-muted); font-weight: 500; font-size: 0.85rem; margin-bottom: 8px; font-family: var(--font-mono); letter-spacing: 1px; text-transform: uppercase;}
-    .timeline-title { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 8px; color: #fff;}
-    .timeline-desc { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; line-height: 1.7;}
-    .cv-download-wrapper { text-align: center; margin-top: 60px; }
-
-    /* ==========================================================================
-       9. CONTACT FORM
-       ========================================================================== */
-    .contact-container { max-width: 600px; margin: 0 auto; background: var(--bg-card); padding: 50px; border-radius: 20px; border: 1px solid var(--border-light); }
-    .form-group { margin-bottom: 25px; }
-    .form-group input, .form-group textarea {
-      width: 100%; padding: 16px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light);
-      border-radius: 10px; color: var(--text-main); font-family: var(--font-body); transition: var(--transition-smooth); font-size: 0.95rem;
-    }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-primary); outline: none; background: rgba(0,0,0,0.6); box-shadow: 0 0 15px var(--accent-glow);}
-    .form-group textarea { resize: vertical; min-height: 150px; }
-
-    /* ==========================================================================
-       10. CLOUD RESOURCES FOLDER
-       ========================================================================== */
-    .folder-wrapper { display: flex; justify-content: center; }
-    .folder-card {
-      background: var(--bg-card); backdrop-filter: blur(15px); padding: 70px 50px; border-radius: 24px;
-      border: 1px solid var(--border-light); border-top: 1px solid rgba(255, 255, 255, 0.15);
-      transition: var(--transition-smooth); cursor: pointer; position: relative; overflow: hidden;
-      text-align: center; max-width: 550px; width: 100%; display: block;
-    }
-    .folder-card::before {
-      content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px;
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-      box-shadow: 0 0 15px var(--accent-glow);
-    }
-    .folder-card i.main-icon {
-      font-size: 6.5rem; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 30px; transition: transform 0.5s ease;
-      filter: drop-shadow(0 0 15px var(--accent-glow));
-    }
-    .folder-card h3 { color: var(--text-main); font-size: 2.2rem; margin-bottom: 18px; font-family: var(--font-heading); letter-spacing: -1px;}
-    .folder-card p { color: var(--text-muted); font-size: 1.15rem; font-weight: 300; line-height: 1.7; }
-    .folder-card:hover {
-      transform: translateY(-12px) scale(1.01); background: rgba(12, 20, 33, 0.95);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 229, 255, 0.2); border-color: var(--border-highlight);
-    }
-    .folder-card:hover i.main-icon { transform: scale(1.1) translateY(-5px); }
-
-    /* ==========================================================================
-       11. PASSWORD MODAL UI
-       ========================================================================== */
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; visibility: hidden; transition: var(--transition-smooth);
-    }
-    .modal-overlay.active { opacity: 1; visibility: visible; }
-    .modal-content {
-      background: var(--bg-card); padding: 50px 40px; border-radius: 20px; border: 1px solid var(--border-light);
-      border-top: 4px solid var(--accent-primary); text-align: center; max-width: 400px; width: 90%; transform: translateY(20px); transition: var(--transition-smooth); box-shadow: 0 30px 80px rgba(0,0,0,0.8);
-    }
-    .modal-overlay.active .modal-content { transform: translateY(0); }
-    .close-modal { position: absolute; top: 15px; right: 20px; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
-    .close-modal:hover { color: #fff; }
+    .tech-card:hover::before { transform: scaleX(1); }
     
-    #vaultPassword {
-      width: 100%; padding: 18px; margin-top: 25px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-light);
-      border-radius: 10px; color: white; font-family: var(--font-mono); font-size: 1.2rem; outline: none; transition: var(--transition-smooth); text-align: center; letter-spacing: 6px;
+    .card-icon { width: 60px; height: 60px; background: rgba(255,255,255,0.03); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; font-size: 1.5rem; color: var(--accent-primary); }
+    .tech-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+    .tech-card p { font-size: 1rem; color: var(--text-medium); line-height: 1.6; }
+
+    /* ==========================================================================
+       6. SKILLS (Modern Pill)
+       ========================================================================== */
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; max-width: 900px; margin: 0 auto; }
+    .skill-pill {
+      padding: 12px 28px; border-radius: var(--radius-full); background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-light); color: var(--text-medium); font-family: var(--font-code);
+      font-size: 0.9rem; transition: var(--transition-premium); cursor: default;
     }
-    #vaultPassword:focus { border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
+    .skill-pill:hover { background: var(--text-high); color: var(--bg-deep); border-color: var(--text-high); transform: translateY(-3px); font-weight: 700; }
+
+    /* ==========================================================================
+       7. PROJECTS
+       ========================================================================== */
+    .project-card { background: var(--bg-surface); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-light); transition: var(--transition-premium); }
+    .project-card:hover { transform: translateY(-5px); border-color: var(--border-hover); box-shadow: var(--shadow-premium); }
+    
+    .project-visual { height: 240px; background: #1e293b; position: relative; display: flex; align-items: center; justify-content: center; }
+    .project-visual i { font-size: 4rem; color: rgba(255,255,255,0.05); transition: var(--transition-premium); }
+    .project-card:hover .project-visual i { color: var(--accent-primary); transform: scale(1.1) rotate(5deg); }
+    
+    .project-body { padding: 30px; }
+    .project-tags { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .tag { font-size: 0.75rem; padding: 4px 12px; border-radius: 4px; background: rgba(99, 102, 241, 0.1); color: var(--accent-primary); font-family: var(--font-code); font-weight: 600; }
+    
+    .project-links { margin-top: 25px; display: flex; gap: 20px; }
+    .project-links a { font-size: 1.2rem; color: var(--text-medium); }
+    .project-links a:hover { color: var(--accent-primary); }
+
+    /* ==========================================================================
+       8. VAULT (FOLDER)
+       ========================================================================== */
+    .vault-container { display: flex; justify-content: center; }
+    .vault-folder {
+      background: var(--bg-surface); border: 1px solid var(--border-light);
+      padding: 60px; border-radius: 30px; width: 100%; max-width: 600px;
+      text-align: center; cursor: pointer; transition: var(--transition-premium);
+      position: relative; overflow: hidden;
+    }
+    .vault-folder:hover { border-color: var(--accent-primary); transform: translateY(-5px); background: linear-gradient(145deg, var(--bg-surface), rgba(99,102,241,0.05)); }
+    .vault-icon { font-size: 5rem; margin-bottom: 30px; background: linear-gradient(to bottom, #fbbf24, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    /* ==========================================================================
+       9. JARVIS & MODAL
+       ========================================================================== */
+    /* Modal */
+    .modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px);
+      z-index: 2000; display: flex; justify-content: center; align-items: center;
+      opacity: 0; pointer-events: none; transition: var(--transition-premium);
+    }
+    .modal.active { opacity: 1; pointer-events: auto; }
+    .modal-box {
+      background: var(--bg-surface); border: 1px solid var(--border-light); padding: 50px;
+      border-radius: 20px; width: 90%; max-width: 400px; text-align: center;
+      transform: translateY(20px); transition: var(--transition-premium);
+      box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8);
+    }
+    .modal.active .modal-box { transform: translateY(0); }
+    
+    /* Jarvis Chat */
+    .jarvis-container { position: fixed; bottom: 40px; right: 40px; z-index: 1500; display: flex; flex-direction: column; align-items: flex-end; }
+    
+    .chat-window {
+      width: 380px; height: 550px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px);
+      border: 1px solid var(--border-light); border-radius: 20px; margin-bottom: 20px;
+      display: flex; flex-direction: column; overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      transform-origin: bottom right; transform: scale(0); opacity: 0; transition: var(--transition-premium);
+    }
+    .chat-window.open { transform: scale(1); opacity: 1; }
+    
+    .chat-header { background: rgba(0,0,0,0.3); padding: 20px; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
+    .chat-status { display: flex; align-items: center; gap: 8px; font-family: var(--font-code); font-size: 0.8rem; color: #4ade80; }
+    .status-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
+    
+    .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+    .msg { padding: 12px 18px; border-radius: 12px; max-width: 85%; font-size: 0.95rem; line-height: 1.5; }
+    .msg.bot { background: rgba(255,255,255,0.05); color: var(--text-medium); align-self: flex-start; border-bottom-left-radius: 2px; }
+    .msg.user { background: var(--accent-gradient); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+    
+    .chat-input-area { padding: 20px; border-top: 1px solid var(--border-light); display: flex; gap: 10px; }
+    .chat-input {
+      flex: 1; background: rgba(0,0,0,0.3); border: 1px solid var(--border-light);
+      border-radius: var(--radius-full); padding: 12px 20px; color: white; outline: none; font-family: var(--font-body);
+    }
+    .chat-input:focus { border-color: var(--accent-primary); }
+    .send-btn {
+      width: 45px; height: 45px; border-radius: 50%; background: var(--accent-primary); border: none;
+      color: white; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: var(--transition-premium);
+    }
+    .send-btn:hover { transform: scale(1.1); }
+    
+    .jarvis-trigger {
+      width: 65px; height: 65px; border-radius: 50%; background: var(--bg-surface); border: 2px solid var(--border-light);
+      display: flex; justify-content: center; align-items: center; cursor: pointer; transition: var(--transition-premium);
+      position: relative; overflow: hidden;
+    }
+    .jarvis-trigger:hover { border-color: var(--accent-primary); box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); }
+    .jarvis-trigger img { width: 100%; height: 100%; object-fit: cover; }
+    .jarvis-trigger::after {
+      content: ''; position: absolute; bottom: 5px; right: 5px; width: 14px; height: 14px;
+      background: #4ade80; border: 3px solid var(--bg-surface); border-radius: 50%;
+    }
 
     /* Footer */
-    footer { border-top: 1px solid var(--border-light); padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 0.9rem;}
-    .visitor-badge { display: inline-flex; align-items: center; gap: 10px; background: transparent; border: 1px solid var(--border-light); padding: 8px 16px; border-radius: 50px; margin-top: 20px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-low); }
-    .visitor-badge i { color: var(--accent-primary); }
-
-    /* ==========================================================================
-       12. JARVIS AI CHAT WIDGET
-       ========================================================================== */
-    .jarvis-widget { position: fixed; bottom: 30px; right: 30px; z-index: 1500; display: flex; flex-direction: column; align-items: flex-end; }
-    .jarvis-btn {
-      width: 60px; height: 60px; border-radius: 50%; background: #000; border: 2px solid var(--border-light);
-      cursor: pointer; display: flex; justify-content: center; align-items: center; transition: var(--transition-smooth); position: relative;
+    footer { border-top: 1px solid var(--border-light); padding: 60px 0; text-align: center; margin-top: 80px; }
+    .footer-logo { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--text-high); margin-bottom: 20px; display: inline-block; }
+    .visitor-badge { 
+      display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03); 
+      padding: 8px 20px; border-radius: var(--radius-full); border: 1px solid var(--border-light); font-family: var(--font-code); font-size: 0.8rem;
     }
-    .jarvis-btn img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
-    .jarvis-btn:hover { border-color: var(--accent-primary); transform: scale(1.05); box-shadow: 0 0 20px var(--accent-glow);}
-    .jarvis-btn::after { content: ''; position: absolute; top: 0; right: 0; width: 12px; height: 12px; background-color: #22c55e; border-radius: 50%; border: 2px solid #000; }
 
-    .jarvis-tooltip { position: absolute; bottom: 75px; right: 0; background: var(--bg-card); color: var(--text-main); padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border-light); font-size: 0.85rem; white-space: nowrap; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); pointer-events: none; animation: fadeInTooltip 0.5s forwards 1.5s; }
-    @keyframes fadeInTooltip { 0% { opacity: 0; transform: translateY(5px); } 100% { opacity: 1; transform: translateY(0); } }
+    /* Form */
+    .form-box { max-width: 600px; margin: 0 auto; background: var(--bg-surface); padding: 50px; border-radius: var(--radius-lg); border: 1px solid var(--border-light); }
+    .input-group { margin-bottom: 20px; }
+    .input-group input, .input-group textarea {
+      width: 100%; background: rgba(0,0,0,0.2); border: 1px solid var(--border-light);
+      padding: 16px; border-radius: 10px; color: white; font-family: var(--font-body); transition: var(--transition-premium);
+    }
+    .input-group input:focus, .input-group textarea:focus { outline: none; border-color: var(--accent-primary); background: rgba(0,0,0,0.4); }
 
-    .jarvis-chat-window { width: 380px; height: 500px; background: rgba(10, 17, 34, 0.95); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid var(--border-light); border-top: 3px solid var(--accent-primary); border-radius: 16px; margin-bottom: 15px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.8); opacity: 0; pointer-events: none; transform: translateY(10px) scale(0.98); transition: var(--transition-smooth); transform-origin: bottom right; }
-    .jarvis-chat-window.active { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
-    
-    .jarvis-header { padding: 15px 20px; background: rgba(5, 11, 20, 0.95); border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
-    .jarvis-header-info { display: flex; align-items: center; gap: 12px; }
-    .jarvis-header h3 { font-size: 1.15rem; font-family: var(--font-heading); margin: 0; color: var(--text-main); letter-spacing: 0.5px;}
-    .jarvis-status { font-size: 0.85rem; color: #22c55e; display: flex; align-items: center; gap: 6px; font-weight: 500;}
-    .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 8px #22c55e;}
-    .jarvis-close { color: var(--text-muted); cursor: pointer; font-size: 1.3rem; transition: color 0.3s; }
-    .jarvis-close:hover { color: #ef4444; }
-    
-    .jarvis-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
-    .jarvis-body::-webkit-scrollbar { width: 6px; }
-    .jarvis-body::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
-    
-    .chat-bubble { max-width: 85%; padding: 14px 18px; border-radius: 18px; font-size: 0.95rem; line-height: 1.5; word-wrap: break-word; font-weight: 400;}
-    .chat-bot { background: rgba(255,255,255,0.05); border: 1px solid var(--border-light); color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 5px; }
-    .chat-user { background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: #000; font-weight: 500; align-self: flex-end; border-bottom-right-radius: 5px; }
-    
-    .jarvis-input-area { padding: 15px 20px; background: rgba(5, 11, 20, 0.95); border-top: 1px solid var(--border-light); display: flex; gap: 12px; }
-    .jarvis-input-area input { flex: 1; padding: 12px 18px; border-radius: 50px; border: 1px solid var(--border-light); background: rgba(10, 17, 34, 0.7); color: white; outline: none; font-family: var(--font-body); transition: var(--transition-smooth); font-size: 0.95rem; }
-    .jarvis-input-area input:focus { border-color: var(--accent-primary); background: rgba(0, 229, 255, 0.05);}
-    .jarvis-send-btn { width: 45px; height: 45px; border-radius: 50%; background: var(--accent-primary); color: #000; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: var(--transition-smooth); font-size: 1.1rem;}
-    .jarvis-send-btn:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 0 20px var(--accent-glow); }
-    .jarvis-code-block { background: #000; color: var(--accent-primary); padding: 12px; border-radius: 8px; font-family: monospace; font-size: 0.85rem; overflow-x: auto; margin: 10px 0; border: 1px solid rgba(255,255,255,0.1); }
-
+    /* Responsive */
     @media (max-width: 992px) {
-      .hero-content { grid-template-columns: 1fr; text-align: center; gap: 40px; padding-top: 40px;}
-      .hero-buttons { justify-content: center; }
-      .section-header h2 { font-size: 2.8rem; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .jarvis-chat-window { width: 320px; height: 450px; right: 10px; bottom: 110px;}
-      .orbit-container { width: 300px; height: 300px; }
-      .orbit-center-img { width: 200px; height: 200px; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-text p { margin-inline: auto; }
+      .cta-group { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; }
+      .orbit-wrapper { height: 450px; }
+      .system-container { width: 350px; height: 350px; }
       .ring-1 { width: 280px; height: 280px; }
-      .ring-2 { width: 340px; height: 340px; }
-      .planet { width: 40px; height: 40px; font-size: 1.2rem; }
-      .planet img { width: 20px; height: 20px; }
+      .ring-2 { width: 380px; height: 380px; }
+      .core-profile { width: 160px; height: 160px; }
+      .nav-links { display: none; } /* Simplified for demo */
+    }
+    @media (max-width: 480px) {
+      .hero-text h1 { font-size: 2.5rem; }
+      .chat-window { width: 100%; height: 100%; border-radius: 0; bottom: 0; right: 0; }
+      .jarvis-container { bottom: 20px; right: 20px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="ambient-bg"></div>
+  <!-- Ambient Glow -->
+  <div class="ambient-glow"></div>
 
+  <!-- Navigation -->
   <nav id="navbar">
-    <div class="nav-container">
-      <a href="#" class="logo">Sojib</a>
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <span class="fa-solid fa-code"></span> SOJIB.
+      </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#expertise">Services</a></li>
         <li><a href="#projects">Work</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#resources">Vault</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="admin.html" class="nav-btn-add" target="_blank">Admin</a></li>
+        <li><a href="admin.html" class="btn-nav" target="_blank">Admin</a></li>
       </ul>
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <section class="hero" id="home">
-    <div class="container hero-content">
+    <div class="container hero-grid">
       
       <div class="hero-text reveal">
-        <span class="hero-pretitle">Hello, I'm</span>
-        <h1>Saiduzzaman<br><span>Sojib</span></h1>
-        <span class="typewriter">Software Engineer</span>
-        <p>A passionate Computer Science student at Southeast University focused on mastering Data Structures, Algorithms, and engineering high-performance software applications.</p>
-        <div class="hero-buttons">
-          <a href="#about" class="btn btn-primary">Explore Profile</a>
-          <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" class="btn btn-outline">View LeetCode</a>
+        <div class="hero-tag"><i class="fa-solid fa-bolt"></i> Available for Hire</div>
+        <h1>Building the Future with <br><span style="color: var(--accent-primary);">Code & Logic.</span></h1>
+        <p>I am MD Saiduzzaman Sojib. A Software Engineer specializing in Flutter, DSA, and High-Performance System Architecture. I turn complex problems into elegant digital solutions.</p>
+        
+        <div class="cta-group">
+          <a href="#projects" class="btn-primary">View Projects <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#contact" class="btn-glass">Contact Me</a>
         </div>
       </div>
 
-      <div class="orbital-system reveal">
-        <div class="orbit-center">
-            <img src="md-saiduzzaman-sojib.jpeg" alt="Saiduzzaman Sojib">
-            <div class="core-glow"></div>
-        </div>
-        
-        <div class="orbit-path path-1">
-            <div class="planet p1 planet-flutter"><i class="fab fa-flutter"></i></div>
-            <div class="planet p2 planet-dart"><span>DART</span></div>
-        </div>
-        
-        <div class="orbit-path path-2">
-            <div class="planet p3 planet-cpp"><span>C++</span></div>
-            <div class="planet p4 planet-java"><i class="fab fa-java"></i></div>
-            <div class="planet p5 planet-firebase"><i class="fas fa-fire"></i></div>
+      <div class="orbit-wrapper reveal">
+        <div class="system-container">
+          <div class="core-glow"></div>
+          <div class="core-profile">
+            <!-- Replace with your actual high-res photo -->
+            <img src="https://picsum.photos/seed/sojib/400/400.jpg" alt="MD Saiduzzaman Sojib">
+          </div>
+          
+          <div class="orbit-ring ring-1">
+            <div class="planet-node p-1" title="Flutter"><i class="fa-brands fa-flutter" style="color: #42a5f5;"></i></div>
+            <div class="planet-node p-2" title="C++"><i class="fa-solid fa-code" style="color: #00599c;"></i></div>
+          </div>
+          
+          <div class="orbit-ring ring-2">
+            <div class="planet-node p-3" title="Java"><i class="fa-brands fa-java" style="color: #f89820;"></i></div>
+            <div class="planet-node p-4" title="Firebase"><i class="fa-solid fa-fire" style="color: #ffca28;"></i></div>
+          </div>
         </div>
       </div>
 
     </div>
   </section>
 
+  <!-- About Section -->
   <section id="about" class="section-padding">
     <div class="container">
-      <div class="section-header reveal">
-        <h2>About My Journey</h2>
-        <p>Decoding complexity to build robust digital architectures.</p>
-      </div>
-      <div class="about-content reveal">
-        <div class="about-image">
-          <img src="IMG_3120.jpeg" alt="Profile View">
+      <div class="about-grid">
+        <div class="about-img-box reveal">
+          <img src="https://picsum.photos/seed/tech/600/600.jpg" alt="Working">
         </div>
-        <div class="about-text">
-          <h3>Driven by logic. <br>Design through engineering.</h3>
-          <p>I am a final-year Computer Science student at Southeast University with an elite focus on algorithmic problem-solving and cross-platform native application development.</p>        
-          <p>I specialize strictly in C++ and Dart (Flutter). Whether optimizing a graph search or crafting seamless dynamic user interfaces, my engineering principle remains consistent: write elegant, scalable, and highly performance efficient code.</p>
-          
-          <div class="about-contact-info">
-            <p><i class="fas fa-envelope"></i> saiduzzaman.015.sojib@gmail.com</p>
-          </div>
+        <div class="reveal">
+          <h2>Engineering <span style="color: var(--accent-primary);">Excellence</span></h2>
+          <br>
+          <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.8;">
+            I am a final-year Computer Science student at Southeast University. My passion lies in the intersection of rigorous algorithms and beautiful user interfaces. I don't just write code; I architect systems.
+          </p>
+          <br>
+          <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.8;">
+            With a strict focus on C++, Dart, and Java, I build applications that are not only functional but optimized for performance and scalability. Whether it's competitive programming or building a production-grade app, I bring precision to every line of code.
+          </p>
 
-          <div class="social-links">
-            <a href="https://github.com/saiduzzaman-sojib" target="_blank" title="GitHub Hub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/saiduzzaman-sojib/" target="_blank" title="LinkedIn Network"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://leetcode.com/u/MD_SAIDUZZAMAN/" target="_blank" title="LeetCode Hub"><i class="fas fa-code"></i></a>
-            <a href="https://www.facebook.com/Sojib55555" target="_blank" title="Facebook Contact"><i class="fab fa-facebook-f"></i></a>
+          <div class="stat-row">
+            <div class="stat-item">
+              <h4>3+</h4>
+              <p>Years Coding</p>
+            </div>
+            <div class="stat-item">
+              <h4>500+</h4>
+              <p>DSA Problems</p>
+            </div>
+            <div class="stat-item">
+              <h4>15+</h4>
+              <p>Projects</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="expertise" class="section-padding" style="background: rgba(255,255,255,0.02);">
+  <!-- Expertise Section -->
+  <section id="expertise" class="section-padding" style="background: rgba(255,255,255,0.01);">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Core Specializations</h2>
+        <h2>Core Expertise</h2>
+        <p>My technical arsenal is built for speed, reliability, and scalability.</p>
       </div>
-      <div class="grid-container">
-        <div class="glass-card reveal">
-          <i class="fas fa-brain card-icon"></i>
-          <h3 class="card-title">DSA & Optimization</h3>
-          <p class="card-desc">Deep architecture knowledge on advanced dynamic programming, complex graph theory visualizers, tree traversals, and memory optimization algorithms.</p>
+
+      <div class="cards-grid reveal">
+        <div class="tech-card">
+          <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+          <h3>DSA & Logic</h3>
+          <p>Mastering complex data structures, graph algorithms, and dynamic programming to solve computational problems efficiently.</p>
         </div>
-        <div class="glass-card reveal" style="transition-delay: 0.1s;">
-          <i class="fas fa-mobile-alt card-icon"></i>
-          <h3 class="card-title">Native App Engineering</h3>
-          <p class="card-desc">Architecting seamless, high-performance native mobile applications strictly via Flutter/Dart. Specialist in Bloc/Provider state management.</p>
+        <div class="tech-card">
+          <div class="card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h3>Flutter & Dart</h3>
+          <p>Building natively compiled applications for mobile, web, and desktop from a single codebase with pixel-perfect UI.</p>
         </div>
-        <div class="glass-card reveal" style="transition-delay: 0.2s;">
-          <i class="fas fa-server card-icon"></i>
-          <h3 class="card-title">System Architecture</h3>
-          <p class="card-desc">Applying rigorous strict OOP, design patterns, and solid architectural principles strictly across C++ and Java environments.</p>
+        <div class="tech-card">
+          <div class="card-icon"><i class="fa-solid fa-server"></i></div>
+          <h3>Backend & Firebase</h3>
+          <p>Designing robust backend architectures, managing real-time databases, and ensuring secure authentication protocols.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Skills Section -->
   <section id="skills" class="section-padding">
+    <div class="container reveal">
+      <div class="section-header">
+        <h2>Technical Stack</h2>
+      </div>
+      <div class="skills-wrap">
+        <div class="skill-pill"><i class="fa-brands fa-cuttlefish"></i> C++</div>
+        <div class="skill-pill"><i class="fa-brands fa-java"></i> Java</div>
+        <div class="skill-pill"><i class="fa-brands fa-flutter"></i> Flutter</div>
+        <div class="skill-pill"><i class="fa-brands fa-dart-lang"></i> Dart</div>
+        <div class="skill-pill"><i class="fa-brands fa-git-alt"></i> Git</div>
+        <div class="skill-pill"><i class="fa-brands fa-firefox-browser"></i> Firebase</div>
+        <div class="skill-pill"><i class="fa-solid fa-database"></i> SQL</div>
+        <div class="skill-pill"><i class="fa-brands fa-figma"></i> Figma</div>
+        <div class="skill-pill"><i class="fa-solid fa-microchip"></i> OOP</div>
+        <div class="skill-pill"><i class="fa-solid fa-layer-group"></i> REST API</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section-padding" style="background: rgba(255,255,255,0.01);">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Technical Arsenal</h2>
+        <h2>Featured Works</h2>
+        <p>Selected projects demonstrating engineering capability.</p>
       </div>
-      <div class="skills-container reveal">
-        <div class="skills-chip-container">
-          <div class="skill-chip"><i class="fas fa-code"></i> C++ / DSA Expert</div>
-          <div class="skill-chip"><i class="fab fa-java"></i> Java / OOP Solid</div>
-          <div class="skill-chip"><i class="fas fa-mobile"></i> Flutter / Dart</div>
-          <div class="skill-chip"><i class="fas fa-database"></i> Firebase DB / Auth</div>
-          <div class="skill-chip"><i class="fab fa-git-alt"></i> Git / Version Control</div>
-          <div class="skill-chip"><i class="fas fa-microchip"></i> System Design</div>
-          <div class="skill-chip"><i class="fas fa-brain"></i> Logic Optimization</div>
+      
+      <div class="cards-grid reveal">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-visual">
+            <i class="fa-brands fa-flutter"></i>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">Bloc</span>
+            </div>
+            <h3>E-Commerce Native App</h3>
+            <p style="color: var(--text-medium); font-size: 0.95rem; margin-top: 10px;">
+              A fully functional shopping application featuring cart management, real-time order tracking, and secure payment gateway integration.
+            </p>
+            <div class="project-links">
+              <a href="#" title="View Code"><i class="fa-brands fa-github"></i></a>
+              <a href="#" title="Live Demo"><i class="fa-solid fa-external-link-alt"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-visual">
+            <i class="fa-solid fa-diagram-project"></i>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">C++</span>
+              <span class="tag">Algorithm</span>
+              <span class="tag">Visualization</span>
+            </div>
+            <h3>DSA Visualizer</h3>
+            <p style="color: var(--text-medium); font-size: 0.95rem; margin-top: 10px;">
+              An interactive desktop tool to visualize graph algorithms (BFS/DFS) and sorting methods, built with C++ and Qt.
+            </p>
+            <div class="project-links">
+              <a href="#" title="View Code"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-visual">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">Java</span>
+              <span class="tag">Spring Boot</span>
+              <span class="tag">MySQL</span>
+            </div>
+            <h3>University Management</h3>
+            <p style="color: var(--text-medium); font-size: 0.95rem; margin-top: 10px;">
+              A comprehensive backend system handling student records, course enrollment, and grade management using SOLID principles.
+            </p>
+            <div class="project-links">
+              <a href="#" title="View Code"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projects" class="section-padding" style="background: rgba(255,255,255,0.02);">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Featured Engineering Works</h2>
-        <p>A specific selection strictly of optimized mobile apps and complex logical Visualizers.</p>
+  <!-- Vault Section -->
+  <section id="resources" class="section-padding">
+    <div class="container reveal">
+      <div class="section-header">
+        <h2>Secure Vault</h2>
+        <p>Access restricted resources and documentation.</p>
       </div>
-      <div class="projects-grid reveal">
-        
-        <div class="project-card glass-card">
-          <div class="project-img-display"><i class="fab fa-flutter"></i></div>
-          <div class="project-info">
-            <h3 class="card-title">Flutter E-Commerce Native App</h3>
-            <p class="card-desc">A production-ready native mobile application strictly engineered with Bloc state management, reactive local storage, and Firebase integration.</p>
-            <div class="project-tech"><span>Flutter</span><span>Dart</span><span>Firebase</span><span>Bloc</span></div>
-            <div class="project-links">
-              <a href="#" target="_blank" title="GitHub Hub"><i class="fab fa-github"></i></a>
-              <a href="#" target="_blank" title="Live Demo Hub"><i class="fas fa-external-link-alt"></i></a>
-            </div>
+      <div class="vault-container">
+        <div class="vault-folder" onclick="openModal()">
+          <i class="fa-solid fa-folder-tree vault-icon"></i>
+          <h3>Cloud Resources Hub</h3>
+          <p style="margin-top: 15px; color: var(--text-medium);">Class notes, code snippets, and private repositories.</p>
+          <div style="margin-top: 30px; font-size: 0.8rem; color: var(--accent-primary); font-family: var(--font-code);">
+            <i class="fa-solid fa-lock"></i> AUTHORIZATION REQUIRED
           </div>
         </div>
-
-        <div class="project-card glass-card" style="transition-delay: 0.1s;">
-          <div class="project-img-display"><i class="fas fa-project-diagram"></i></div>
-          <div class="project-info">
-            <h3 class="card-title">DSA Algorithm Visualizer</h3>
-            <p class="card-desc">A complex logical tool engineered strictly with native C++ to visually decode and visualize advanced dynamic graph search algorithms.</p>
-            <div class="project-tech"><span>C++</span><span>DSA Expert</span><span>Algorithm Design</span></div>
-            <div class="project-links">
-              <a href="#" target="_blank" title="GitHub Hub"><i class="fab fa-github"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card glass-card" style="transition-delay: 0.2s;">
-          <div class="project-img-display"><i class="fab fa-java"></i></div>
-          <div class="project-info">
-            <h3 class="card-title">Strict University Management System</h3>
-            <p class="card-desc">A complex Java system strictly engineered using rigorous strict SOLID design principles and OOP patterns to architect academic logic.</p>
-            <div class="project-tech"><span>Java</span><span>SOLID</span><span>OOP Expert</span><span>SQL</span></div>
-            <div class="project-links">
-              <a href="#" target="_blank" title="GitHub Hub"><i class="fab fa-github"></i></a>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <section id="resume" class="section-padding">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Professional Timeline</h2>
+  <!-- Contact Section -->
+  <section id="contact" class="section-padding" style="background: rgba(255,255,255,0.01);">
+    <div class="container reveal">
+      <div class="section-header">
+        <h2>Get In Touch</h2>
+        <p>Ready to start a project? Let's discuss.</p>
       </div>
-      <div class="timeline reveal">
-        <div class="timeline-item">
-          <span class="timeline-date">2021 - CURRENT (FINAL YEAR)</span>
-          <h3 class="timeline-title">BSc. Computer Science & Engineering</h3>
-          <p class="timeline-desc">Southeast University. Specializing strictly in native cross-platform mobile development (Flutter) and rigorous strict DSA complexity analysis. Bridging mathematical theory with pragmatic high-performance software engineering.</p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">2022 - PRESENT</span>
-          <h3 class="timeline-title">Elite Competitive Programming</h3>
-          <p class="timeline-desc">Relentless optimization. dominating complexity challenges strictly via advanced Graph Theory, sophisticated Dynamic Programming, and rigorous data structure design on LeetCode, Codeforces, and national hackathons.</p>
-        </div>
-      </div>
-      <div class="cv-download-wrapper reveal">
-        <a href="#" class="btn btn-primary" download><i class="fas fa-file-download"></i> Pull formal_cv_v7.log</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="section-padding" style="background: rgba(255,255,255,0.02);">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Initiate Contact Protocol</h2>
-        <p>Whether bridging complex logical challenges or discussing application architecture, my hub is open.</p>
-      </div>
-      <div class="contact-container reveal">
-        <form onsubmit="event.preventDefault(); alert('Transmission logged! (Awaiting backend link)');">
-          <input type="text" class="form-input" placeholder="Protocol Operator Name" required>
-          <input type="email" class="form-input" placeholder="Operator transmission contact" required>
-          <textarea class="form-input" placeholder="Operator message transmission..." required></textarea>
-          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> LOG TRANSMISSION</button>
+      <div class="form-box">
+        <form onsubmit="event.preventDefault(); alert('Message simulation: Sent!');">
+          <div class="input-group">
+            <input type="text" placeholder="Your Name" required>
+          </div>
+          <div class="input-group">
+            <input type="email" placeholder="Your Email" required>
+          </div>
+          <div class="input-group">
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+            Send Message <i class="fa-solid fa-paper-plane"></i>
+          </button>
         </form>
       </div>
     </div>
   </section>
 
-  <section id="resources" class="section-padding">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Digital Vault Hub</h2>
-        <p>A strictly secure dynamic repository for formal technical data log files.</p>
-      </div>
-      <div class="folder-wrapper reveal">
-        <div class="folder-card" onclick="openModal()">
-          <i class="fas fa-folder-open main-icon" style="font-size: 5rem; color: var(--text-high); margin-bottom: 25px; display: block;"></i>
-          <h3 class="card-title" style="font-size: 1.8rem; margin-bottom: 15px; font-family: var(--font-display); letter-spacing: -0.5px;">Cloud Resources HUB</h3>
-          <p class="card-desc" style="color: var(--text-muted); font-size: 1rem; font-weight: 300; margin-bottom: 30px;">Click strictly to authenticate access to digital vault. Contains formal technical notes, native logical code logs, and advanced complexity analysis.</p>
-          <div class="lock-badge" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--border-light); border-radius: 50px; font-size: 0.75rem; font-family: var(--font-mono); margin-top: 24px; color: var(--text-muted);"><i class="fas fa-lock"></i> Protocol Access Required</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer>
-    <div class="Container reveal">
-      <p>&copy; 2026 MD SAIDUZZAMAN SOJIB. HUB PROTOCOL. Engineered with strict logic for the future.</p>
-      
+    <div class="container reveal">
+      <a href="#" class="footer-logo">SOJIB.</a>
+      <p style="color: var(--text-low); margin-bottom: 30px;">
+        &copy; 2026 MD Saiduzzaman Sojib. Engineered for performance.
+      </p>
       <div class="visitor-badge">
-        <i class="fas fa-chart-line"></i>
-        <span>LOGGED HUB VISITORS: </span>
-        <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fsaiduzzaman-sojib.github.io%2FSAIDUZZAMAN%2F&countColor=%2300ffcc&style=flat" alt="Visitor Count" style="vertical-align: middle; height: 20px;">
+        <i class="fa-solid fa-signal" style="color: var(--accent-primary);"></i>
+        <span>SYSTEM STATUS: ONLINE</span>
+        <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fsaiduzzaman-sojib.github.io%2FSAIDUZZAMAN%2F&countColor=%236366f1&style=flat" alt="Visitors" style="height: 18px;">
       </div>
     </div>
   </footer>
 
-  <div class="jarvis-widget">
-    <div class="jarvis-window" id="jarvisWindow">
-      <div class="j-header">
-        <div class="j-title">J.A.R.V.I.S. terminal</div>
-        <div class="j-status"><div class="j-dot"></div> Online</div>
-        <i class="fas fa-times close-modal" id="closeJarvisBtn" style="position: relative; top:0; right:0; font-size: 1rem;"></i>
+  <!-- Password Modal -->
+  <div id="passwordModal" class="modal">
+    <div class="modal-box">
+      <h3 style="margin-bottom: 10px;">Security Check</h3>
+      <p style="color: var(--text-medium); margin-bottom: 25px;">Enter access protocol to unlock the vault.</p>
+      <div class="input-group">
+        <input type="password" id="vaultPassword" placeholder="Enter Passcode" style="text-align: center; letter-spacing: 5px;">
       </div>
-      <div class="j-body" id="jarvisChatBody">
-        <div class="chat-bubble j-bot">
-          Transmission Hub log status... Awaiting operator transmission. আমি সজীব স্যারের AI অ্যাসিস্ট্যান্ট। আমি কীভাবে সাহায্য করতে পারি?
+      <button class="btn-primary" onclick="verifyPassword()" style="width: 100%; justify-content: center;">Authenticate</button>
+      <p id="modalError" style="color: #ef4444; margin-top: 15px; font-size: 0.9rem; display: none;">Access Denied. Invalid Protocol.</p>
+      <div style="margin-top: 20px; cursor: pointer; color: var(--text-low); font-size: 0.9rem;" onclick="closeModal()">Cancel</div>
+    </div>
+  </div>
+
+  <!-- Jarvis AI Widget -->
+  <div class="jarvis-container">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <i class="fa-solid fa-robot" style="color: var(--accent-primary);"></i>
+          <span style="font-weight: 600;">J.A.R.V.I.S.</span>
+        </div>
+        <div class="chat-status">
+          <div class="status-dot"></div> Online
+          <i class="fa-solid fa-xmark" style="color: var(--text-medium); margin-left: auto; cursor: pointer;" onclick="toggleChat()"></i>
         </div>
       </div>
-      <div class="j-input-area">
-        <input type="text" id="jarvisInput" class="j-input" placeholder="Type a command...">
-        <button class="j-send" id="sendJarvisBtn"><i class="fas fa-paper-plane"></i></button>
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg bot">
+          Greetings. I am J.A.R.V.I.S., Sir Sojib's virtual assistant. How may I assist you with your engineering inquiries today?
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Type a command...">
+        <button class="send-btn" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
       </div>
     </div>
-    
-    <div class="jarvis-btn" id="jarvisBtn">
-      <img src="ironman.jpeg" alt="AI">
+
+    <div class="jarvis-trigger" onclick="toggleChat()">
+      <img src="ironman.jpeg" alt="AI" onerror="this.src='https://picsum.photos/100/100'">
     </div>
   </div>
 
-  <div id="passwordModal" class="modal-overlay">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h3 class="card-title">Authorization Required</h3>
-      <p class="card-desc">Protocol log status: SECURE. Enter the access code to proceed.</p>
-      
-      <input type="password" class="form-input" id="vaultPassword" placeholder="•••••••" style="text-align: center; letter-spacing: 4px; margin-top: 24px;" />
-      <p id="modalError" style="color: #ef4444; font-size: 0.85rem; display: none;">PROTOCOL ACCESS DENIED.</p>
-      
-      <button class="btn btn-primary" onclick="verifyPassword()" style="width: 100%; justify-content: center; margin-top: 16px;">
-        Authorize protocol 
-      </button>
-    </div>
-  </div>
-
+  <!-- JavaScript Logic -->
   <script>
-    // Vault Logic
+    // --- Navbar Scroll Effect ---
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+    // --- Reveal on Scroll Animation ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // --- Vault / Modal Logic ---
     function openModal() {
       document.getElementById('passwordModal').classList.add('active');
       document.getElementById('vaultPassword').focus();
     }
-    function closeModal() { document.getElementById('passwordModal').classList.remove('active'); }
+    function closeModal() {
+      document.getElementById('passwordModal').classList.remove('active');
+      document.getElementById('vaultPassword').value = '';
+      document.getElementById('modalError').style.display = 'none';
+    }
     function verifyPassword() {
-      const input = document.getElementById('vaultPassword');
-      const error = document.getElementById('modalError');
-      const pswd = input.value;
-      const btn = document.querySelector('#passwordModal .btn-primary');
-      
-      if(pswd === 'cr7') {
-        error.style.display = 'none';
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+      const input = document.getElementById('vaultPassword').value;
+      if (input === 'cr7') {
+        // Success
+        const btn = document.querySelector('#passwordModal .btn-primary');
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Decrypting...';
         setTimeout(() => {
-          window.location.href = 'resources.html';
-        }, 800);
+          window.location.href = 'resources.html'; // Ensure this file exists or change target
+        }, 1500);
       } else {
+        // Fail
+        const error = document.getElementById('modalError');
+        const modalBox = document.querySelector('.modal-box');
         error.style.display = 'block';
-        const modalContent = document.querySelector('.modal-content');
-        modalContent.animate([
-          { transform: 'translateY(0) translateX(0)' },
-          { transform: 'translateY(0) translateX(-10px)' },
-          { transform: 'translateY(0) translateX(10px)' },
-          { transform: 'translateY(0) translateX(0)' }
+        modalBox.animate([
+          { transform: 'translateX(0)' },
+          { transform: 'translateX(-10px)' },
+          { transform: 'translateX(10px)' },
+          { transform: 'translateX(0)' }
         ], { duration: 300 });
       }
     }
-    document.getElementById('vaultPassword').addEventListener('keypress', (e) => { if(e.key === 'Enter') verifyPassword(); });
-
-    // Jarvis AI Logic
-    const keyChunks = ["AIzaSy", "BAp9ldRVFW", "oiMWbRGiwgb", "QHhrA2cUsv04"];
-    const GEMINI_API_KEY = keyChunks.join(""); 
     
-    const jarvisBtn = document.getElementById('jarvisBtn');
-    const jarvisWindow = document.getElementById('jarvisWindow');
-    const closeJarvisBtn = document.getElementById('closeJarvisBtn');
-    const jarvisInput = document.getElementById('jarvisInput');
-    const sendJarvisBtn = document.getElementById('sendJarvisBtn');
-    const jarvisChatBody = document.getElementById('jarvisChatBody');
-    
-    jarvisBtn.addEventListener('click', () => jarvisWindow.classList.add('active'));
-    closeJarvisBtn.addEventListener('click', () => jarvisWindow.classList.remove('active'));
-
-    function formatBotResponse(text) {
-      let formatted = text.replace(/```([\s\S]*?)```/g, '<div class="j-code">$1</div>');
-      return formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    }
-
-    async function sendJarvisMessage() {
-      const text = jarvisInput.value.trim();
-      if (!text) return;
-
-      jarvisChatBody.innerHTML += `<div class="chat-bubble j-user">${text}</div>`;
-      jarvisInput.value = '';
-      
-      const botDiv = document.createElement('div');
-      botDiv.className = 'chat-bubble j-bot';
-      botDiv.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Transmitting...`;
-      jarvisChatBody.appendChild(botDiv);
-      jarvisChatBody.scrollTop = jarvisChatBody.scrollHeight;
-
-      const prompt = "You are Jarvis, the formal AI Hub terminal assistant for MD Saiduzzaman Sojib's premium portfolio. Keep it professional, logical, and technically precise. Sojib's stack is C++, Java, Flutter, Dart, Firebase, and SOLID OOP. Message transmission: " + text;
-
-      try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-          method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }] })
-        });
-        const data = await response.json();
-        botDiv.innerHTML = formatBotResponse(data.candidates[0].content.parts[0].text);
-      } catch (err) {
-        botDiv.innerHTML = "transmission protocol failed. circuit error.";
-      }
-      jarvisChatBody.scrollTop = jarvisChatBody.scrollHeight;
-    }
-    
-    sendJarvisBtn.addEventListener('click', sendJarvisMessage);
-    jarvisInput.addEventListener('keypress', (e) => { if(e.key==='Enter') sendJarvisMessage(); });
-
-    // Scroll Reveal
-    document.addEventListener("DOMContentLoaded", () => {
-      const reveals = document.querySelectorAll(".reveal");
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      }, { threshold: 0.1 });
-      reveals.forEach(reveal => observer.observe(reveal));
-      
-      // Navbar scroll
-      window.addEventListener("scroll", () => {
-        const nav = document.querySelector("nav");
-        if (window.scrollY > 50) nav.classList.add("scrolled");
-        else nav.classList.remove("scrolled");
-      });
+    // Allow 'Enter' key in password modal
+    document.getElementById('vaultPassword').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') verifyPassword();
     });
 
+    // --- Jarvis Chat Logic ---
+    const chatWindow = document.getElementById('chatWindow');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    function toggleChat() {
+      chatWindow.classList.toggle('open');
+      if (chatWindow.classList.contains('open')) chatInput.focus();
+    }
+
+    function appendMessage(text, sender) {
+      const div = document.createElement('div');
+      div.className = `msg ${sender}`;
+      div.innerHTML = text; // Allow HTML for formatting
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      appendMessage(text, 'user');
+      chatInput.value = '';
+
+      // Loading state
+      const loadingDiv = document.createElement('div');
+      loadingDiv.className = 'msg bot';
+      loadingDiv.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+      chatMessages.appendChild(loadingDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // API Configuration
+      const keyChunks = ["AIzaSy", "BAp9ldRVFW", "oiMWbRGiwgb", "QHhrA2cUsv04"];
+      const API_KEY = keyChunks.join("");
+
+      const systemPrompt = "You are JARVIS, a highly advanced AI assistant for MD Saiduzzaman Sojib's portfolio. Your tone is professional, slightly robotic but polite, and highly technical. Sojib is a software engineer expert in C++, Java, and Flutter. Answer concisely.";
+
+      try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${API_KEY}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{
+              role: "user",
+              parts: [{ text: `${systemPrompt}\nUser: ${text}` }]
+            }]
+          })
+        });
+        
+        const data = await response.json();
+        // Remove loading
+        chatMessages.removeChild(loadingDiv);
+        
+        if (data.candidates && data.candidates[0]) {
+          const botText = data.candidates[0].content.parts[0].text;
+          // Simple markdown bold parsing
+          const formattedText = botText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+          appendMessage(formattedText, 'bot');
+        } else {
+          appendMessage("I apologize, sir, but I am experiencing temporary connection issues.", 'bot');
+        }
+      } catch (err) {
+        chatMessages.removeChild(loadingDiv);
+        appendMessage("System error. Connection failed.", 'bot');
+      }
+    }
+
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
   </script>
 </body>
 </html>
