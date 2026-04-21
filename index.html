@@ -3,8 +3,7 @@
 <head>
   <meta name="google-site-verification" content="-y1Pv-GRe8tcsRsGyIe-FqTIlCyP46jd3EQMTY_LTYE" />
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" /> <!-- Supports high zoom -->
-  <title>MD SAIDUZZAMAN SOJIB | Software Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" /> <title>MD SAIDUZZAMAN SOJIB | Software Engineer</title>
   <meta name="description" content="Official portfolio of MD Saiduzzaman Sojib. Software Engineer, App Developer, and Competitive DSA Programmer studying at Southeast University, Bangladesh.">
   
   <script type="application/ld+json">
@@ -26,10 +25,8 @@
   }
   </script>
 
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -176,7 +173,9 @@
       font-size: 1.25rem; color: var(--text-medium); margin-bottom: 40px; max-width: 550px; line-height: 1.6;
     }
     
-    .cta-group { display: flex; gap: 20px; }
+    /* Updated CTA Group for wrapping multiple buttons */
+    .cta-group { display: flex; gap: 20px; flex-wrap: wrap; }
+    
     .btn-primary {
       background: var(--accent-gradient); color: #fff; padding: 16px 36px; border-radius: var(--radius-full);
       font-weight: 600; font-family: var(--font-display); display: inline-flex; align-items: center; gap: 10px;
@@ -191,7 +190,7 @@
     }
     .btn-glass:hover { background: rgba(255,255,255,0.05); border-color: var(--text-high); transform: translateY(-4px); }
 
-    /* THE ORBIT SYSTEM (Upgraded) */
+    /* THE ORBIT SYSTEM */
     .orbit-wrapper { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; height: 600px; }
     
     .system-container {
@@ -424,10 +423,8 @@
 </head>
 <body>
 
-  <!-- Ambient Glow -->
   <div class="ambient-glow"></div>
 
-  <!-- Navigation -->
   <nav id="navbar">
     <div class="container nav-inner">
       <a href="#" class="logo">
@@ -443,7 +440,6 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="container hero-grid">
       
@@ -453,6 +449,9 @@
         <p>I am MD Saiduzzaman Sojib. A Software Engineer specializing in Flutter, DSA, and High-Performance System Architecture. I turn complex problems into elegant digital solutions.</p>
         
         <div class="cta-group">
+          <a href="https://saiduzzaman-sojib-portfoilo.netlify.app" target="_blank" class="btn-primary" style="background: linear-gradient(135deg, #0ea5e9, #3b82f6); box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);">
+            <i class="fa-solid fa-mobile-screen"></i> Launch Interactive App
+          </a>
           <a href="#projects" class="btn-primary">View Projects <i class="fa-solid fa-arrow-right"></i></a>
           <a href="#contact" class="btn-glass">Contact Me</a>
         </div>
@@ -462,7 +461,6 @@
         <div class="system-container">
           <div class="core-glow"></div>
           <div class="core-profile">
-            <!-- Replace with your actual high-res photo -->
             <img src="md-saiduzzaman-sojib.jpeg" alt="MD Saiduzzaman Sojib">
           </div>
           
@@ -481,7 +479,6 @@
     </div>
   </section>
 
-  <!-- About Section -->
   <section id="about" class="section-padding">
     <div class="container">
       <div class="about-grid">
@@ -518,7 +515,6 @@
     </div>
   </section>
 
-  <!-- Expertise Section -->
   <section id="expertise" class="section-padding" style="background: rgba(255,255,255,0.01);">
     <div class="container">
       <div class="section-header reveal">
@@ -546,7 +542,6 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
   <section id="skills" class="section-padding">
     <div class="container reveal">
       <div class="section-header">
@@ -567,7 +562,6 @@
     </div>
   </section>
 
-  <!-- Projects Section -->
   <section id="projects" class="section-padding" style="background: rgba(255,255,255,0.01);">
     <div class="container">
       <div class="section-header reveal">
@@ -576,7 +570,28 @@
       </div>
       
       <div class="cards-grid reveal">
-        <!-- Project 1 -->
+        
+        <div class="project-card" style="border-color: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow);">
+          <div class="project-visual" style="background: linear-gradient(135deg, #0f172a, #1e1b4b);">
+            <i class="fa-solid fa-mobile-screen-button" style="color: var(--accent-primary); opacity: 1;"></i>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">Flutter Web</span>
+              <span class="tag">State Management</span>
+              <span class="tag">UI/UX</span>
+            </div>
+            <h3>Interactive Portfolio App <i class="fa-solid fa-star" style="color: #fbbf24; font-size: 1rem; margin-left: 5px;"></i></h3>
+            <p style="color: var(--text-medium); font-size: 0.95rem; margin-top: 10px;">
+              A standalone, fully interactive portfolio application built natively with Flutter. It features dynamic routing, a custom login system, and a premium dashboard.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/saiduzzaman-sojib/portfolio-app" target="_blank" title="View Code"><i class="fa-brands fa-github"></i></a>
+              <a href="https://saiduzzaman-sojib-portfoilo.netlify.app" target="_blank" title="Live Demo" style="color: var(--accent-primary); font-weight: 600;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open App</a>
+            </div>
+          </div>
+        </div>
+
         <div class="project-card">
           <div class="project-visual">
             <i class="fa-brands fa-flutter"></i>
@@ -598,7 +613,6 @@
           </div>
         </div>
 
-        <!-- Project 2 -->
         <div class="project-card">
           <div class="project-visual">
             <i class="fa-solid fa-diagram-project"></i>
@@ -619,31 +633,10 @@
           </div>
         </div>
 
-        <!-- Project 3 -->
-        <div class="project-card">
-          <div class="project-visual">
-            <i class="fa-solid fa-building-columns"></i>
-          </div>
-          <div class="project-body">
-            <div class="project-tags">
-              <span class="tag">Java</span>
-              <span class="tag">Spring Boot</span>
-              <span class="tag">MySQL</span>
-            </div>
-            <h3>University Management</h3>
-            <p style="color: var(--text-medium); font-size: 0.95rem; margin-top: 10px;">
-              A comprehensive backend system handling student records, course enrollment, and grade management using SOLID principles.
-            </p>
-            <div class="project-links">
-              <a href="#" title="View Code"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Vault Section -->
   <section id="resources" class="section-padding">
     <div class="container reveal">
       <div class="section-header">
@@ -663,7 +656,6 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
   <section id="contact" class="section-padding" style="background: rgba(255,255,255,0.01);">
     <div class="container reveal">
       <div class="section-header">
@@ -689,7 +681,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="container reveal">
       <a href="#" class="footer-logo">SOJIB.</a>
@@ -704,7 +695,6 @@
     </div>
   </footer>
 
-  <!-- Password Modal -->
   <div id="passwordModal" class="modal">
     <div class="modal-box">
       <h3 style="margin-bottom: 10px;">Security Check</h3>
@@ -718,7 +708,6 @@
     </div>
   </div>
 
-  <!-- Jarvis AI Widget -->
   <div class="jarvis-container">
     <div class="chat-window" id="chatWindow">
       <div class="chat-header">
@@ -747,7 +736,6 @@
     </div>
   </div>
 
-  <!-- JavaScript Logic -->
   <script>
     // --- Navbar Scroll Effect ---
     window.addEventListener('scroll', () => {
